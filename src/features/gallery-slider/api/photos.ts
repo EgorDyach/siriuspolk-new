@@ -1,0 +1,17 @@
+export const links = [
+  'https://sirius-ft.ru/upload/iblock/c74/nfxgg0uoekrarpcf9cs9kzjgqtyewkq5.jpg',
+  'https://sirius-ft.ru/upload/iblock/6fc/02moecnhrgjnt2m9q73sj5v8uxwc9ppx.jpg',
+  'https://sirius-ft.ru/upload/iblock/594/jkwxg8zjn25btp4ya6opqlo6f3z63n61.jpg',
+  'https://sirius-ft.ru/upload/iblock/38a/8sibop0ijlyui6cumqy0o0200eh25pf6.jpg',
+  'https://sirius-ft.ru/upload/iblock/8d6/l70hr3c4bybz99cz8oxwg4krb88s7iyj.jpg',
+  'https://sirius-ft.ru/upload/tpost/c0a/r7y2gfzxbcf98v3y7uo7ny62sjsdxl1n.jpg',
+  'https://sirius-ft.ru/upload/iblock/f29/xfc0om2j2uaiv9ctirh9ge9y8k834z52.jpg',
+  'https://sun9-38.userapi.com/impg/tC0r-2GNLKDxwHtga3vlnyT-b9LkwZntszrwdQ/ERP8Uxs4zNU.jpg?size=2560x1703&quality=95&sign=6b6db191b25c5e587d440b44f6f886a1&type=album',
+  'https://sirius-ft.ru/upload/medialibrary/9e4/4887ttcyznyql6qk7sqkqk2zhepf6odg.jpg',
+  'https://s1.sochi-bloknot.ru/thumb/1200x0xcut/upload/iblock/39e/s6ox9bb5jnegigotme7tww1ytdm010ju/Bessmertnyy-polk-v-Siriuse-_4_.JPG',
+  'https://sirius-ft.ru/upload/iblock/ad6/36jmei42wqf9jeef2spgepgq3wksk2nb.jpg',
+  'https://s1.sochi-bloknot.ru/thumb/1200x0xcut/upload/iblock/7de/ll3b0bh9kqhdca1kgt5u6c9i3vqcw10l/Bessmertnyy-polk-v-Siriuse-_37_.JPG',
+  'https://sochisirius.ru/uploads/post/645a2705968ce-large.jpg?p=1683704648',
+  'https://sochisirius.ru/uploads/2023/05/DSC_4383.jpg',
+  'https://sochisirius.ru/uploads/2023/05/DSC_4467.jpg',
+];

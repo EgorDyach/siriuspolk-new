@@ -1,24 +1,25 @@
-import type { Metadata } from "next";
-import { Lora, Lato } from "next/font/google";
-import { Header } from "@widgets/header/ui/Header";
-import { Toaster } from "@shared/ui/sonner";
-import "@app/globals.css";
+import type { Metadata } from 'next';
+import { Lora, Lato } from 'next/font/google';
+import { Header } from '@widgets/header/ui/Header';
+import { Toaster } from '@shared/ui/sonner';
+import '@app/globals.css';
+import 'react-photo-view/dist/react-photo-view.css';
 
 const lora = Lora({
-  variable: "--display-font",
-  subsets: ["cyrillic-ext"],
+  variable: '--display-font',
+  subsets: ['cyrillic-ext'],
 });
 
 const lato = Lato({
-  variable: "--body-font",
-  weight: ["400"],
-  subsets: ["latin-ext"],
+  variable: '--body-font',
+  weight: ['400'],
+  subsets: ['latin-ext'],
 });
 
 export const metadata: Metadata = {
-  title: "«Сириус» – бессмертный полк",
+  title: '«Сириус» – бессмертный полк',
   description:
-    "Присоединяйся к онлайн движению «Сириус» – бессмертный полк» и поделись историей ветерана!",
+    'Присоединяйся к онлайн движению «Сириус» – бессмертный полк» и поделись историей ветерана!',
 };
 
 export function RootLayout({ children }: { children: React.ReactNode }) {
