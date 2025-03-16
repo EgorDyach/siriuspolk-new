@@ -7,16 +7,18 @@ import { ShortPerson } from '@shared/model/types';
 import Image from 'next/image';
 import { getPersonDates } from '../model/getPersonDates';
 import { PhotoProvider, PhotoView } from 'react-photo-view';
+import Link from 'next/link';
+import { routes } from '@shared/config/routes';
 
 interface CurrentPersonProps {
   current: ShortPerson;
 }
 
 export default function CurrentPerson({
-  current: { date_birth, date_death, main_photo, SNL: name, history },
+  current: { id, date_birth, date_death, main_photo, SNL: name, history },
 }: CurrentPersonProps) {
   return (
-    <div className="flex items-center justify-between gap-[calc(5%)] mb-[40px] h-[560px]">
+    <div className="flex items-center justify-between gap-[calc(5%)] mb-[40px] h-[630px]">
       <PhotoProvider
         maskOpacity={0.8}
         toolbarRender={() =>
@@ -39,12 +41,18 @@ export default function CurrentPerson({
           {getPersonDates(date_birth, date_death)}
         </p>
         <div
-          className="font-lora text-[28px] text-white line-clamp-6"
+          className="font-lora text-[28px] text-white line-clamp-6 mb-[30px]"
           dangerouslySetInnerHTML={{
             // TODO: Удалить после перехода на CKEditor
             __html: history.replaceAll('||', '\n\n'),
           }}
         />
+        <Link
+          className="underline text-[24px] font-lora text-white"
+          href={routes.historyById(id)}
+        >
+          Подробнее
+        </Link>
       </div>
     </div>
   );
