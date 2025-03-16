@@ -1,8 +1,8 @@
 export type Person = {
   name: string;
   city: string;
-  dateOfBirth: number | "unknown" | "alive";
-  dateOfDeath: number | "unknown" | "alive";
+  dateOfBirth: number | 'unknown' | 'alive';
+  dateOfDeath: number | 'unknown' | 'alive';
   history: string;
   mainPhoto: string;
   medals: string[];
@@ -23,4 +23,10 @@ export type ShortPerson = {
   main_photo: string;
   SNL: string;
   date_pulished: number;
+};
+
+export type Photo = {
+  src: string;
+  date: string;
+  alt?: string;
 };

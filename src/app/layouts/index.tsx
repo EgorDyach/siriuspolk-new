@@ -26,7 +26,9 @@ export const metadata: Metadata = {
 export function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="ru">
-      <body className={`${lora.variable} ${lato.variable}`}>
+      <body
+        className={`${lora.variable} ${lato.variable} pt-[95px] bg-[#efeade]`}
+      >
         <Header />
         <Toaster />
         {children}

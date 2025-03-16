@@ -11,27 +11,7 @@ const nextConfig: NextConfig = {
     remotePatterns: [
       {
         protocol: 'https',
-        hostname: 'storage.yandexcloud.net',
-      },
-      {
-        protocol: 'https',
-        hostname: 'sirius-ft.ru',
-      },
-      {
-        protocol: 'https',
-        hostname: 'sun9-38.userapi.com',
-      },
-      {
-        protocol: 'https',
-        hostname: 'siriuslyceum.ru',
-      },
-      {
-        protocol: 'https',
-        hostname: 's1.sochi-bloknot.ru',
-      },
-      {
-        protocol: 'https',
-        hostname: 'sochisirius.ru',
+        hostname: '*',
       },
     ],
   },
