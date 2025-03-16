@@ -17,14 +17,19 @@ export default function CurrentPerson({
 }: CurrentPersonProps) {
   return (
     <div className="flex items-center justify-between gap-[calc(5%)] mb-[40px] h-[560px]">
-      <PhotoProvider>
+      <PhotoProvider
+        maskOpacity={0.8}
+        toolbarRender={() =>
+          `Ветеран ${name} (${getPersonDates(date_birth, date_death)})`
+        }
+      >
         <PhotoView src={main_photo}>
           <Image
             width={400}
             height={700}
             className="cursor-pointer flex-1/2 max-h-[500px] object-contain"
             src={main_photo || '/images/UnkownSlodier.jpg'}
-            alt={`Ветеран ${name} (${date_birth} - ${date_death})`}
+            alt={`Ветеран ${name} (${getPersonDates(date_birth, date_death)})`}
           />
         </PhotoView>
       </PhotoProvider>

@@ -18,7 +18,7 @@ const GallerySlider = () => {
   const handleMouseDown = useDragSlider(handlePrev, handleNext);
 
   return (
-    <PhotoProvider onIndexChange={handleIndexChange}>
+    <PhotoProvider maskOpacity={0.8} onIndexChange={handleIndexChange}>
       <div className="overflow-hidden">
         <div
           className={`grid grid-cols-12 grid-rows-2 gap-[15px] w-max transition duration-700`}
