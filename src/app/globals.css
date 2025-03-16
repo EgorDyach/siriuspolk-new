@@ -128,3 +128,44 @@
     @apply bg-background text-foreground;
   }
 }
+
+@keyframes fillLine {
+  0% {
+    height: 0%;
+    opacity: 1;
+  }
+  95% {
+    height: 100%;
+    opacity: 1;
+  }
+  100% {
+    height: 100%;
+    opacity: 0;
+  }
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0.45;
+  }
+  10% {
+    opacity: 1;
+  }
+  28% {
+    opacity: 1;
+  }
+  33% {
+    opacity: 0.45;
+  }
+  100% {
+    opacity: 0.45;
+  }
+}
+
+.fill-line {
+  animation: fillLine 10s infinite linear;
+}
+
+.fade-in-anim {
+  animation: fadeIn 10s infinite linear;
+}
