@@ -4,6 +4,7 @@ import { Header } from '@widgets/header/ui/Header';
 import { Toaster } from '@shared/ui/sonner';
 import '@app/globals.css';
 import 'react-photo-view/dist/react-photo-view.css';
+import { Footer } from '@widgets/footer/ui/Footer';
 
 const lora = Lora({
   variable: '--display-font',
@@ -29,6 +30,7 @@ export function RootLayout({ children }: { children: React.ReactNode }) {
         <Header />
         <Toaster />
         {children}
+        <Footer />
       </body>
     </html>
   );
