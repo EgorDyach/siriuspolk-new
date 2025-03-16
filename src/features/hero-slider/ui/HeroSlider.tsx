@@ -1,18 +1,18 @@
-"use client";
-import "./heroSlider.css";
-import "swiper/css";
-import "swiper/css/pagination";
-import "swiper/css/scrollbar";
+'use client';
+import './heroSlider.css';
+import 'swiper/css';
+import 'swiper/css/pagination';
+import 'swiper/css/scrollbar';
 
-import { Swiper, SwiperRef } from "swiper/react";
-import { A11y } from "swiper/modules";
-import { SwiperSlide } from "swiper/react";
-import { HeroSlide } from "./HeroSlide";
-import { ShortPerson } from "@shared/model/types";
-import { useRef, useCallback } from "react";
-import { BREAKPOINTS, SPACE_BETWEEN, SPEED } from "../model/sliderConfig";
-import ArrowLeft from "@shared/ui/icons/ArrowLeft";
-import ArrowRight from "@shared/ui/icons/ArrowRight";
+import { Swiper, SwiperRef } from 'swiper/react';
+import { A11y } from 'swiper/modules';
+import { SwiperSlide } from 'swiper/react';
+import { HeroSlide } from './HeroSlide';
+import { ShortPerson } from '@shared/model/types';
+import { useRef, useCallback } from 'react';
+import { BREAKPOINTS, SPACE_BETWEEN, SPEED } from '../model/sliderConfig';
+import ArrowLeft from '@shared/ui/icons/ArrowLeft';
+import ArrowRight from '@shared/ui/icons/ArrowRight';
 
 interface HeroSliderProps {
   persons: ShortPerson[];
@@ -53,13 +53,13 @@ export default function HeroSlider({ persons }: HeroSliderProps) {
       <div className="flex absolute bottom-0 left-0 right-0 items-center justify-center gap-[88px] transform-[translateX(-5px)] z-10">
         <button
           onClick={handlePrev}
-          className="relative border-none p-0 bg-transparent cursor-pointer w-[50px] h-[50px] outline-[3px] outline-offset-[-3px] outline-transparent transition-colors hover:fill-[#989898]  swiper-button-prev"
+          className="relative border-none p-0 cursor-pointer w-[50px] h-[50px] outline-[3px] outline-offset-[-3px] outline-transparent transition-colors hover:fill-[#989898] bg-[#52575D]"
         >
           <ArrowLeft color="#fff" size={50} />
         </button>
         <button
           onClick={handleNext}
-          className="relative border-none p-0 bg-transparent cursor-pointer w-[50px] h-[50px] outline-[3px] outline-offset-[-3px] outline-transparent transition-colors hover:fill-[#989898]  swiper-button-next"
+          className="relative border-none p-0 bg-[#52575D] cursor-pointer w-[50px] h-[50px] outline-[3px] outline-offset-[-3px] outline-transparent transition-colors hover:fill-[#989898]"
         >
           <ArrowRight color="#fff" size={50} />
         </button>

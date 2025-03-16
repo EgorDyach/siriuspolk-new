@@ -1,17 +1,20 @@
-"use server";
-import Image from "next/image";
-import Link from "next/link";
-import { requestPersons } from "../api/persons";
-import HeroSlider from "@features/hero-slider/ui/HeroSlider";
-import { routes } from "@shared/config/routes";
+'use server';
+import Image from 'next/image';
+import Link from 'next/link';
+import HeroSlider from '@features/hero-slider/ui/HeroSlider';
+import { routes } from '@shared/config/routes';
+import { ShortPerson } from '@shared/model/types';
 
-export async function Hero() {
-  const { details } = await requestPersons();
+interface HeroProps {
+  persons: ShortPerson[];
+}
+
+export async function Hero({ persons }: HeroProps) {
   return (
     <section className="relative pt-[83px] bg-[#efeade]">
       <Image
         className="absolute top-0 left-0 right-0 bottom-0 z-0 opacity-20 object-cover object-center max-h-full max-w-full w-full h-full"
-        src={"/images/hero-bg.jpg"}
+        src={'/images/hero-bg.jpg'}
         width={1920}
         height={1080}
         alt="Фото советских воинов-освободителей"
@@ -33,7 +36,7 @@ export async function Hero() {
           </Link>
         </div>
       </div>
-      <HeroSlider persons={details} />
+      <HeroSlider persons={persons} />
     </section>
   );
 }

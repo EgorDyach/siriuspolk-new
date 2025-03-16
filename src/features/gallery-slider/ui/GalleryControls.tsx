@@ -45,14 +45,14 @@ export function GalleryControls({
         <button
           onClick={prevSlide}
           disabled={activeIndex === 0}
-          className="disabled:opacity-50 transition-opacity duration-200 text-white hover:not-disabled:text-[#999] cursor-pointer"
+          className="disabled:opacity-50 transition-opacity duration-200 text-white hover:not-disabled:text-[#999] cursor-pointer bg-[#52575D]"
         >
           <ArrowLeft size={50} className="transition-colors" />
         </button>
         <button
           onClick={nextSlide}
           disabled={activeIndex === PAGINATION_LENGTH - 1}
-          className="disabled:opacity-50 transition-opacity duration-200 text-white hover:not-disabled:text-[#999] cursor-pointer"
+          className="disabled:opacity-50 transition-opacity duration-200 text-white hover:not-disabled:text-[#999] cursor-pointer bg-[#52575D]"
         >
           <ArrowRight size={50} className="transition-colors" />
         </button>
