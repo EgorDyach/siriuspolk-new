@@ -1,0 +1,4 @@
+.person__image {
+  -webkit-mask-image: linear-gradient(to left, transparent 6%, black 35%);
+  mask-image: linear-gradient(to left, transparent 6%, black 35%);
+}

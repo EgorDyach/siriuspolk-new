@@ -1,16 +1,16 @@
 export type Person = {
-  name: string;
+  id: number;
   city: string;
-  dateOfBirth: number | 'unknown' | 'alive';
-  dateOfDeath: number | 'unknown' | 'alive';
+  date_birth: number;
+  date_death: number;
   history: string;
-  mainPhoto: string;
-  medals: string[];
-  photos: string[];
-  published: number;
+  role: boolean;
+  main_photo: string;
+  medals: string;
+  SNL: string;
+  photo: string;
   rank: string;
-  isHero: boolean;
-  id: string;
+  date_pulished: number;
 };
 
 export type ShortPerson = {
