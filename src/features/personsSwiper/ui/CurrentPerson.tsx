@@ -5,7 +5,7 @@ import 'swiper/css/scrollbar';
 
 import { ShortPerson } from '@shared/model/types';
 import Image from 'next/image';
-import { getPersonDates } from '../model/getPersonDates';
+import { getPersonDates } from '@shared/model/getPersonDates';
 import { PhotoProvider, PhotoView } from 'react-photo-view';
 import Link from 'next/link';
 import { routes } from '@shared/config/routes';

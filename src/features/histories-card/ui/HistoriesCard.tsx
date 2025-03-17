@@ -3,6 +3,7 @@ import { ShortPerson } from '@shared/model/types';
 import Image from 'next/image';
 import Link from 'next/link';
 import { routes } from '@shared/config/routes';
+import { getPersonDates } from '@shared/model/getPersonDates';
 
 interface HistoriesCardProps {
   item: ShortPerson;
@@ -28,7 +29,7 @@ const HistoriesCard: FC<HistoriesCardProps> = ({
           <h3 className="mb-[20px] text-[24px] font-lora font-normal">
             {name}
             <br />
-            {date_birth} - {date_death}
+            {getPersonDates(date_birth, date_death)}
           </h3>
           <div className="w-full flex justify-between">
             <p className=" text-nowrap max-w-[120px] text-ellipsis overflow-hidden text-[14px] font-lora">
