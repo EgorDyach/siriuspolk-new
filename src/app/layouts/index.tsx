@@ -5,6 +5,7 @@ import { Toaster } from '@shared/ui/sonner';
 import '@app/globals.css';
 import 'react-photo-view/dist/react-photo-view.css';
 import { Footer } from '@widgets/footer/ui/Footer';
+import '../dayjs.config.ts';
 
 const lora = Lora({
   variable: '--display-font',
