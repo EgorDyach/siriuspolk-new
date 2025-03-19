@@ -1,7 +1,7 @@
 'use client';
 import { Input } from '@shared/ui/Input';
 import { useFormContext } from 'react-hook-form';
-import { MainFormValues } from '../model/schema';
+import { MainFormValues } from '../model/mainInfoSchema';
 import { UserRound, X } from 'lucide-react';
 import { Checkbox } from '@shared/ui/checkbox';
 import { Label } from '@shared/ui/label';
