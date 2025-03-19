@@ -8,20 +8,23 @@ import { useFormContext } from 'react-hook-form';
 const Checkbox = forwardRef<
   HTMLInputElement,
   InputHTMLAttributes<HTMLInputElement>
->(({ className, ...props }, ref) => {
+>(({ className, disabled, ...props }, ref) => {
   const { watch } = useFormContext();
   const checked = watch(props.name as string);
 
   return (
     <span
+      data-disabled={disabled}
       className={cx(
         'relative border-2 border-black aspect-square block size-5',
+        'data-[disabled=true]:border-gray-500',
         className,
       )}
     >
       <input
         type="checkbox"
         ref={ref}
+        disabled={disabled}
         className={'opacity-0'}
         {...props}
         checked={checked}

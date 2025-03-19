@@ -21,16 +21,18 @@ function Input({
       <Label
         htmlFor={name}
         className={cx(
-          'mb-2 text-[20px] font-normal flex flex-col items-start',
+          'mb-2 text-[20px] font-normal flex flex-col items-start ',
           className,
         )}
       >
-        <div className="text-left">
-          {required && <span className="text-red-400">*</span>}
-          {label}
+        <div className="text-left w-full flex justify-between items-end">
+          <span>
+            {required && <span className="text-red-400">*</span>}
+            {label}
+          </span>
           {error && (
-            <span className="ml-2 text-red-400 text-[16px]">
-              Это обязательное поле
+            <span className="ml-2 text-end text-red-400 text-[16px]">
+              {error}
             </span>
           )}
         </div>
