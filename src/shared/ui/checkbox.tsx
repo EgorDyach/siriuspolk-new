@@ -1,31 +1,38 @@
 'use client';
 
-import * as React from 'react';
-import * as CheckboxPrimitive from '@radix-ui/react-checkbox';
 import { CheckIcon } from 'lucide-react';
 import { cx } from 'class-variance-authority';
+import { InputHTMLAttributes, forwardRef } from 'react';
+import { useFormContext } from 'react-hook-form';
 
-function Checkbox({
-  className,
-  ...props
-}: React.ComponentProps<typeof CheckboxPrimitive.Root>) {
+const Checkbox = forwardRef<
+  HTMLInputElement,
+  InputHTMLAttributes<HTMLInputElement>
+>(({ className, ...props }, ref) => {
+  const { watch } = useFormContext();
+  const checked = watch(props.name as string);
+
   return (
-    <CheckboxPrimitive.Root
-      data-slot="checkbox"
+    <span
       className={cx(
-        'peer dark:bg-input/30 data-[state=checked]:bg-primary data-[state=checked]:text-primary-foreground dark:data-[state=checked]:bg-primary data-[state=checked]:border-primary focus-visible:border-ring focus-visible:ring-ring/50 aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive size-4 shrink-0  border-2 border-[#1e1e1e] shadow-xs transition-shadow outline-none focus-visible:ring-[3px] disabled:cursor-not-allowed disabled:opacity-50',
+        'relative border-2 border-black aspect-square block size-5',
         className,
       )}
-      {...props}
     >
-      <CheckboxPrimitive.Indicator
-        data-slot="checkbox-indicator"
-        className="flex items-center justify-center text-current transition-none"
-      >
-        <CheckIcon className="size-3.5 w-full h-full" />
-      </CheckboxPrimitive.Indicator>
-    </CheckboxPrimitive.Root>
+      <input
+        type="checkbox"
+        ref={ref}
+        className={'opacity-0'}
+        {...props}
+        checked={checked}
+      />
+      {checked && (
+        <CheckIcon className="size-3.5 w-full h-full absolute top-0 left-0 right-0 bottom-0" />
+      )}
+    </span>
   );
-}
+});
+
+Checkbox.displayName = 'Checkbox';
 
 export { Checkbox };
