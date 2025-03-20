@@ -20,9 +20,11 @@ export default function MainForm() {
   });
 
   const onSubmit = (data: ContactsSchemaValues) => {
-    console.log(data);
     setContacts(data);
-    router.push('/form/medals');
+  };
+
+  const handleCancel = () => {
+    router.push('/form/photos');
   };
 
   return (
@@ -86,6 +88,9 @@ export default function MainForm() {
         </div>
 
         <div className="w-full flex justify-center mt-7">
+          <Button onClick={handleCancel} className="bg-[#D9D9D9]">
+            <p className="text-black">Назад</p>
+          </Button>
           <Button onClick={() => console.log(errors)}>Отправить</Button>
         </div>
       </section>
