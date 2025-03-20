@@ -5,7 +5,6 @@ import { useRef } from 'react';
 import { useDragAndDrop } from '@shared/lib/hooks/useDragAndDrop';
 import { ACCEPTED_IMAGE_TYPES, MAX_FILE_SIZE } from '../model/constants';
 import ImagePlus from '@shared/ui/icons/ImagePlus';
-import { useFormContext } from 'react-hook-form';
 import Image from 'next/image';
 import { X } from 'lucide-react';
 import { filelistToFileArray } from '../model/helpers';
@@ -14,14 +13,11 @@ import { removeDuplicates } from '@shared/lib/utils/removeDuplicates';
 import { useFormStore } from '../model/store';
 import { useRouter } from 'next/navigation';
 import { Button } from '@shared/ui/Button';
-import { PhotosFormContext } from '../model/types';
 
 export default function Photos() {
   const router = useRouter();
   const dragZoneRef = useRef<HTMLLabelElement | null>(null);
-  const { watch, setValue, getValues } = useFormContext<PhotosFormContext>();
-  const { setPhotos } = useFormStore();
-
+  const { photos, setPhotos } = useFormStore();
   const handleSetFiles = (files: File[]) => {
     removeDuplicates(files).forEach((file) => {
       if (!ACCEPTED_IMAGE_TYPES.includes(file.type))
@@ -34,8 +30,8 @@ export default function Photos() {
         );
     });
 
-    setValue('photos', [
-      ...watch('photos'),
+    setPhotos([
+      ...photos,
       ...files.filter(
         (file) =>
           ACCEPTED_IMAGE_TYPES.includes(file.type) &&
@@ -45,20 +41,15 @@ export default function Photos() {
   };
 
   const handleSubmit = () => {
-    setPhotos(getValues('photos'));
     router.push('/form/contacts');
   };
 
   const handleCancel = () => {
-    setPhotos(getValues('photos'));
     router.push('/form/history');
   };
 
   const handleRemoveItem = (removable: File) =>
-    setValue(
-      'photos',
-      watch('photos').filter((file) => file !== removable),
-    );
+    setPhotos(photos.filter((file) => file !== removable));
 
   useDragAndDrop(dragZoneRef.current, handleSetFiles, 'test');
 
@@ -71,7 +62,7 @@ export default function Photos() {
       </p>
       <PhotoProvider>
         <ul className="mb-9 flex flex-wrap gap-6">
-          {watch('photos').map((file, index) => (
+          {photos.map((file, index) => (
             <div key={index} className="relative inline-block">
               <PhotoView src={URL.createObjectURL(file)}>
                 <Image

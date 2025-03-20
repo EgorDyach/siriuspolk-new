@@ -2,19 +2,11 @@
 
 import { FormNav } from '@widgets/formNav/ui/FormNav';
 import { PropsWithChildren, useEffect } from 'react';
-import { FormProvider, useForm } from 'react-hook-form';
-import { MainFormSchema } from '../model/mainInfoSchema';
-import { zodResolver } from '@hookform/resolvers/zod';
 import { useFormStore } from '../model/store';
 import { requestMedals } from '../api/medals';
 
 export default function FormLayout({ children }: PropsWithChildren) {
   const values = useFormStore();
-
-  const form = useForm({
-    resolver: zodResolver(MainFormSchema),
-    defaultValues: values,
-  });
 
   useEffect(() => {
     (async () => {
@@ -31,7 +23,7 @@ export default function FormLayout({ children }: PropsWithChildren) {
           Расскажи историю своего предка
         </h1>
         <FormNav />
-        <FormProvider {...form}>{children}</FormProvider>
+        {children}
       </div>
     </section>
   );
