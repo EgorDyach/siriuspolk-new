@@ -3,3 +3,7 @@ export type Medal = {
   name: string;
   id: number;
 };
+
+export interface PhotosFormContext {
+  photos: File[];
+}

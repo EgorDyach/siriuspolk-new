@@ -1,0 +1,127 @@
+'use client';
+
+import { showErrorNotification } from '@shared/lib/utils/notification';
+import { useRef } from 'react';
+import { useDragAndDrop } from '@shared/lib/hooks/useDragAndDrop';
+import { ACCEPTED_IMAGE_TYPES, MAX_FILE_SIZE } from '../model/constants';
+import ImagePlus from '@shared/ui/icons/ImagePlus';
+import { useFormContext } from 'react-hook-form';
+import Image from 'next/image';
+import { X } from 'lucide-react';
+import { filelistToFileArray } from '../model/helpers';
+import { PhotoProvider, PhotoView } from 'react-photo-view';
+import { removeDuplicates } from '@shared/lib/utils/removeDuplicates';
+import { useFormStore } from '../model/store';
+import { useRouter } from 'next/navigation';
+import { Button } from '@shared/ui/Button';
+import { PhotosFormContext } from '../model/types';
+
+export default function Photos() {
+  const router = useRouter();
+  const dragZoneRef = useRef<HTMLLabelElement | null>(null);
+  const { watch, setValue, getValues } = useFormContext<PhotosFormContext>();
+  const { setPhotos } = useFormStore();
+
+  const handleSetFiles = (files: File[]) => {
+    removeDuplicates(files).forEach((file) => {
+      if (!ACCEPTED_IMAGE_TYPES.includes(file.type))
+        showErrorNotification(
+          `Неподдерживаемый тип файла ${file.name}. Поддерживаемые: ${ACCEPTED_IMAGE_TYPES.map((el) => `.${el}`).join(', ')}`,
+        );
+      else if (file.size > MAX_FILE_SIZE * 1024 * 1024)
+        showErrorNotification(
+          `Файл ${file.name} превышает максимальный размер – ${MAX_FILE_SIZE} МБ.`,
+        );
+    });
+
+    setValue('photos', [
+      ...watch('photos'),
+      ...files.filter(
+        (file) =>
+          ACCEPTED_IMAGE_TYPES.includes(file.type) &&
+          file.size <= MAX_FILE_SIZE * 1024 * 1024,
+      ),
+    ]);
+  };
+
+  const handleSubmit = () => {
+    setPhotos(getValues('photos'));
+    router.push('/form/contacts');
+  };
+
+  const handleCancel = () => {
+    setPhotos(getValues('photos'));
+    router.push('/form/history');
+  };
+
+  const handleRemoveItem = (removable: File) =>
+    setValue(
+      'photos',
+      watch('photos').filter((file) => file !== removable),
+    );
+
+  useDragAndDrop(dragZoneRef.current, handleSetFiles, 'test');
+
+  return (
+    <section className="pb-[60px]">
+      <h2 className="text-[42px] font-lora mb-[24px]">Дополнительные фото</h2>
+      <p className="text-2xl max-w-[830px] mb-[32px]">
+        Если у вас есть ещё фото, связанные с вашим предком, добавляйте их.
+        Подойдут любые: семейные, домашние, с работы, фото документов и т.д.
+      </p>
+      <PhotoProvider>
+        <ul className="mb-9 flex flex-wrap gap-6">
+          {watch('photos').map((file, index) => (
+            <div key={index} className="relative inline-block">
+              <PhotoView src={URL.createObjectURL(file)}>
+                <Image
+                  className="aspect-[1/1.4] object-cover basis-[30%]"
+                  src={URL.createObjectURL(file)}
+                  alt=""
+                  width={400}
+                  height={400}
+                />
+              </PhotoView>
+              <button
+                onClick={() => handleRemoveItem(file)}
+                className="absolute top-2 right-2 size-10 bg-[#52545d] rounded-full flex items-center justify-center cursor-pointer"
+                type="button"
+              >
+                <X color="white" />
+              </button>
+            </div>
+          ))}
+        </ul>
+      </PhotoProvider>
+      <label
+        className="w-full h-[160px] items-center border-8 border-[#B3B3B3] flex p-5"
+        ref={dragZoneRef}
+      >
+        <input
+          name="photos"
+          onChange={(e) => handleSetFiles(filelistToFileArray(e.target.files))}
+          type="file"
+          multiple
+          className="size-[1px]"
+        />
+        <ImagePlus size={110} color="#B3B3B3" />
+        <p className="ml-10 text-2xl text-[#B3B3B3]">
+          <span className="underline text-black underline-offset-[6px]">
+            Добавьте
+          </span>{' '}
+          или{' '}
+          <span className="underline text-black underline-offset-[6px]">
+            перетащите
+          </span>{' '}
+          фото сюда.
+        </p>
+      </label>
+      <div className="w-full flex justify-center mt-7 gap-[3%]">
+        <Button onClick={handleCancel} className="bg-[#D9D9D9]">
+          <p className="text-black">Назад</p>
+        </Button>
+        <Button onClick={handleSubmit}>Сохранить</Button>
+      </div>
+    </section>
+  );
+}
