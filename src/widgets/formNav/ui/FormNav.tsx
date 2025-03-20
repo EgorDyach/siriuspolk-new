@@ -2,7 +2,6 @@
 
 import { cx } from 'class-variance-authority';
 import { formLinks } from '../api/formLinks';
-import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { getIsActive, getScale } from '../model/helpers';
 
@@ -10,7 +9,7 @@ export function FormNav() {
   const pathname = usePathname();
   return (
     <section className="relative pb-[40px] py-[30px] bg-[#efeade]">
-      <div className="absolute left-1/2 -translate-x-1/2 h-[2px] max-w-full w-full bg-gray-400 overflow-hidden">
+      <div className="absolute left-1/2 -translate-x-1/2 h-[2px] max-w-full w-full bg-gray-400 overflow-hidden transition-transform">
         <div
           className="h-full bg-black"
           style={{
@@ -20,8 +19,8 @@ export function FormNav() {
         />
       </div>
       <ul className="flex justify-around w-full">
-        {formLinks.map(({ link, text }, index) => (
-          <Link key={index} href={link} className="-translate-[25px]">
+        {formLinks.map(({ text }, index) => (
+          <div key={index} className="-translate-[25px]">
             <li
               data-active={getIsActive(pathname, index)}
               className={cx(
@@ -31,7 +30,7 @@ export function FormNav() {
             >
               <p className="font-lora text-inherit font-medium w-min">{text}</p>
             </li>
-          </Link>
+          </div>
         ))}
       </ul>
     </section>

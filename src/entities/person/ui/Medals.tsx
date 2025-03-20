@@ -9,7 +9,10 @@ import {
   SelectContent,
   SelectItem,
 } from '@shared/ui/select';
-import { showErrorNotification } from '@shared/lib/utils/notification';
+import {
+  showErrorNotification,
+  showSuccessNotification,
+} from '@shared/lib/utils/notification';
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 
@@ -23,6 +26,7 @@ export default function Medals() {
     const item = server_medals.find((v) => v.id.toString() === el);
     if (!item) return showErrorNotification('Не удалось добавить награду.');
     setMedals([...medals, item]);
+    showSuccessNotification(`Добавлена награда «${item.name}»`);
     setIsOpen(true);
   };
 
@@ -37,10 +41,14 @@ export default function Medals() {
     router.push('/form/history');
   };
 
+  const handleCancel = () => {
+    router.push('/form/main');
+  };
+
   return (
     <section className="pb-[60px]">
       <h2 className="text-[42px] font-lora mb-[6px]">Награды</h2>
-      <ul className="flex flex-wrap">
+      <ul className="flex flex-wrap mb-8">
         {medals.map((el, index) => (
           <li
             key={index}
@@ -92,7 +100,12 @@ export default function Medals() {
           ))}
         </SelectContent>
       </Select>
-      <Button onClick={handleSubmit}>Сохранить</Button>
+      <div className="w-full flex justify-center mt-7 gap-[3%]">
+        <Button onClick={handleCancel} className="bg-[#D9D9D9]">
+          <p className="text-black">Назад</p>
+        </Button>
+        <Button onClick={handleSubmit}>Сохранить</Button>
+      </div>
     </section>
   );
 }

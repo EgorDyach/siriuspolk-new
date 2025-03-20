@@ -182,7 +182,9 @@ export default function MainForm() {
             />
           </div>
         </div>
-        <Button>Сохранить</Button>
+        <div className="w-full flex justify-center mt-7">
+          <Button>Сохранить</Button>
+        </div>
       </section>
     </form>
   );
