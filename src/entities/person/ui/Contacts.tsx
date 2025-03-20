@@ -87,7 +87,7 @@ export default function MainForm() {
           />
         </div>
 
-        <div className="w-full flex justify-center mt-7">
+        <div className="w-full flex justify-center mt-7  gap-[3%]">
           <Button onClick={handleCancel} className="bg-[#D9D9D9]">
             <p className="text-black">Назад</p>
           </Button>
