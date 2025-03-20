@@ -169,3 +169,7 @@
 .fade-in-anim {
   animation: fadeIn 10s infinite linear;
 }
+
+.ck-editor__editable {
+  padding: 0 30px !important;
+}

@@ -6,7 +6,9 @@ interface FormStoreType extends MainFormValues {
   setValues: (data: MainFormValues) => void;
   server_medals: Medal[];
   medals: Medal[];
+  history: string;
   setMedals: (v: Medal[]) => void;
+  setHistory: (v: string) => void;
   setServerMedals: (data: Medal[]) => void;
 }
 
@@ -25,8 +27,12 @@ export const useFormStore = create<FormStoreType>((set) => ({
   rank: '',
   server_medals: [],
   medals: [],
+  history: '',
   setValues: (data) => {
     set(data);
+  },
+  setHistory: (history) => {
+    set((store) => ({ ...store, history }));
   },
   setMedals: (medals) => set((store) => ({ ...store, medals: medals })),
   setServerMedals: (data) => {
