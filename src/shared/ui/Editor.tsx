@@ -1,82 +1,58 @@
-import { CKEditor } from '@ckeditor/ckeditor5-react';
-import {
-  ClassicEditor,
-  Bold,
-  Essentials,
-  Italic,
-  Mention,
-  Paragraph,
-  Undo,
-  FontFamily,
-  FontSize,
-  List,
-  Underline,
-  BlockQuote,
-} from 'ckeditor5';
+import React, { forwardRef, useEffect, useLayoutEffect, useRef } from 'react';
+import Quill from 'quill';
+import 'quill/dist/quill.snow.css';
 
-import 'ckeditor5/ckeditor5.css';
-import { FC, ReactNode } from 'react';
-import { Label } from '@shared/ui/label';
-import { useFormContext } from 'react-hook-form';
+interface EditorProps {
+  readOnly?: boolean;
+  defaultValue?: string;
+  onTextChange?: (html: string) => void;
+}
 
-const FormEditor: FC<{
-  name: string;
-  label?: ReactNode;
-  className?: string;
-}> = ({ name, label }) => {
-  const { getValues, setValue } = useFormContext();
+type QuillEditor = Quill | null;
 
-  return (
-    <>
-      {label && <Label>{label}</Label>}
-      <CKEditor
-        editor={ClassicEditor}
-        data={getValues(name)}
-        onChange={(_, editor) => {
-          setValue(name, editor.getData());
-        }}
-        config={{
-          licenseKey: 'GPL',
-          image: {
-            insert: {
-              integrations: ['upload', 'assetManager', 'url'],
-            },
-          },
-          toolbar: {
-            items: [
-              'undo',
-              'redo',
-              '|',
-              'bold',
-              'italic',
-              'underline',
-              'blockquote',
-              '|',
-              'fontSize',
-              'fontFamily',
-              '|',
-              'bulletedList',
-              'numberedList',
-            ],
-          },
-          plugins: [
-            Bold,
-            Essentials,
-            Italic,
-            Mention,
-            Underline,
-            BlockQuote,
-            Paragraph,
-            Undo,
-            FontFamily,
-            FontSize,
-            List,
-          ],
-          initialData: '',
-        }}
-      />
-    </>
-  );
-};
+const Editor = forwardRef<QuillEditor, EditorProps>(
+  ({ defaultValue = '', onTextChange }, ref) => {
+    const containerRef = useRef<HTMLDivElement | null>(null);
+    const onTextChangeRef = useRef(onTextChange);
 
-export default FormEditor;
+    useLayoutEffect(() => {
+      onTextChangeRef.current = onTextChange;
+    }, [onTextChange]);
+
+    useEffect(() => {
+      const container = containerRef.current;
+      if (!container) return;
+
+      const editorContainer = container.appendChild(
+        document.createElement('div'),
+      );
+      const quill = new Quill(editorContainer, {
+        theme: 'snow',
+      });
+
+      if (ref && 'current' in ref) {
+        ref.current = quill;
+      }
+
+      quill.root.innerHTML = defaultValue;
+
+      quill.on(Quill.events.TEXT_CHANGE, () => {
+        const html = quill.root.innerHTML;
+        onTextChangeRef.current?.(html);
+      });
+
+      return () => {
+        if (ref && 'current' in ref) {
+          ref.current = null;
+        }
+        container.innerHTML = '';
+      };
+    }, [ref]);
+
+    return <div ref={containerRef}></div>;
+  },
+);
+
+Editor.displayName = 'Editor';
+
+export default Editor;
