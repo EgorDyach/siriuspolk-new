@@ -1,33 +1,24 @@
 'use client';
-import { Plus, X } from 'lucide-react';
+import { X } from 'lucide-react';
 import Image from 'next/image';
 import { Button } from '@shared/ui/Button';
 import { useFormStore } from '@entities/person/model/store';
 import {
-  Select,
-  SelectTrigger,
-  SelectContent,
-  SelectItem,
-} from '@shared/ui/select';
-import {
   showErrorNotification,
   showSuccessNotification,
 } from '@shared/lib/utils/notification';
-import { useState } from 'react';
 import { useRouter } from 'next/navigation';
+import MedalsSelect from './MedalsSelect';
 
 export default function Medals() {
   const router = useRouter();
   const { setMedals, server_medals, medals } = useFormStore();
-
-  const [isOpen, setIsOpen] = useState(false);
 
   const handleAdd = (el: string) => {
     const item = server_medals.find((v) => v.id.toString() === el);
     if (!item) return showErrorNotification('Не удалось добавить награду.');
     setMedals([...medals, item]);
     showSuccessNotification(`Добавлена награда «${item.name}»`);
-    setIsOpen(true);
   };
 
   const handleRemove = (index: number) => {
@@ -72,34 +63,7 @@ export default function Medals() {
           </li>
         ))}
       </ul>
-      <Select
-        onOpenChange={(open) => setIsOpen(open)}
-        open={isOpen}
-        onValueChange={(el) => handleAdd(el)}
-      >
-        <SelectTrigger size="auto" className="w-full">
-          <div className="w-full p-10">
-            <p className="flex items-center w-full p-5">
-              <Plus className="mr-5 size-[50px]" />
-              <span className="text-4xl">Выбрать награду</span>
-            </p>
-          </div>
-        </SelectTrigger>
-        <SelectContent>
-          {server_medals.map(({ src, name, id }) => (
-            <SelectItem key={id} value={id.toString()}>
-              <Image
-                className="size-auto"
-                src={src}
-                alt={name}
-                width={50}
-                height={50}
-              />
-              <p>{name}</p>
-            </SelectItem>
-          ))}
-        </SelectContent>
-      </Select>
+      <MedalsSelect handleAdd={handleAdd} server_medals={server_medals} />
       <div className="w-full flex justify-center mt-7 gap-[3%]">
         <Button onClick={handleCancel} className="bg-[#D9D9D9]">
           <p className="text-black">Назад</p>
