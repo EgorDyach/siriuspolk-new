@@ -11,10 +11,11 @@ import { useRouter } from 'next/navigation';
 import { useFormStore } from '@entities/person/model/store';
 import { ACCEPTED_IMAGE_TYPES } from '../model/constants';
 import { zodResolver } from '@hookform/resolvers/zod';
+import { useEffect } from 'react';
 
 export default function MainForm() {
   const router = useRouter();
-  const { mainInfo, setMainInfo } = useFormStore();
+  const { mainInfo, setMainInfo, errors, setErrors } = useFormStore();
   const form = useForm<MainFormValues>({
     resolver: zodResolver(MainFormSchema),
     defaultValues: mainInfo,
@@ -22,7 +23,7 @@ export default function MainForm() {
 
   const {
     register,
-    formState: { errors },
+    formState: { errors: formErrors },
     watch,
     setValue,
     handleSubmit,
@@ -30,8 +31,19 @@ export default function MainForm() {
 
   const onSubmit = (data: MainFormValues) => {
     setMainInfo(data);
+    setErrors({});
     router.push('/form/medals');
   };
+
+  useEffect(() => {
+    const subscription = watch((t) => {
+      Object.keys(t).map((key) => {
+        if (t[key as keyof typeof t] && errors[key])
+          setErrors({ ...errors, [key]: undefined });
+      });
+    });
+    return () => subscription.unsubscribe();
+  }, [watch, errors, setErrors]);
 
   return (
     <FormProvider {...form}>
@@ -99,14 +111,15 @@ export default function MainForm() {
                   />
                   Фото отсутствует
                 </label>
-                {errors.photo && (
-                  <p className="text-red-400">{errors.photo.message}</p>
+                {formErrors.photo && (
+                  <p className="text-red-400">{formErrors.photo.message}</p>
                 )}
+                {errors.photo && <p className="text-red-400">{errors.photo}</p>}
               </div>
               <div className="grid grid-cols-2 grid-rows-2 flex-3 gap-[2%]">
                 <Input
                   required
-                  error={errors.name?.message}
+                  error={formErrors.name?.message || errors.name}
                   {...register('name')}
                   name="name"
                   placeholder="Семен"
@@ -115,7 +128,7 @@ export default function MainForm() {
                 />
                 <Input
                   required
-                  error={errors.surname?.message}
+                  error={formErrors.surname?.message || errors.surname}
                   {...register('surname')}
                   name="surname"
                   placeholder="Семенов"
@@ -123,7 +136,7 @@ export default function MainForm() {
                   label={'Фамилия'}
                 />
                 <Input
-                  error={errors.lastname?.message}
+                  error={formErrors.lastname?.message || errors.lastname}
                   {...register('lastname')}
                   name="lastname"
                   placeholder="Семенович"
@@ -136,7 +149,7 @@ export default function MainForm() {
               <div className="w-full">
                 <Input
                   required
-                  error={errors.birth_year?.message}
+                  error={formErrors.birth_year?.message || errors.birth_year}
                   {...register('birth_year')}
                   name="birth_year"
                   type="number"
@@ -152,7 +165,7 @@ export default function MainForm() {
               <div className="w-full">
                 <Input
                   required
-                  error={errors.death_year?.message}
+                  error={formErrors.death_year?.message || errors.death_year}
                   {...register('death_year')}
                   name="death_year"
                   type="number"
@@ -173,7 +186,7 @@ export default function MainForm() {
             <div className="flex gap-[10%]">
               <Input
                 required
-                error={errors.city?.message}
+                error={formErrors.city?.message || errors.city}
                 {...register('city')}
                 name="city"
                 className="w-full"
@@ -182,7 +195,7 @@ export default function MainForm() {
               />
               <Input
                 required
-                error={errors.rank?.message}
+                error={formErrors.rank?.message || errors.rank}
                 {...register('rank')}
                 name="rank"
                 className="w-full"

@@ -6,10 +6,15 @@ import { Button } from '@shared/ui/Button';
 import { useRouter } from 'next/navigation';
 import { useFormStore } from '@entities/person/model/store';
 import { zodResolver } from '@hookform/resolvers/zod';
+import { requestCreatePerson } from '../api/create';
+import { useValidateStep } from '../model/useValidateStep';
+import { MainFormSchema } from '../model/mainInfoSchema';
+import { HistorySchema } from '../model/historySchema';
 
-export default function MainForm() {
+export default function Contacts() {
   const router = useRouter();
-  const { contacts, setContacts } = useFormStore();
+  const { contacts, mainInfo, photos, history, medals, setContacts } =
+    useFormStore();
   const {
     register,
     formState: { errors },
@@ -19,8 +24,22 @@ export default function MainForm() {
     defaultValues: contacts,
   });
 
-  const onSubmit = (data: ContactsSchemaValues) => {
+  const checkData = useValidateStep([
+    { schema: MainFormSchema, redirectTo: '/form/main', data: mainInfo },
+    { schema: HistorySchema, redirectTo: '/form/history', data: history },
+  ]);
+
+  const onSubmit = async (data: ContactsSchemaValues) => {
     setContacts(data);
+    if (!checkData()) return;
+    // TODO: Добавить try/catch полсе фикса на бэке
+    await requestCreatePerson({
+      contacts: data,
+      mainInfo,
+      photos,
+      history,
+      medals,
+    });
   };
 
   const handleCancel = () => {
@@ -88,10 +107,10 @@ export default function MainForm() {
         </div>
 
         <div className="w-full flex justify-center mt-7  gap-[3%]">
-          <Button onClick={handleCancel} className="bg-[#D9D9D9]">
+          <Button type="button" onClick={handleCancel} className="bg-[#D9D9D9]">
             <p className="text-black">Назад</p>
           </Button>
-          <Button onClick={() => console.log(errors)}>Отправить</Button>
+          <Button>Отправить</Button>
         </div>
       </section>
     </form>

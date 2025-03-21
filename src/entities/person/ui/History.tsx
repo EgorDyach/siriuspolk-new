@@ -5,12 +5,13 @@ import { useRouter } from 'next/navigation';
 import { Controller, useForm } from 'react-hook-form';
 import { useFormStore } from '../model/store';
 import Editor from '@shared/ui/Editor';
+import { HistoryValues } from '../model/historySchema';
 
 export default function History() {
   const router = useRouter();
-  const { history, setHistory } = useFormStore();
-  const { control, handleSubmit, getValues } = useForm<{ content: string }>({
-    defaultValues: { content: history },
+  const { history, setHistory, errors } = useFormStore();
+  const { control, handleSubmit, getValues } = useForm<HistoryValues>({
+    defaultValues: history,
   });
 
   const onSubmit = () => {
@@ -26,7 +27,10 @@ export default function History() {
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
       <section className="pb-[60px]">
-        <h2 className="text-[42px] font-lora mb-[6px]">История</h2>
+        <div className="flex justify-between items-end  mb-[6px]">
+          <h2 className="text-[42px] font-lora">История</h2>
+          <p className="text-red-400">{errors.content}</p>
+        </div>
         <Controller
           name="content"
           control={control}

@@ -7,3 +7,13 @@ export const filelistToFileArray = (files: FileList | null): File[] => {
   }
   return arr;
 };
+
+export const getDateDeath = (
+  isDeathUnknown: boolean,
+  isAlive: boolean,
+  deathYear: number,
+): number => {
+  if (isDeathUnknown) return 0;
+  if (isAlive) return 1;
+  return deathYear;
+};

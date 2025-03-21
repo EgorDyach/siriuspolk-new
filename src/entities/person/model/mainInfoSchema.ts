@@ -67,24 +67,24 @@ const validateDeathYear = (
 
 export const MainFormSchema = z
   .object({
-    name: z.string().min(2, {
+    name: z.string({ message: 'Обязательное поле' }).min(2, {
       message: 'Имя должно быть больше 2 символов.',
     }),
-    surname: z.string().min(2, {
+    surname: z.string({ message: 'Обязательное поле' }).min(2, {
       message: 'Фамилия должно быть больше 2 символов.',
     }),
-    lastname: z.string().nullable(),
+    lastname: z.string({ message: 'Обязательное поле' }).nullable(),
     photo: z.custom<FileList>().nullable(),
     hasnt_photo: z.boolean(),
-    birth_year: z.coerce.number().nullable(),
+    birth_year: z.coerce.number({ message: 'Обязательное поле' }).nullable(),
     is_birth_unknown: z.boolean(),
-    death_year: z.coerce.number().nullable(),
+    death_year: z.coerce.number({ message: 'Обязательное поле' }).nullable(),
     is_death_unknown: z.boolean(),
     is_alive: z.boolean(),
-    city: z.string().min(2, {
+    city: z.string({ message: 'Обязательное поле' }).min(2, {
       message: 'Город обязательный.',
     }),
-    rank: z.string().min(2, {
+    rank: z.string({ message: 'Обязательное поле' }).min(2, {
       message: 'Звание обязательное.',
     }),
   })
