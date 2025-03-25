@@ -33,7 +33,7 @@ const GalleryPhoto: FC<GalleryPhotoProps> = ({ item }) => {
             <p className="font-lora text-[16px] line-clamp-3 text-white">
               {item.date}
             </p>
-            <p className="text-[20px] text-white">{item.alt}</p>
+            <p className="text-[12px] text-white">{item.alt}</p>
           </span>
         </div>
       </button>

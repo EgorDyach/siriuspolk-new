@@ -10,7 +10,7 @@ interface GalleryListProps {
 
 const GalleryList: FC<GalleryListProps> = ({ photos }) => {
   return (
-    <div className="grid grid-cols-3 gap-[35px]">
+    <div className="grid grid-cols-1 gap-[35px]">
       <PhotoProvider>
         {photos.map((item, index) => (
           <GalleryPhoto key={index} item={item} />
