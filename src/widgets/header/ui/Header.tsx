@@ -1,55 +1,72 @@
-"use server";
-import { routes } from "@shared/config/routes";
-import Logo from "@shared/ui/Logo";
-import Link from "next/link";
-import { getPathname } from "../model/getPathname";
+'use client';
+import { routes } from '@shared/config/routes';
+import Logo from '@shared/ui/Logo';
+import Link from 'next/link';
 
-export async function Header() {
-  const pathname = await getPathname();
+import { useState } from 'react';
+import { Menu, X } from 'lucide-react';
+import { usePathname } from 'next/navigation';
 
+export function Header() {
+  const pathname = usePathname();
+  const [isMenuOpened, setIsMenuOpened] = useState(false);
   return (
-    <header className="bg-[#52575D] fixed top-0 left-0 right-0 z-50 m-0">
+    <header className="py-4 bg-[#52575D] fixed top-0 left-0 right-0 z-50 m-0">
       <div className="flex container items-center justify-between">
-        <Link href="/">
-          <Logo height={60} color="#fff" />
+        <Link onClick={() => setIsMenuOpened(!isMenuOpened)} href="/">
+          <Logo className="w-[90px]" color="#fff" />
         </Link>
-        <div>
-          <ul className="list-none flex m-0 absolute left-[50%] transform-[translateX(-50%)] h-full">
-            <Link
-              data-active={pathname.includes(routes.home)}
-              className={`text-white outline-offset-[-3px] font-lora text-2xl/[1] py-[35px] px-[38px] relative transition-all focus:outline-white focus:outline-3 hover:text-[#989898] data-[active=true]:bg-[#494E53] `}
-              href={routes.home}
-            >
-              Главная
-            </Link>
-            <Link
-              data-active={pathname.includes(routes.gallery)}
-              className={`text-white outline-offset-[-3px] font-lora text-2xl/[1] py-[35px] px-[38px] relative transition-all focus:outline-white focus:outline-3 hover:text-[#989898] data-[active=true]:bg-[#494E53] `}
-              href={routes.gallery}
-            >
-              Галерея
-            </Link>
-            <Link
-              data-active={pathname.includes(routes.histories)}
-              className={`text-white outline-offset-[-3px] font-lora text-2xl/[1] py-[35px] px-[38px] relative transition-all focus:outline-white focus:outline-3 hover:text-[#989898] data-[active=true]:bg-[#494E53] `}
-              href={routes.histories}
-            >
-              Истории
-            </Link>
-            <Link
-              data-active={pathname.includes(routes.admin)}
-              className={`text-white outline-offset-[-3px] font-lora text-2xl/[1] py-[35px] px-[38px] relative transition-all focus:outline-white focus:outline-3 hover:text-[#989898] data-[active=true]:bg-[#494E53] `}
-              href={routes.admin}
-            >
-              Панель
-            </Link>
-          </ul>
+        <button onClick={() => setIsMenuOpened(!isMenuOpened)}>
+          <Menu size={24} color="#fff" />
+        </button>
+        <div
+          style={{ top: `${-Number(!isMenuOpened) * 10}00px` }}
+          className="h-screen bg-gray-500 w-screen absolute flex flex-col left-0 items-center gap-3 p-7 pt-20 transition-[top_0.35s_ease_in_out]"
+        >
           <Link
+            onClick={() => setIsMenuOpened(!isMenuOpened)}
+            href="/"
+            className="left-5 top-5 absolute"
+          >
+            <Logo className="h-[30px]" color="#fff" />
+          </Link>
+          <Link
+            onClick={() => setIsMenuOpened(!isMenuOpened)}
+            data-active={pathname?.includes(routes.home)}
+            className={`text-white outline-offset-[-3px] font-lora text-[12px]/[1] py-[12px] px-[20px] relative transition-all focus:outline-white focus:outline-3 hover:text-[#989898] data-[active=true]:bg-[#494E53]`}
+            href={routes.home}
+          >
+            Главная
+          </Link>
+          <Link
+            onClick={() => setIsMenuOpened(!isMenuOpened)}
+            data-active={pathname?.includes(routes.gallery)}
+            className={`text-white outline-offset-[-3px] font-lora text-[12px]/[1] py-[12px] px-[20px] relative transition-all focus:outline-white focus:outline-3 hover:text-[#989898] data-[active=true]:bg-[#494E53]`}
+            href={routes.gallery}
+          >
+            Галерея
+          </Link>
+          <Link
+            onClick={() => setIsMenuOpened(!isMenuOpened)}
+            data-active={pathname?.includes(routes.histories)}
+            className={`text-white outline-offset-[-3px] font-lora text-[12px]/[1] py-[12px] px-[20px] relative transition-all focus:outline-white focus:outline-3 hover:text-[#989898] data-[active=true]:bg-[#494E53]`}
+            href={routes.histories}
+          >
+            Истории
+          </Link>
+          <Link
+            onClick={() => setIsMenuOpened(!isMenuOpened)}
             href={routes.form}
-            className="text-white outline-offset-[-3px] font-lora text-2xl/[1] relative transition-all focus:outline-white focus:outline-3 hover:text-[#989898] data-[active=true]:bg-[#494E53] bg-[#343434] py-[36px] px-[65px] block"
+            className="text-white outline-offset-[-3px] font-lora text-[12px]/[1] relative transition-all focus:outline-white focus:outline-3 hover:text-[#989898] border-2 bg-transparent py-[12px] px-[65px] mt-9"
           >
             Принять участие
           </Link>
+          <button
+            onClick={() => setIsMenuOpened(!isMenuOpened)}
+            className="top-5 right-5 absolute "
+          >
+            <X color="white" />
+          </button>
         </div>
       </div>
     </header>

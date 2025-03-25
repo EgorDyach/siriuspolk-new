@@ -4,8 +4,10 @@ import { Button } from '@shared/ui/Button';
 import { useRouter } from 'next/navigation';
 import { Controller, useForm } from 'react-hook-form';
 import { useFormStore } from '../model/store';
-import Editor from '@shared/ui/Editor';
 import { HistoryValues } from '../model/historySchema';
+import dynamic from 'next/dynamic';
+
+const Editor = dynamic(() => import('@shared/ui/Editor'), { ssr: false });
 
 export default function History() {
   const router = useRouter();

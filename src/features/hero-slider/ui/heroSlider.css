@@ -2,13 +2,11 @@
   transition: 0.85s ease-in-out;
 }
 
-.hero__swiper .swiper-slide-next {
-  transform: scale(1.43) translateZ(0) translateX(5px) !important;
+.hero__swiper .swiper-slide-active {
   cursor: pointer;
   opacity: 1;
 }
 
-.hero__swiper .swiper-slide:not(.swiper-slide-next) {
-  transform: scale(0.85) translateZ(0) !important;
+.hero__swiper .swiper-slide:not(.swiper-slide-active) {
   opacity: 0.55;
 }

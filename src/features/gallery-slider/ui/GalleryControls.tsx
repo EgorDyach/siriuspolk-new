@@ -3,64 +3,57 @@ import { routes } from '@shared/config/routes';
 import ArrowLeft from '@shared/ui/icons/ArrowLeft';
 import ArrowRight from '@shared/ui/icons/ArrowRight';
 import Link from 'next/link';
-import clsx from 'clsx';
+import { useState, useEffect } from 'react';
+import { useSwiper } from 'swiper/react';
 
-interface GalleryControlsProps {
-  activeIndex: number;
-  setActiveIndex: (value: number) => void;
-}
+export function GalleryControls() {
+  const swiper = useSwiper();
+  const [galleryState, setGalleryState] = useState({
+    activeIndex: 0,
+    slideCount: 0,
+  });
 
-const PAGINATION_LENGTH = 3;
+  useEffect(() => {
+    if (!swiper || !swiper.slides) return;
+    const updateState = () => {
+      setGalleryState({
+        activeIndex: swiper.activeIndex,
+        slideCount: swiper.slides.length,
+      });
+    };
+    updateState();
+    swiper.on('slideChange', updateState);
+    return () => {
+      swiper.off('slideChange', updateState);
+    };
+  }, [swiper]);
 
-export function GalleryControls({
-  activeIndex,
-  setActiveIndex,
-}: GalleryControlsProps) {
-  const prevSlide = () => setActiveIndex(Math.max(activeIndex - 1, 0));
-  const nextSlide = () =>
-    setActiveIndex(Math.min(activeIndex + 1, PAGINATION_LENGTH - 1));
+  if (!swiper) return null;
+
+  const buttonClasses =
+    'disabled:opacity-50 transition-opacity duration-200 text-white hover:not-disabled:text-[#999] cursor-pointer bg-[#52575D]';
 
   return (
-    <div className="flex justify-between items-center mt-10 relative">
-      <div className="flex items-center">
-        {Array.from({ length: PAGINATION_LENGTH }).map((_, index) => (
-          <button
-            key={index}
-            className="border-none bg-transparent px-3 cursor-pointer"
-            onClick={() => setActiveIndex(index)}
-          >
-            <p
-              className={clsx('font-lora text-4xl/[64px] transition-all', {
-                'text-6xl text-black': activeIndex === index,
-                'text-gray-500': activeIndex !== index,
-              })}
-            >
-              {index + 1}
-            </p>
-          </button>
-        ))}
-      </div>
-
-      <div className="absolute left-1/2 top-1 transform -translate-x-1/2 flex gap-16">
+    <div className="flex flex-col justify-between items-center mt-6 relative">
+      <div className="transform flex gap-10 mb-4">
         <button
-          onClick={prevSlide}
-          disabled={activeIndex === 0}
-          className="disabled:opacity-50 transition-opacity duration-200 text-white hover:not-disabled:text-[#999] cursor-pointer bg-[#52575D]"
+          onClick={() => swiper.slidePrev()}
+          disabled={galleryState.activeIndex === 0}
+          className={buttonClasses}
         >
-          <ArrowLeft size={50} className="transition-colors" />
+          <ArrowLeft size={32} className="transition-colors" />
         </button>
         <button
-          onClick={nextSlide}
-          disabled={activeIndex === PAGINATION_LENGTH - 1}
-          className="disabled:opacity-50 transition-opacity duration-200 text-white hover:not-disabled:text-[#999] cursor-pointer bg-[#52575D]"
+          onClick={() => swiper.slideNext()}
+          disabled={galleryState.activeIndex === galleryState.slideCount - 1}
+          className={buttonClasses}
         >
-          <ArrowRight size={50} className="transition-colors" />
+          <ArrowRight size={32} className="transition-colors" />
         </button>
       </div>
-
       <Link
         href={routes.gallery}
-        className="text-3xl underline font-lora text-black"
+        className="text underline font-lora text-black"
       >
         Все материалы
       </Link>

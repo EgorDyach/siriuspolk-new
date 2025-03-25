@@ -1,29 +1,55 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useRef } from 'react';
 import { links } from '../api/photos';
 import { PhotoProvider, PhotoView } from 'react-photo-view';
 import Image from 'next/image';
 import { slideGridStyles } from '../model/slideGridStyles';
-import { useDragSlider } from '../model/useDragSlider';
 import { GalleryControls } from './GalleryControls';
+import { Swiper, SwiperRef, SwiperSlide } from 'swiper/react';
 
 const GallerySlider = () => {
-  const [index, setIndex] = useState(0);
-
-  const handlePrev = () => setIndex((prev) => (prev === 0 ? prev : prev - 1));
-  const handleNext = () => setIndex((prev) => (prev < 2 ? prev + 1 : prev));
-  const handleIndexChange = (index: number) => setIndex(Math.floor(index / 5));
-
-  const handleMouseDown = useDragSlider(handlePrev, handleNext);
+  const swiperRef = useRef<SwiperRef | null>(null);
 
   return (
-    <PhotoProvider maskOpacity={0.8} onIndexChange={handleIndexChange}>
-      <div className="overflow-hidden">
+    <PhotoProvider maskOpacity={0.8}>
+      <Swiper
+        ref={swiperRef}
+        className="!max-w-[290px] w-full  !z-10"
+        spaceBetween={50}
+        breakpoints={{
+          1000: {
+            slidesPerView: 1,
+          },
+          0: {
+            slidesPerView: 1,
+          },
+        }}
+        speed={800}
+      >
+        {links.map((link, index) => {
+          return (
+            <SwiperSlide key={index}>
+              <PhotoView src={link}>
+                <Image
+                  width={500}
+                  height={600}
+                  className={`max-w-[341.25px] max-h-[341.25px] transition duration-300 cursor-pointer size-full object-cover aspect-square`}
+                  src={link}
+                  alt="Фото из галерии 9 мая"
+                  draggable={false}
+                  style={slideGridStyles(index)}
+                />
+              </PhotoView>
+            </SwiperSlide>
+          );
+        })}
+        <GalleryControls />
+      </Swiper>
+      <div className="hidden overflow-hidden">
         <div
-          className={`grid grid-cols-12 grid-rows-2 gap-[15px] w-max transition duration-700`}
-          style={{ transform: `translateX(calc(-${index}00% / 3))` }}
-          onMouseDown={handleMouseDown}
+          className={`grid grid-cols-16 grid-rows-1 gap-[15px] transition duration-700 max-w-max w-[1500%]`}
+          // style={{ transform: `translateX(calc(-${index}00% / ))` }}
         >
           {links.map((link, index) => {
             return (
@@ -31,7 +57,7 @@ const GallerySlider = () => {
                 <Image
                   width={500}
                   height={600}
-                  className={`max-w-[341.25px] max-h-[341.25px] grayscale hover:grayscale-0 transition duration-300 cursor-pointer w-[calc((100vw-260px-30px)/4)] h-[calc((100vw-260px-30px)/4)] object-cover aspect-square nth-[5n-4]:h-[calc((100vw-260px)/2)] nth-[5n-4]:w-[calc((100vw-260px)/2)] nth-[5n-4]:max-w-[697.5px] nth-[5n-4]:max-h-[697.5px]`}
+                  className={`max-w-[341.25px] max-h-[341.25px] grayscale hover:grayscale-0 transition duration-300 cursor-pointer size-full object-cover aspect-square`}
                   src={link}
                   alt="Фото из галерии 9 мая"
                   draggable={false}
@@ -41,10 +67,6 @@ const GallerySlider = () => {
             );
           })}
         </div>
-        <GalleryControls
-          activeIndex={index}
-          setActiveIndex={(n) => setIndex(n)}
-        />
       </div>
     </PhotoProvider>
   );

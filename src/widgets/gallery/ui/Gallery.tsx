@@ -3,9 +3,9 @@ import React from 'react';
 
 const Gallery = () => {
   return (
-    <section className="py-[120px]">
+    <section className="py-[50px]">
       <div className="container">
-        <h2 className="mb-[60px] text-[80px] font-medium font-lora">Галерея</h2>
+        <h2 className="mb-[60px] text-[32px] font-medium font-lora">Галерея</h2>
         <GallerySlider />
       </div>
     </section>

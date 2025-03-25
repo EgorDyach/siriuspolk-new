@@ -14,6 +14,7 @@ import ArrowRight from '@shared/ui/icons/ArrowRight';
 import Image from 'next/image';
 import { cx } from 'class-variance-authority';
 import CurrentPerson from './CurrentPerson';
+import { CSSTransition, SwitchTransition } from 'react-transition-group';
 
 interface PersonsSliderProps {
   persons: ShortPerson[];
@@ -22,6 +23,7 @@ interface PersonsSliderProps {
 export default function PersonsSlider({ persons }: PersonsSliderProps) {
   const [activeIndex, setActiveIndex] = useState(0);
   const sliderRef = useRef<SwiperRef | null>(null);
+  const currentPersonRef = useRef(null);
 
   const handlePrev = useCallback(() => {
     if (!sliderRef.current || sliderRef.current.swiper.animating) return;
@@ -47,24 +49,38 @@ export default function PersonsSlider({ persons }: PersonsSliderProps) {
 
   return (
     <div className="flex flex-col">
-      <CurrentPerson current={persons[activeIndex]} />
+      <SwitchTransition mode="out-in">
+        <CSSTransition
+          key={activeIndex}
+          nodeRef={currentPersonRef}
+          timeout={500}
+          // in={true}
+          classNames="fade"
+          unmountOnExit
+        >
+          <CurrentPerson
+            current={persons[activeIndex]}
+            ref={currentPersonRef}
+          />
+        </CSSTransition>
+      </SwitchTransition>
       <div className="flex items-center justify-between">
-        <div className="mx-auto gap-[70px] flex">
+        <div className="mx-auto gap-[50px] flex">
           <button
             onClick={handlePrev}
-            className="relative p-0 bg-transparent cursor-pointer border-[3px] border-white outline-transparent transition-colors hover:bg-[#989898]"
+            className="relative p-0 bg-transparent cursor-pointer border-[2px] border-white outline-transparent transition-colors hover:bg-[#989898]"
           >
-            <ArrowLeft color="#fff" size={64} />
+            <ArrowLeft color="#fff" size={32} />
           </button>
           <button
             onClick={handleNext}
-            className="relative p-0 bg-transparent cursor-pointer border-[3px] border-white outline-transparent transition-colors hover:bg-[#989898]"
+            className="relative p-0 bg-transparent cursor-pointer border-[2px] border-white outline-transparent transition-colors hover:bg-[#989898]"
           >
-            <ArrowRight color="#fff" size={64} />
+            <ArrowRight color="#fff" size={32} />
           </button>
         </div>
         <Swiper
-          className="max-w-3/5 !m-0"
+          className="max-w-3/5 !m-0 !w-[1px] !h-[1px] !absolute !-left-[1000px]"
           modules={[A11y]}
           ref={sliderRef}
           spaceBetween={SPACE_BETWEEN}
@@ -73,7 +89,7 @@ export default function PersonsSlider({ persons }: PersonsSliderProps) {
           navigation
           loop
         >
-          <div className="flex items-center justify-center gap-[88px] transform-[translateX(-5px)] z-10">
+          <div className="items-center justify-center gap-[88px] transform-[translateX(-5px)] z-10 hidden">
             {persons.map(
               ({ main_photo, date_birth, date_death, SNL: name }, index) => (
                 <SwiperSlide
