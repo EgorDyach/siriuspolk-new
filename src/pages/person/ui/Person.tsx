@@ -24,16 +24,17 @@ export default async function PersonPage({ params }: PersonPageProps) {
   return (
     <>
       <PersonInfo person={data} />
+      {/* TODO: переделать на новую структуру медалей */}
       <PersonMedals medals={data.medals.split(',')} />
-      <section className="pt-[70px] pb-[40px]">
+      <section className="pt-[40px] pb-[40px]">
         <div className="container">
-          <h2 className="text-black font-lora text-[65px] mb-[20px]">
+          <h2 className="text-black font-lora text-[32px] mb-[20px]">
             История
           </h2>
           {/* TODO: переделать на dangerouslyInnerHTML  */}
           <div className="">
             {data.history.split('||').map((el, i) => (
-              <p className="text-[22px] mb-[22px]" key={i}>
+              <p className="text-[12px] mb-[22px]" key={i}>
                 {el.replace('|', '')}
               </p>
             ))}
@@ -42,7 +43,7 @@ export default async function PersonPage({ params }: PersonPageProps) {
       </section>
       <PersonImages images={data.photo ? data.photo.split(',') : []} />
       <div className="container">
-        <p className="text-end italic mb-7 text-[20px] text-[#999]">
+        <p className="text-end italic mb-7 text-[12px] text-[#999]">
           Рассказ предоставлен{' '}
           {dayjs(data.date_pulished * 1000).format('D MMMM YYYY г.')}
         </p>

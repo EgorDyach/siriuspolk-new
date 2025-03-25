@@ -25,17 +25,17 @@ const HistoriesCard: FC<HistoriesCardProps> = ({
           height={360}
           alt={`Ветеран ${name} – портрет`}
         />
-        <div className="text-center flex-1/2 p-[20px] bg-white flex flex-col justify-between">
-          <h3 className="mb-[20px] text-[24px] font-lora font-normal">
+        <div className="text-center flex-1/2 p-[15px] bg-white flex flex-col justify-between">
+          <h3 className="mb-[20px] text-[16px] font-lora font-normal">
             {name}
             <br />
             {getPersonDates(date_birth, date_death)}
           </h3>
           <div className="w-full flex justify-between">
-            <p className=" text-nowrap max-w-[120px] text-ellipsis overflow-hidden text-[14px] font-lora">
+            <p className=" text-nowrap max-w-[120px] text-ellipsis overflow-hidden text-[12px] font-lora">
               {city}
             </p>
-            <span className="underline text-[16px] font-lora">Подробнее</span>
+            <span className="underline text-[12px] font-lora">Подробнее</span>
           </div>
         </div>
       </Link>

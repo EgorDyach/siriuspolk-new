@@ -9,7 +9,7 @@ import 'swiper/css/navigation';
 import ArrowRight from '@shared/ui/icons/ArrowRight';
 import ArrowLeft from '@shared/ui/icons/ArrowLeft';
 
-const SLIDE_COUNT_ITEMS = 4;
+const SLIDE_COUNT_ITEMS = 1;
 
 interface PersonImagesProps {
   images: string[];
@@ -33,12 +33,12 @@ const PersonImages: FC<PersonImagesProps> = ({ images }) => {
   return (
     <section className="pb-[100px] pt-0 bg-[#efeade] relative">
       <div className="container relative z-10">
-        <h2 className="text-black font-lora text-[65px] mb-[32px]">
+        <h2 className="text-black font-lora text-[32px] mb-[32px]">
           Фотографии
         </h2>
         <PhotoProvider maskOpacity={0.8}>
           <Swiper
-            className="w-full mb-[40px]"
+            className="w-[80%] mb-[40px]"
             modules={[A11y]}
             spaceBetween={50}
             speed={800}
@@ -68,20 +68,20 @@ const PersonImages: FC<PersonImagesProps> = ({ images }) => {
             })}
           </Swiper>
         </PhotoProvider>
-        <div className="gap-[70px] flex justify-center">
+        <div className="gap-[40px] flex justify-center">
           <button
             onClick={handlePrev}
             disabled={activeIndex === 0}
             className="relative p-0 bg-[#52575D] text-white cursor-pointer border-0 outline-transparent transition-colors hover:not-disabled:text-[#989898] disabled:opacity-50 disabled:cursor-default"
           >
-            <ArrowLeft size={64} />
+            <ArrowLeft size={32} />
           </button>
           <button
             disabled={activeIndex >= maxIndex}
             onClick={handleNext}
             className="relative p-0 bg-[#52575D] text-white cursor-pointer border-0 outline-transparent transition-colors hover:not-disabled:text-[#989898] disabled:opacity-50 disabled:cursor-default"
           >
-            <ArrowRight size={64} />
+            <ArrowRight size={32} />
           </button>
         </div>
       </div>

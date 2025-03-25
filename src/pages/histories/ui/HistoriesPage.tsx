@@ -7,14 +7,14 @@ export default async function HistoriesPage() {
   const { details } = await requestHistories();
   const newItems = filterNew(details);
   return (
-    <section className="py-[100px]">
-      <div className="container">
-        <h1 className="text-[80px] font-lora mb-[32px]">Истории</h1>
+    <section className="py-[60px]">
+      <div className="container !px-8">
+        <h1 className="text-[40px] font-lora mb-[32px]">Истории</h1>
         {!!newItems.length && (
           <>
-            <h2 className="text-[40px] font-lora mb-[32px] flex items-center">
+            <h2 className="text-[26px] font-lora mb-[32px] flex items-center">
               Новые
-              <p className="ml-2 text-[20px]/[40px] aspect-square rounded-full bg-[#52545d] text-white max-w-[40px] text-center w-full">
+              <p className="ml-2 text-[16px]/[24px] aspect-square rounded-full bg-[#52545d] text-white max-w-[24px] text-center w-full">
                 {newItems.length > 99 ? '99+' : newItems.length}
               </p>
             </h2>
@@ -23,7 +23,7 @@ export default async function HistoriesPage() {
         )}
         {!!newItems.length && (
           <>
-            <h2 className="text-[40px] font-lora mb-[32px]">Все истории</h2>
+            <h2 className="text-[26px] font-lora mb-[14px]">Все истории</h2>
           </>
         )}
         <HistoriesList histories={details} />

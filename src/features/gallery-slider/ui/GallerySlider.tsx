@@ -49,7 +49,6 @@ const GallerySlider = () => {
       <div className="hidden overflow-hidden">
         <div
           className={`grid grid-cols-16 grid-rows-1 gap-[15px] transition duration-700 max-w-max w-[1500%]`}
-          // style={{ transform: `translateX(calc(-${index}00% / ))` }}
         >
           {links.map((link, index) => {
             return (

@@ -12,15 +12,15 @@ interface PersonInfoProps {
 
 const PersonInfo: FC<PersonInfoProps> = ({ person }) => {
   return (
-    <section className="bg-[#1e1e1e]">
-      <div className="container flex">
+    <section className="bg-[#1e1e1e] pt-[30px]">
+      <div className="container flex flex-col">
         <PhotoProvider
           maskOpacity={0.6}
           toolbarRender={() => `Ветеран ${person.SNL} - портрет`}
         >
           <PhotoView src={person.main_photo}>
             <Image
-              className="mr-[9%] person__image"
+              className="px-8 object-cover"
               src={person.main_photo}
               width={500}
               height={700}
@@ -29,24 +29,24 @@ const PersonInfo: FC<PersonInfoProps> = ({ person }) => {
           </PhotoView>
         </PhotoProvider>
         <div className="flex flex-col pt-[50px] pb-[80px]">
-          <h1 className="text-white text-[64px] font-lora max-w-[600px] mb-[40px]">
+          <h1 className="text-white text-[26px] font-lora max-w-[600px] mb-[10px]">
             {person.SNL}
           </h1>
-          <p className="text-white font-lora text-6xl">
+          <p className="text-white font-lora text-[20px]">
             {getPersonDates(person.date_birth, person.date_death)}
           </p>
-          <div className="mt-auto flex gap-9">
+          <div className="mt-9 flex flex-col gap-9">
             <div>
-              <p className="text-[#848484] mb-3.5 font-lora text-2xl">
+              <p className="text-[#848484] mb-1 font-lora text[16px]">
                 Место рождения:
               </p>
-              <p className="text-white text-[20px]">{person.city}</p>
+              <p className="text-white text-[14px]">{person.city}</p>
             </div>
             <div>
-              <p className="text-[#848484] mb-3.5 font-lora text-2xl">
+              <p className="text-[#848484] mb-1 font-lora text[16px]">
                 Звание:
               </p>
-              <p className="text-white text-[20px]">{person.rank}</p>
+              <p className="text-white text-[14px]">{person.rank}</p>
             </div>
           </div>
         </div>
