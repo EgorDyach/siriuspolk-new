@@ -20,7 +20,7 @@ export function Header() {
           <Menu size={24} color="#fff" />
         </button>
         <div
-          style={{ top: `${-Number(!isMenuOpened) * 10}00px` }}
+          style={{ top: `${-Number(!isMenuOpened) * 10}0vh` }}
           className="h-screen bg-gray-500 w-screen absolute flex flex-col left-0 items-center gap-3 p-7 pt-20 transition-[top_0.35s_ease_in_out]"
         >
           <Link
