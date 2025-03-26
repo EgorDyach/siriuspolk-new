@@ -48,18 +48,18 @@ export default function MainForm() {
   return (
     <FormProvider {...form}>
       <form onSubmit={handleSubmit(onSubmit)}>
-        <section className="pb-[60px]">
-          <h2 className="text-[42px] font-lora mb-[6px]">
+        <section className="pb-[20px]">
+          <h2 className="text-[20px] font-lora mb-[6px]">
             Основная информация
           </h2>
-          <span className="text-[#C4B695] italic font-lora text-[20px] mb-[40px]">
+          <span className="text-[#C4B695] italic font-lora text-[14px] mb-[40px]">
             * - обязательные поля
           </span>
           <div>
-            <div className="flex gap-[5%] mb-14">
+            <div className="flex gap-[5%] mb-4">
               <div className="text-center relative flex-2">
                 <label className="flex items-center justify-center">
-                  <div className="size-[200px] rounded-full bg-[#333] flex items-center justify-center mb-2">
+                  <div className="size-[50px] rounded-full bg-[#333] flex items-center justify-center mb-2">
                     {watch('photo') && watch('photo')?.item(0) && (
                       <Image
                         width={200}
@@ -79,7 +79,7 @@ export default function MainForm() {
                       />
                     )}
                     {!watch('photo')?.length && !watch('hasnt_photo') && (
-                      <div className="p-[40px] size-full">
+                      <div className="p-[20%] size-full">
                         <UserRound color="white" className="w-full h-full" />
                       </div>
                     )}
@@ -98,7 +98,7 @@ export default function MainForm() {
                       setValue('photo', null);
                       setValue('hasnt_photo', false);
                     }}
-                    className="size-10 items-center flex justify-center bg-white border-[2px] border-black rounded-full absolute top-2 right-1/2 translate-x-[100px] cursor-pointer"
+                    className="size-4 items-center flex justify-center bg-white border-[1px] border-black rounded-full absolute top-0 right-1/2 translate-x-[30px] cursor-pointer"
                   >
                     <X />
                   </span>
@@ -109,14 +109,14 @@ export default function MainForm() {
                     className="mr-2"
                     {...register('hasnt_photo')}
                   />
-                  Фото отсутствует
+                  <p className="text-left text-[12px]">Фото отсутствует</p>
                 </label>
                 {formErrors.photo && (
                   <p className="text-red-400">{formErrors.photo.message}</p>
                 )}
                 {errors.photo && <p className="text-red-400">{errors.photo}</p>}
               </div>
-              <div className="grid grid-cols-2 grid-rows-2 flex-3 gap-[2%]">
+              <div className="grid grid-cols-1  flex-3 gap-[2%]">
                 <Input
                   required
                   error={formErrors.name?.message || errors.name}
@@ -159,7 +159,7 @@ export default function MainForm() {
                 />
                 <Label>
                   <Checkbox {...register('is_birth_unknown')} />
-                  <span>Неизвестно</span>
+                  <span className="text-[10px]">Неизвестно</span>
                 </Label>
               </div>
               <div className="w-full">
@@ -175,11 +175,11 @@ export default function MainForm() {
                 />
                 <Label className="mb-3">
                   <Checkbox {...register('is_death_unknown')} />
-                  <span>Неизвестно</span>
+                  <span className="text-[10px]">Неизвестно</span>
                 </Label>
                 <Label>
                   <Checkbox {...register('is_alive')} />
-                  <span>Жив</span>
+                  <span className="text-[10px]">Жив</span>
                 </Label>
               </div>
             </div>
@@ -204,7 +204,7 @@ export default function MainForm() {
               />
             </div>
           </div>
-          <div className="w-full flex justify-center mt-7">
+          <div className="w-full justify-center mt-7 hidden">
             <Button>Сохранить</Button>
           </div>
         </section>

@@ -2,6 +2,16 @@ import React, { forwardRef, useEffect, useLayoutEffect, useRef } from 'react';
 import Quill from 'quill';
 import 'quill/dist/quill.snow.css';
 
+const TOOLBAR_OPTIONS = [
+  ['bold', 'italic', 'underline', 'strike'],
+  ['blockquote'],
+
+  [{ list: 'ordered' }, { list: 'bullet' }],
+  [{ header: [2, 3, 4, false] }],
+
+  [{ align: [] }],
+];
+
 interface EditorProps {
   readOnly?: boolean;
   defaultValue?: string;
@@ -28,6 +38,9 @@ const Editor = forwardRef<QuillEditor, EditorProps>(
       );
       const quill = new Quill(editorContainer, {
         theme: 'snow',
+        modules: {
+          toolbar: TOOLBAR_OPTIONS,
+        },
       });
 
       if (ref && 'current' in ref) {

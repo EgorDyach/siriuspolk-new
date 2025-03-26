@@ -55,8 +55,8 @@ export default function Photos() {
 
   return (
     <section className="pb-[60px]">
-      <h2 className="text-[42px] font-lora mb-[24px]">Дополнительные фото</h2>
-      <p className="text-2xl max-w-[830px] mb-[32px]">
+      <h2 className="text-[28px] font-lora mb-[24px]">Дополнительные фото</h2>
+      <p className="text-[14px] max-w-[830px] mb-[12px]">
         Если у вас есть ещё фото, связанные с вашим предком, добавляйте их.
         Подойдут любые: семейные, домашние, с работы, фото документов и т.д.
       </p>
@@ -66,7 +66,7 @@ export default function Photos() {
             <div key={index} className="relative inline-block">
               <PhotoView src={URL.createObjectURL(file)}>
                 <Image
-                  className="aspect-[1/1.4] object-cover basis-[30%]"
+                  className="aspect-[1/1.4] object-cover basis-[30%] px-5 h-80"
                   src={URL.createObjectURL(file)}
                   alt=""
                   width={400}
@@ -85,7 +85,7 @@ export default function Photos() {
         </ul>
       </PhotoProvider>
       <label
-        className="w-full h-[160px] items-center border-8 border-[#B3B3B3] flex p-5"
+        className="w-full h-[120px] items-center border-4 border-[#B3B3B3] flex p-3"
         ref={dragZoneRef}
       >
         <input
@@ -95,8 +95,8 @@ export default function Photos() {
           multiple
           className="size-[1px]"
         />
-        <ImagePlus size={110} color="#B3B3B3" />
-        <p className="ml-10 text-2xl text-[#B3B3B3]">
+        <ImagePlus size={50} color="#B3B3B3" />
+        <p className="ml-5 text-[#B3B3B3]">
           <span className="underline text-black underline-offset-[6px]">
             Добавьте
           </span>{' '}
@@ -107,7 +107,7 @@ export default function Photos() {
           фото сюда.
         </p>
       </label>
-      <div className="w-full flex justify-center mt-7 gap-[3%]">
+      <div className="w-full hidden justify-center mt-7 gap-[3%]">
         <Button onClick={handleCancel} className="bg-[#D9D9D9]">
           <p className="text-black">Назад</p>
         </Button>

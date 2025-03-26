@@ -16,7 +16,7 @@ const Checkbox = forwardRef<
     <span
       data-disabled={disabled}
       className={cx(
-        'relative border-2 border-black aspect-square block size-5',
+        'relative border-[1px] border-black aspect-square block size-4',
         'data-[disabled=true]:border-gray-500',
         className,
       )}
@@ -30,7 +30,7 @@ const Checkbox = forwardRef<
         checked={checked}
       />
       {checked && (
-        <CheckIcon className="size-3.5 w-full h-full absolute top-0 left-0 right-0 bottom-0" />
+        <CheckIcon className="size-3 w-full h-full absolute top-0 left-0 right-0 bottom-0" />
       )}
     </span>
   );
