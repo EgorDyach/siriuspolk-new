@@ -10,6 +10,8 @@ import { requestCreatePerson } from '../api/create';
 import { useValidateStep } from '../model/useValidateStep';
 import { MainFormSchema } from '../model/mainInfoSchema';
 import { HistorySchema } from '../model/historySchema';
+import { showErrorNotification } from '@shared/lib/utils/notification';
+import { AxiosError } from 'axios';
 
 export default function Contacts() {
   const router = useRouter();
@@ -33,13 +35,21 @@ export default function Contacts() {
     setContacts(data);
     if (!checkData()) return;
     // TODO: Добавить try/catch полсе фикса на бэке
-    await requestCreatePerson({
-      contacts: data,
-      mainInfo,
-      photos,
-      history,
-      medals,
-    });
+    try {
+      await requestCreatePerson({
+        contacts: data,
+        mainInfo,
+        photos,
+        history,
+        medals,
+      });
+      router.push('/thankyou');
+    } catch (e) {
+      console.log(e);
+      if (e instanceof AxiosError) return showErrorNotification(e.message);
+      if (typeof e === 'string') return showErrorNotification(e);
+      showErrorNotification('Неизвестная ошибка...');
+    }
   };
 
   const handleCancel = () => {
@@ -107,12 +117,8 @@ export default function Contacts() {
         </div>
 
         <div className="w-full flex justify-center mt-4  gap-[3%]">
-          <Button
-            type="button"
-            onClick={handleCancel}
-            className="bg-[#D9D9D9] hidden"
-          >
-            <p className="text-black">Назад</p>
+          <Button type="button" onClick={handleCancel} className="bg-[#D9D9D9]">
+            <p className="text-black text-[14px]">Назад</p>
           </Button>
           <Button>
             <p className="text-[14px]">Сохранить</p>

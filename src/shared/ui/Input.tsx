@@ -31,7 +31,7 @@ function Input({
             {label}
           </span>
           {error && (
-            <span className="ml-2 text-end text-red-400 text-[16px]">
+            <span className="ml-2 text-end text-red-400 text-[12px]">
               {error}
             </span>
           )}

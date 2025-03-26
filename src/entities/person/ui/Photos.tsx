@@ -107,11 +107,13 @@ export default function Photos() {
           фото сюда.
         </p>
       </label>
-      <div className="w-full hidden justify-center mt-7 gap-[3%]">
+      <div className="w-full flex justify-center mt-7 gap-[3%]">
         <Button onClick={handleCancel} className="bg-[#D9D9D9]">
-          <p className="text-black">Назад</p>
+          <p className="text-black text-[14px]">Назад</p>
         </Button>
-        <Button onClick={handleSubmit}>Сохранить</Button>
+        <Button onClick={handleSubmit}>
+          <p className="text-[14px]">Сохранить</p>
+        </Button>
       </div>
     </section>
   );

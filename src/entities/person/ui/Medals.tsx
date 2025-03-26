@@ -67,11 +67,13 @@ export default function Medals() {
         </ul>
       </PhotoProvider>
       <MedalsSelect handleAdd={handleAdd} server_medals={server_medals} />
-      <div className="w-full justify-center mt-7 gap-[3%] hidden">
+      <div className="w-full flex justify-center mt-7 gap-[30px]">
         <Button onClick={handleCancel} className="bg-[#D9D9D9]">
-          <p className="text-black">Назад</p>
+          <p className="text-black text-[14px]">Назад</p>
         </Button>
-        <Button onClick={handleSubmit}>Сохранить</Button>
+        <Button className="text-[14px]" onClick={handleSubmit}>
+          Сохранить
+        </Button>
       </div>
     </section>
   );

@@ -45,11 +45,13 @@ export default function History() {
             <Editor defaultValue={value} onTextChange={onChange} />
           )}
         />
-        <div className="w-full hidden justify-center mt-7 gap-[3%]">
+        <div className="w-full flex justify-center mt-7 gap-[3%]">
           <Button type="button" onClick={handleCancel} className="bg-[#D9D9D9]">
-            <p className="text-black">Назад</p>
+            <p className="text-black text-[14px]">Назад</p>
           </Button>
-          <Button>Сохранить</Button>
+          <Button>
+            <p className="text-[14px]">Сохранить</p>
+          </Button>
         </div>
       </section>
     </form>

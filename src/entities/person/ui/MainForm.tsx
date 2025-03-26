@@ -145,7 +145,7 @@ export default function MainForm() {
                 />
               </div>
             </div>
-            <div className="flex gap-[10%] mb-7">
+            <div className="flex gap-[10%] flex-col mb-7">
               <div className="w-full">
                 <Input
                   required
@@ -183,7 +183,7 @@ export default function MainForm() {
                 </Label>
               </div>
             </div>
-            <div className="flex gap-[10%]">
+            <div className="flex flex-col gap-[10%]">
               <Input
                 required
                 error={formErrors.city?.message || errors.city}
@@ -204,8 +204,8 @@ export default function MainForm() {
               />
             </div>
           </div>
-          <div className="w-full justify-center mt-7 hidden">
-            <Button>Сохранить</Button>
+          <div className="w-full flex justify-center mt-7">
+            <Button className="text-[14px]">Сохранить</Button>
           </div>
         </section>
       </form>

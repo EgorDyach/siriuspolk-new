@@ -4,11 +4,6 @@ import { FormNav } from '@widgets/formNav/ui/FormNav';
 import { PropsWithChildren, useEffect } from 'react';
 import { useFormStore } from '../model/store';
 import { requestMedals } from '../api/medals';
-import MainForm from './MainForm';
-import Medals from './Medals';
-import History from './History';
-import Photos from './Photos';
-import Contacts from './Contacts';
 
 export default function FormLayout({ children }: PropsWithChildren) {
   const values = useFormStore();
@@ -28,14 +23,7 @@ export default function FormLayout({ children }: PropsWithChildren) {
           Расскажи историю своего предка
         </h1>
         <FormNav />
-        <div className="hidden">{children}</div>
-        <div className="">
-          <MainForm />
-          <Medals />
-          <History />
-          <Photos />
-          <Contacts />
-        </div>
+        <div>{children}</div>
       </div>
     </section>
   );
