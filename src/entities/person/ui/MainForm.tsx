@@ -58,7 +58,7 @@ export default function MainForm() {
           <div>
             <div className="flex gap-[5%] mb-4">
               <div className="text-center relative flex-2">
-                <label className="flex items-center justify-center">
+                <label className="flex items-center justify-center cursor-pointer">
                   <div className="size-[50px] rounded-full bg-[#333] flex items-center justify-center mb-2">
                     {watch('photo') && watch('photo')?.item(0) && (
                       <Image
@@ -89,7 +89,7 @@ export default function MainForm() {
                     type="file"
                     disabled={watch('hasnt_photo')}
                     accept={ACCEPTED_IMAGE_TYPES.join(', ')}
-                    className="w-[1px] h-[1px]"
+                    className="w-[1px] h-[1px] hidden"
                   />
                 </label>
                 {(watch('photo')?.length || watch('hasnt_photo')) && (
