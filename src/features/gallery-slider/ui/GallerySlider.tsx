@@ -7,6 +7,7 @@ import Image from 'next/image';
 import { slideGridStyles } from '../model/slideGridStyles';
 import { GalleryControls } from './GalleryControls';
 import { Swiper, SwiperRef, SwiperSlide } from 'swiper/react';
+import { cx } from 'class-variance-authority';
 
 const GallerySlider = () => {
   const swiperRef = useRef<SwiperRef | null>(null);
@@ -15,11 +16,11 @@ const GallerySlider = () => {
     <PhotoProvider maskOpacity={0.8}>
       <Swiper
         ref={swiperRef}
-        className="!max-w-[290px] w-full  !z-10"
+        className={cx('!max-w-[290px] w-full  !z-10', 'sm:!max-w-[500px]')}
         spaceBetween={50}
         breakpoints={{
-          1000: {
-            slidesPerView: 1,
+          640: {
+            slidesPerView: 2,
           },
           0: {
             slidesPerView: 1,

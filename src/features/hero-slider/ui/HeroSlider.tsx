@@ -11,6 +11,7 @@ import { useRef, useCallback } from 'react';
 import { BREAKPOINTS, SPEED } from '../model/sliderConfig';
 import ArrowLeft from '@shared/ui/icons/ArrowLeft';
 import ArrowRight from '@shared/ui/icons/ArrowRight';
+import { cx } from 'class-variance-authority';
 
 interface HeroSliderProps {
   persons: ShortPerson[];
@@ -31,7 +32,10 @@ export default function HeroSlider({ persons }: HeroSliderProps) {
 
   return (
     <Swiper
-      className="!max-w-[290px] w-full  !z-10 hero__swiper"
+      className={cx(
+        '!max-w-[290px] w-full  !z-10 hero__swiper',
+        'sm:!max-w-[480px]',
+      )}
       modules={[A11y]}
       ref={sliderRef}
       breakpoints={BREAKPOINTS}
@@ -46,7 +50,12 @@ export default function HeroSlider({ persons }: HeroSliderProps) {
           <HeroSlide person={person} />
         </SwiperSlide>
       ))}
-      <div className="flex items-center justify-center gap-[40px] mt-4 z-10">
+      <div
+        className={cx(
+          'flex items-center justify-center gap-[40px] mt-4 z-10',
+          'sm:absolute sm:top-1/2 sm:-translate-y-1/2 sm:w-full sm:justify-between',
+        )}
+      >
         <button
           onClick={handlePrev}
           className="relative border-none p-0 cursor-pointer size[32px] outline-[3px] outline-offset-[-3px] outline-transparent transition-colors hover:fill-[#989898] bg-[#52575D]"

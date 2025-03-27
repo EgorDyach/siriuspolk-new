@@ -18,7 +18,7 @@ export function GalleryControls() {
     const updateState = () => {
       setGalleryState({
         activeIndex: swiper.activeIndex,
-        slideCount: swiper.slides.length,
+        slideCount: swiper.slides.length - swiper.slidesPerViewDynamic(),
       });
     };
     updateState();
@@ -45,7 +45,7 @@ export function GalleryControls() {
         </button>
         <button
           onClick={() => swiper.slideNext()}
-          disabled={galleryState.activeIndex === galleryState.slideCount - 1}
+          disabled={galleryState.activeIndex === galleryState.slideCount}
           className={buttonClasses}
         >
           <ArrowRight size={32} className="transition-colors" />
