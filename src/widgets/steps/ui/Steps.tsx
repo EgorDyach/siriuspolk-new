@@ -11,15 +11,15 @@ export async function Steps() {
           Как принять участие
         </h2>
 
-        <div className="absolute left-1/2 -translate-x-1/2 w-[3px] max-h-[calc(100%-120px)] h-full bg-gray-400 hidden">
+        <div className="absolute left-1/2 -translate-x-1/2 w-[3px] max-h-[calc(100%-120px)] h-full bg-gray-400 hidden md:block">
           <div className="w-full h-0 bg-black fill-line"></div>
         </div>
 
-        <ul>
+        <ul className="md:flex md:flex-col md:w-full">
           {steps.map(({ icon, text }, index) => (
             <li
               className={cx(
-                'flex justify-center gap-[10px] py-[26px] fade-in-anim opacity-65 relative max-h-[130px] h-full sm:max-h-[170px]',
+                'flex justify-center gap-[10px] py-[26px] fade-in-anim opacity-65 relative max-h-[140px] h-full sm:max-h-[170px] md:w-full md:justify-center md:gap-[50px] md:max-h-[240px]',
                 index % 2 &&
                   'flex-row-reverse [&>div]:justify-end [&>div+div]:items-end text-end',
               )}
@@ -28,26 +28,31 @@ export async function Steps() {
               }}
               key={index}
             >
-              <div className="max-w-[60px] max-h-[130px] w-full flex justify-end items-start [&>div]:!h-fit sm:max-w-[95px]">
+              <div
+                className={cx(
+                  'max-w-[65px] max-h-[140px] w-full flex justify-end items-start [&>div]:!h-fit sm:max-w-[95px]  md:max-w-[calc(50%)] md:w-full md:items-center md:[&>div]:!size-32  md:basis-1/2 md:flex-1/2 ',
+                  index % 2 && 'md:!justify-start',
+                )}
+              >
                 {icon}
               </div>
               <div
                 className={cx(
-                  'flex items-center gap-[30px] flex-col justify-end sm:gap-[14px]',
+                  'flex items-center gap-[30px] flex-col justify-end sm:gap-[14px] md:basis-1/2 md:flex-1/2  md:max-w-[calc(50%)] md:w-full',
                   index % 2 && 'sm:justify-end sm:items-end',
                   (index + 1) % 2 && 'sm:justify-start sm:items-start',
                 )}
               >
                 <h3
                   className={cx(
-                    'bg-[#52575d] m-0 text-[16px]/[24px] text-center aspect-square font-lora text-white absolute top-0 w-[24px] sm:relative sm:left-0 sm:w-[32px] sm:text-[20px]/[32px]',
+                    'bg-[#52575d] m-0 text-[20px]/[28px] text-center aspect-square font-lora text-white absolute top-0 w-[28px] sm:relative sm:left-0 sm:w-[38px] sm:text-[28px]/[38px]',
                     index % 2 && ' right-0',
                     (index + 1) % 2 && ' left-0',
                   )}
                 >
                   {index + 1}
                 </h3>
-                <p className="max-w-[550px] text-[12px] font-lora font-normal sm:text-[18px]">
+                <p className="max-w-[550px] text-[13px] font-normal sm:text-[22px]">
                   {text}
                 </p>
               </div>

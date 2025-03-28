@@ -10,3 +10,15 @@
 .hero__swiper .swiper-slide:not(.swiper-slide-active) {
   opacity: 0.55;
 }
+
+@media (min-width: 75rem) {
+  .hero__swiper .swiper-slide:not(.swiper-slide-next) {
+    opacity: 0.55;
+  }
+
+  .hero__swiper .swiper-slide-active + .swiper-slide-next {
+    cursor: pointer;
+    opacity: 1;
+    transform: scale(1.4);
+  }
+}

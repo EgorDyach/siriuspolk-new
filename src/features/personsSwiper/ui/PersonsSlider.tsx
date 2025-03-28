@@ -54,7 +54,6 @@ export default function PersonsSlider({ persons }: PersonsSliderProps) {
           key={activeIndex}
           nodeRef={currentPersonRef}
           timeout={500}
-          // in={true}
           classNames="fade"
           unmountOnExit
         >
@@ -68,25 +67,24 @@ export default function PersonsSlider({ persons }: PersonsSliderProps) {
         <div className="mx-auto gap-[50px] flex">
           <button
             onClick={handlePrev}
-            className="relative p-0 bg-transparent cursor-pointer border-[2px] border-white outline-transparent transition-colors hover:bg-[#989898]"
+            className="relative p-0 bg-transparent cursor-pointer border-[2px] border-white outline-transparent transition-colors hover:bg-[#989898] sm:size-16 sm:flex sm:items-center sm:justify-center sm:[&>div]:!size-12"
           >
             <ArrowLeft color="#fff" size={32} />
           </button>
           <button
             onClick={handleNext}
-            className="relative p-0 bg-transparent cursor-pointer border-[2px] border-white outline-transparent transition-colors hover:bg-[#989898]"
+            className="relative p-0 bg-transparent cursor-pointer border-[2px] border-white outline-transparent transition-colors hover:bg-[#989898] sm:size-16 sm:flex sm:items-center sm:justify-center sm:[&>div]:!size-12 "
           >
             <ArrowRight color="#fff" size={32} />
           </button>
         </div>
         <Swiper
-          className="max-w-3/5 !m-0 !w-[1px] !h-[1px] !absolute !-left-[1000px]"
+          className="max-w-1/2 !m-0 !w-[1px] !h-[1px] !absolute !-left-[1000px] md:!w-full md:!h-full md:!relative md:!left-0 xl:max-w-3/5"
           modules={[A11y]}
           ref={sliderRef}
           spaceBetween={SPACE_BETWEEN}
           breakpoints={BREAKPOINTS}
           speed={SPEED}
-          navigation
           loop
         >
           <div className="items-center justify-center gap-[88px] transform-[translateX(-5px)] z-10 hidden">
@@ -98,7 +96,7 @@ export default function PersonsSlider({ persons }: PersonsSliderProps) {
                 >
                   <Image
                     className={cx(
-                      'cursor-pointer my-auto mx-0 w-[231px] h-[300px] text-center items-end justify-end transition flex duration-1000 align-middle relative object-cover',
+                      'cursor-pointer my-auto mx-0 w-[201px] h-[240px] text-center items-end justify-end transition flex duration-1000 align-middle relative object-cover xl:w-[260px] xl:h-[280px]',
                       {
                         'outline-[5px] outline-offset-[-5px] outline-white':
                           index === activeIndex,

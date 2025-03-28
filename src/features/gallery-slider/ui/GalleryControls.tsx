@@ -31,7 +31,7 @@ export function GalleryControls() {
   if (!swiper) return null;
 
   const buttonClasses =
-    'disabled:opacity-50 transition-opacity duration-200 text-white hover:not-disabled:text-[#999] cursor-pointer bg-[#52575D]';
+    'disabled:opacity-50 transition-opacity duration-200 text-white hover:not-disabled:text-[#999] cursor-pointer bg-[#52575D] xl:size-14 xl:[&>div]:!size-14';
 
   return (
     <div className="flex flex-col justify-between items-center mt-6 relative">
@@ -53,7 +53,7 @@ export function GalleryControls() {
       </div>
       <Link
         href={routes.gallery}
-        className="text underline font-lora text-black"
+        className="text underline font-lora text-black sm:text-2xl xl:text-[28px]"
       >
         Все материалы
       </Link>

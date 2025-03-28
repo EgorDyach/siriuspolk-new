@@ -20,12 +20,37 @@ export async function Hero({ persons }: HeroProps) {
         height={1080}
         alt="Фото советских воинов-освободителей"
       />
-      <div className="py-16 z-10 relative flex max-w-[1410px] m-auto px-4 justify-center">
-        <div className="text-center">
+      <div className="py-12 z-10 relative flex max-w-[1410px] m-auto px-4 justify-center md:pt-32">
+        <div className="text-center md:flex md:justify-between md:w-full container">
+          <div className="hidden md:flex flex-col xl:min-h-90">
+            <h2
+              className={cx(
+                'text-[48px]/[1.2] font-lora max-w-[800px] m-0 text-black mb-10 font-medium',
+              )}
+            >
+              “Никто не забыт, <br /> ничто не забыто”
+            </h2>
+            <p
+              className={cx(
+                'text-[25px]/[22px] flex-1/3 font-medium text-center max-w-[550px] text-black',
+              )}
+            >
+              Расскажи историю своего предка
+            </p>
+            <Link
+              href={routes.form}
+              className={cx(
+                'py-[22px] px-[50px] text-white text-[24px] w-fit font-lora bg-[#343434]',
+              )}
+            >
+              Принять участие
+            </Link>
+          </div>
           <h2
             className={cx(
-              'text-[24px]/[1.2] font-lora max-w-[700px] m-0 text-black mb-12 font-medium',
+              'text-[28px]/[1.2] font-lora max-w-[700px] m-0 text-black mb-6 font-medium',
               'sm:text-[48px]/[1.2]',
+              'md:hidden',
             )}
           >
             “Никто не забыт, <br /> ничто не забыто”
@@ -33,18 +58,17 @@ export async function Hero({ persons }: HeroProps) {
           <HeroSlider persons={persons} />
           <p
             className={cx(
-              'text-[11px]/[18px] font-medium mt-7  text-center max-w-[550px] m-0 mb-[30px] text-black order-3',
-              'sm:text-[16px]/[24px]',
+              'text-[13px]/[22px] font-medium mt-7  text-center max-w-[550px] m-0 mb-[30px] text-black order-3',
+              'sm:text-[20px]/[28px] md:hidden',
             )}
           >
-            Присоединяйся к онлайн движению «Сириус» – бессмертный полк» и
-            поделись историей ветерана
+            Расскажи историю своего предка
           </p>
           <Link
             href={routes.form}
             className={cx(
-              'py-[10px] px-[22px] text-white text-[12px] font-lora bg-[#343434]',
-              'sm:text-[16px] sm:py-4 sm:px-7',
+              'py-[15px] px-[32px] text-white text-[18px] font-lora bg-[#343434]',
+              'sm:text-[16px] sm:py-4 sm:px-7 md:hidden',
             )}
           >
             Принять участие

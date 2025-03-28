@@ -4,6 +4,12 @@
 
 @custom-variant dark (&:is(.dark *));
 
+@theme {
+  --breakpoint-md: 56rem;
+  --breakpoint-xl: 75rem;
+  --breakpoint-2xl: 87.5rem;
+}
+
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
@@ -49,6 +55,18 @@
   padding: 0 20px;
   margin: 0 auto;
   width: 100%;
+}
+
+@media (min-width: 56rem) {
+  .container {
+    padding: 0 100px;
+  }
+}
+
+@media (min-width: 87.5rem) {
+  .container {
+    padding: 0 130px;
+  }
 }
 
 :root {
