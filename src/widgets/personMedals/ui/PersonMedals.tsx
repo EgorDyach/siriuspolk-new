@@ -33,7 +33,7 @@ const PersonMedals: FC<PersonMedalsProps> = ({ medals }) => {
     <section className="py-[40px] bg-[#efeade] relative">
       <Image
         className="absolute top-0 left-0 right-0 bottom-0 z-0 opacity-20 object-cover object-center max-h-full max-w-full w-full h-full"
-        src={'/images/hero-bg.jpg'}
+        src={'/hero-bg.jpg'}
         width={1920}
         height={1080}
         alt="Фото советских воинов-освободителей"
