@@ -45,7 +45,7 @@ const CurrentPerson = forwardRef<HTMLDivElement, CurrentPersonProps>(
               width={400}
               height={700}
               className="cursor-pointer flex-1/2 max-h-[500px] max-w-[200px] object-contain -order-1 mb-2 sm:max-w-[300px]"
-              src={main_photo || '/images/UnkownSlodier.jpg'}
+              src={main_photo || '/UnkownSlodier.jpg'}
               alt={`Ветеран ${name} (${getPersonDates(date_birth, date_death)})`}
             />
           </PhotoView>

@@ -107,7 +107,7 @@ export default function PersonsSlider({ persons }: PersonsSliderProps) {
                     alt={`${name} (${date_birth} - ${date_death}) – портрет`}
                     width={462}
                     height={600}
-                    src={main_photo || '/images/UnknownSoldier.jpg'}
+                    src={main_photo || '/UnknownSoldier.jpg'}
                     onClick={() => handleClick(index)}
                   />
                 </SwiperSlide>

@@ -74,7 +74,7 @@ export default function MainForm() {
                         width={200}
                         height={200}
                         className="object-cover rounded-full size-full"
-                        src={'/images/UnknownSoldier.jpg'}
+                        src={'/UnknownSoldier.jpg'}
                         alt=""
                       />
                     )}

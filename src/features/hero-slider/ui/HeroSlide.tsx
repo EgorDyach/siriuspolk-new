@@ -26,7 +26,7 @@ export function HeroSlide({
         alt={`${name} (${date_birth} - ${date_death}) – портрет`}
         width={462}
         height={600}
-        src={main_photo || '/images/UnknownSoldier.jpg'}
+        src={main_photo || '/UnknownSoldier.jpg'}
       />
       <p
         className={cx(

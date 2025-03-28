@@ -56,7 +56,7 @@ const PersonMedals: FC<PersonMedalsProps> = ({ medals }) => {
             }}
           >
             {medals.map((medal, i) => {
-              const imageSrc = `/images/medals/${EMedals[medal as keyof typeof EMedals]}.png`;
+              const imageSrc = `/medals/${EMedals[medal as keyof typeof EMedals]}.png`;
               return (
                 <SwiperSlide className="my-auto cursor-zoom-in" key={i}>
                   <PhotoView src={imageSrc}>
