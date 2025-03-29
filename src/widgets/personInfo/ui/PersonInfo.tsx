@@ -12,15 +12,15 @@ interface PersonInfoProps {
 
 const PersonInfo: FC<PersonInfoProps> = ({ person }) => {
   return (
-    <section className="bg-[#1e1e1e] pt-[30px]">
-      <div className="container flex flex-col">
+    <section className="bg-[#1e1e1e] pt-[30px] sm:pt-20 md:pt-0 md:mt-7">
+      <div className="container flex flex-col md:flex-row">
         <PhotoProvider
           maskOpacity={0.6}
           toolbarRender={() => `Ветеран ${person.SNL} - портрет`}
         >
           <PhotoView src={person.main_photo}>
             <Image
-              className="px-8 object-cover"
+              className="px-8 object-cover max-w-xs mx-auto md:flex-1/3 md:object-cover  md:p-0 md:max-w-[300px] md:aspect-[300/400] 2xl:aspect-[400/500] 2xl:max-w-[500px]"
               src={person.main_photo}
               width={500}
               height={700}
@@ -28,25 +28,29 @@ const PersonInfo: FC<PersonInfoProps> = ({ person }) => {
             />
           </PhotoView>
         </PhotoProvider>
-        <div className="flex flex-col pt-[50px] pb-[80px]">
-          <h1 className="text-white text-[26px] font-lora max-w-[600px] mb-[10px]">
+        <div className="flex flex-col pt-[50px] pb-[80px] md:pt-16 md:flex-1/2 md:ml-9 md:pb-12 2xl:pl-24 2xl:pb-16">
+          <h1 className="text-white text-[26px] font-lora max-w-[600px] mb-[10px] md:text-[40px]/[1.5] 2xl:text-7xl/[1.5]">
             {person.SNL}
           </h1>
-          <p className="text-white font-lora text-[20px]">
+          <p className="text-white font-lora text-[20px] md:text-[32px]/[1.5]  2xl:text-5xl/[1.5]">
             {getPersonDates(person.date_birth, person.date_death)}
           </p>
-          <div className="mt-9 flex flex-col gap-9">
-            <div>
-              <p className="text-[#848484] mb-1 font-lora text[16px]">
+          <div className="mt-9 flex flex-col gap-9 md:flex-row md:flex-1/2">
+            <div className="md:content-end xl:flex xl:flex-col xl:gap-4">
+              <p className="text-[#848484] mb-1 font-lora text[16px] 2xl:text-2xl/[1.5]">
                 Место рождения:
               </p>
-              <p className="text-white text-[14px]">{person.city}</p>
+              <p className="text-white text-[14px] 2xl:text-xl/[1.5]">
+                {person.city}
+              </p>
             </div>
-            <div>
-              <p className="text-[#848484] mb-1 font-lora text[16px]">
+            <div className="md:content-end xl:flex xl:flex-col xl:gap-4">
+              <p className="text-[#848484] mb-1 font-lora text[16px] 2xl:text-2xl/[1.5]">
                 Звание:
               </p>
-              <p className="text-white text-[14px]">{person.rank}</p>
+              <p className="text-white text-[14px] 2xl:text-xl/[1.5]">
+                {person.rank}
+              </p>
             </div>
           </div>
         </div>

@@ -33,16 +33,27 @@ const PersonImages: FC<PersonImagesProps> = ({ images }) => {
   return (
     <section className="pb-[100px] pt-0 bg-[#efeade] relative">
       <div className="container relative z-10">
-        <h2 className="text-black font-lora text-[32px] mb-[32px]">
+        <h2 className="text-black font-lora text-[32px] mb-[32px] md:text-5xl">
           Фотографии
         </h2>
         <PhotoProvider maskOpacity={0.8}>
           <Swiper
-            className="w-[80%] mb-[40px]"
+            className="w-[80%] mb-[40px] md:w-full"
             modules={[A11y]}
             spaceBetween={50}
             speed={800}
             ref={sliderRef}
+            breakpoints={{
+              1200: {
+                slidesPerView: 4,
+              },
+              896: {
+                slidesPerView: 3,
+              },
+              1: {
+                slidesPerView: 2,
+              },
+            }}
             slidesPerView={SLIDE_COUNT_ITEMS}
             onSlideChange={(swiper) => {
               setActiveIndex(swiper.activeIndex);
@@ -77,7 +88,12 @@ const PersonImages: FC<PersonImagesProps> = ({ images }) => {
             <ArrowLeft size={32} />
           </button>
           <button
-            disabled={activeIndex >= maxIndex}
+            disabled={
+              activeIndex >=
+              maxIndex -
+                (sliderRef.current?.swiper.slidesPerViewDynamic() || 0) +
+                1
+            }
             onClick={handleNext}
             className="relative p-0 bg-[#52575D] text-white cursor-pointer border-0 outline-transparent transition-colors hover:not-disabled:text-[#989898] disabled:opacity-50 disabled:cursor-default"
           >
