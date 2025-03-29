@@ -71,7 +71,7 @@ export const MainFormSchema = z
       message: 'Имя должно быть больше 2 символов.',
     }),
     surname: z.string({ message: 'Обязательное поле' }).min(2, {
-      message: 'Фамилия должно быть больше 2 символов.',
+      message: 'Фамилия должна быть больше 2 символов.',
     }),
     lastname: z.string({ message: 'Обязательное поле' }).nullable(),
     photo: z.custom<FileList>().nullable(),

@@ -2,7 +2,7 @@ import Link from 'next/link';
 
 export default async function NotFound() {
   return (
-    <section className="pt-10 xl:pt-[100px] h-[65vh]">
+    <section className="pt-10 xl:pt-[100px]  h-[calc(100vh-350px)]">
       <div className="container">
         <h1 className="text-4xl  font-bold font-lora xl:text-7xl mb-4 xl:mb-8">
           Страница не найдена

@@ -90,9 +90,7 @@ const PersonImages: FC<PersonImagesProps> = ({ images }) => {
           <button
             disabled={
               activeIndex >=
-              maxIndex -
-                (sliderRef.current?.swiper.slidesPerViewDynamic() || 0) +
-                1
+              maxIndex - (sliderRef.current?.swiper.slidesPerViewDynamic() || 0)
             }
             onClick={handleNext}
             className="relative p-0 bg-[#52575D] text-white cursor-pointer border-0 outline-transparent transition-colors hover:not-disabled:text-[#989898] disabled:opacity-50 disabled:cursor-default"

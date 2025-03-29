@@ -33,7 +33,7 @@ export async function Hero({ persons }: HeroProps) {
             </h2>
             <p
               className={cx(
-                'text-[23px]/[38px] flex-1/3 font-normal max-w-[450px] text-black text-left mb-14 2xl:text-2xl/[1.5]',
+                'text-[23px]/[38px] flex-1/3 font-medium max-w-[450px] text-black text-left mb-14 2xl:text-2xl/[1.5]',
               )}
             >
               Присоединяйся к онлайн движению «Сириус» – бессмертный полк» и

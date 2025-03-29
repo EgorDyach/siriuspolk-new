@@ -2,7 +2,7 @@ import Link from 'next/link';
 
 export default async function ThankyouPage() {
   return (
-    <section className="py-[60px]">
+    <section className="py-[60px] h-[calc(100vh-350px)]">
       <div className="container !px-8 text-center">
         <h1 className="text-3xl font-bold font-lora mb-[16px]">
           Спасибо за участие!
