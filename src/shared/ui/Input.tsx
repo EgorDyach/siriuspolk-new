@@ -21,7 +21,7 @@ function Input({
       <Label
         htmlFor={name}
         className={cx(
-          'mb-2 text-[12px] font-normal flex flex-col items-start ',
+          'mb-2 text-[12px] font-normal flex flex-col items-start xl:text-base',
           className,
         )}
       >
@@ -31,7 +31,7 @@ function Input({
             {label}
           </span>
           {error && (
-            <span className="ml-2 text-end text-red-400 text-[12px]">
+            <span className="ml-2 text-end text-red-400 text-[12px] xl:text-[14px]">
               {error}
             </span>
           )}
@@ -45,7 +45,7 @@ function Input({
             'focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[2px]',
             'aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive',
             '2sm:p-3 2sm:text-base',
-            'xl:p-5 2sm:text-2xl',
+            'xl:p-4 2sm:text-3xl xl:border-2',
           )}
           {...props}
         />

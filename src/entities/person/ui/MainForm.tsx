@@ -49,7 +49,7 @@ export default function MainForm() {
     <FormProvider {...form}>
       <form onSubmit={handleSubmit(onSubmit)}>
         <section className="pb-[20px]">
-          <h2 className="text-[20px] font-lora mb-[6px]">
+          <h2 className="text-[20px] font-lora mb-[6px] sm:text-2xl xl:text-5xl">
             Основная информация
           </h2>
           <span className="text-[#C4B695] italic font-lora text-[14px] mb-[40px]">
@@ -59,7 +59,7 @@ export default function MainForm() {
             <div className="flex gap-[5%] mb-4">
               <div className="text-center relative flex-2">
                 <label className="flex items-center justify-center cursor-pointer">
-                  <div className="size-[50px] rounded-full bg-[#333] flex items-center justify-center mb-2">
+                  <div className="size-[75px] rounded-full bg-[#333] flex items-center justify-center mb-2 sm:size-28 xl:size-48">
                     {watch('photo') && watch('photo')?.item(0) && (
                       <Image
                         width={200}
@@ -98,7 +98,7 @@ export default function MainForm() {
                       setValue('photo', null);
                       setValue('hasnt_photo', false);
                     }}
-                    className="size-4 items-center flex justify-center bg-white border-[1px] border-black rounded-full absolute top-0 right-1/2 translate-x-[30px] cursor-pointer"
+                    className="size-6 items-center flex justify-center bg-white border-[1px] border-black rounded-full absolute top-0 right-1/2 translate-x-[38px] cursor-pointer sm:size-9 sm:translate-x-[62px] xl:size-11 xl:translate-x-[100px]"
                   >
                     <X />
                   </span>
@@ -116,7 +116,7 @@ export default function MainForm() {
                 )}
                 {errors.photo && <p className="text-red-400">{errors.photo}</p>}
               </div>
-              <div className="grid grid-cols-1  flex-3 gap-[2%]">
+              <div className="grid grid-cols-1  flex-3 gap-[2%] xl:grid-cols-2">
                 <Input
                   required
                   error={formErrors.name?.message || errors.name}
@@ -145,8 +145,8 @@ export default function MainForm() {
                 />
               </div>
             </div>
-            <div className="flex gap-[10%] flex-col mb-7">
-              <div className="w-full">
+            <div className="flex gap-[10%] flex-col mb-7 xl:flex-row">
+              <div className="w-full mb-5">
                 <Input
                   required
                   error={formErrors.birth_year?.message || errors.birth_year}
@@ -183,7 +183,7 @@ export default function MainForm() {
                 </Label>
               </div>
             </div>
-            <div className="flex flex-col gap-[10%]">
+            <div className="flex flex-col gap-[10%]  xl:flex-row">
               <Input
                 required
                 error={formErrors.city?.message || errors.city}

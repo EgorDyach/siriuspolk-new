@@ -17,9 +17,9 @@ export default function FormLayout({ children }: PropsWithChildren) {
   }, [values]);
 
   return (
-    <section className=" pt-[40px]">
+    <section className="pt-[40px] sm:pt-20 xl:pt-32">
       <div className="container">
-        <h1 className="font-lora text-[40px]/[45px] font-medium  mb-11">
+        <h1 className="font-lora text-[40px]/[45px] font-medium mb-11 md:text-6xl 2xl:text-7xl">
           Расскажи историю своего предка
         </h1>
         <FormNav />

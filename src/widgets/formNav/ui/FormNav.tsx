@@ -9,7 +9,7 @@ import Link from 'next/link';
 export function FormNav() {
   const pathname = usePathname();
   return (
-    <section className="hidden relative pb-[40px] py-[30px] bg-[#efeade]">
+    <section className="hidden relative pb-[40px] py-[30px] bg-[#efeade] md:block">
       <div className="absolute left-1/2 -translate-x-1/2 h-[2px] max-w-full w-full bg-gray-400 overflow-hidden transition-transform">
         <div
           className="h-full bg-black"

@@ -34,7 +34,9 @@ export default function History() {
     <form onSubmit={handleSubmit(onSubmit)}>
       <section className="pb-[20px]">
         <div className="flex justify-between items-end  mb-[6px]">
-          <h2 className="text-[32px] font-lora">История</h2>
+          <h2 className="text-[20px] font-lora mb-[6px] sm:text-2xl xl:text-5xl">
+            История
+          </h2>
           <p className="text-red-400">{errors.content}</p>
         </div>
 

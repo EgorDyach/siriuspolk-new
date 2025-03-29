@@ -59,13 +59,15 @@ export default function Contacts() {
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
       <section className="pb-[40px]">
-        <h2 className="text-[32px] font-lora mb-[6px]">Обратная связь</h2>
-        <p className="text-[12px] max-w-[830px] mb-[32px]">
+        <h2 className="text-[20px] font-lora mb-[16px] sm:text-2xl sm:mb-5 xl:mb-8 xl:text-5xl">
+          Обратная связь
+        </h2>
+        <p className="text-[12px] max-w-[830px] mb-[32px]  xl:text-[17px]">
           Оставьте свои контактные данные, чтобы мы могли связаться с вами,
           когда вашу историю проверят.
         </p>
         <div className="flex mb-3">
-          <div className="grid grid-cols-1 flex-3 gap-[2%]">
+          <div className="grid grid-cols-1 flex-3 gap-[2%] md:grid-cols-3">
             <Input
               required
               error={errors.name?.message}
@@ -94,7 +96,7 @@ export default function Contacts() {
             />
           </div>
         </div>
-        <div className="flex flex-col gap-[10%] mb-7">
+        <div className="flex flex-col gap-[10%] mb-7 md:grid-cols-2 md:grid">
           <Input
             required
             error={errors.tg?.message}
@@ -121,7 +123,7 @@ export default function Contacts() {
             <p className="text-black text-[14px]">Назад</p>
           </Button>
           <Button>
-            <p className="text-[14px]">Сохранить</p>
+            <p className="text-[14px]">Отправить</p>
           </Button>
         </div>
       </section>

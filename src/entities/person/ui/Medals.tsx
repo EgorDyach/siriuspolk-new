@@ -13,7 +13,7 @@ export default function Medals() {
   const { setMedals, server_medals, medals } = useFormStore();
   const handleAdd = (el: MedalOption) => {
     console.log(el);
-    const item = server_medals.find((v) => v.id === el.value);
+    const item = server_medals.find((v) => v.name === el.text);
     if (!item) return showErrorNotification('Не удалось добавить награду.');
     setMedals([...medals, item]);
   };
@@ -35,9 +35,11 @@ export default function Medals() {
 
   return (
     <section className="pb-[20px]">
-      <h2 className="text-[20px] font-lora mb-[6px]">Награды</h2>
+      <h2 className="text-[20px] font-lora mb-[16px] sm:text-2xl sm:mb-5 xl:mb-8 xl:text-5xl">
+        Награды
+      </h2>
       <PhotoProvider>
-        <ul className="grid grid-cols-2">
+        <ul className="grid grid-cols-2 md:grid-cols-3 xl:grid-cols-4">
           {medals.map((el, index) => (
             <li
               key={index}

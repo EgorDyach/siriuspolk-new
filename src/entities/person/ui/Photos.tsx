@@ -55,8 +55,10 @@ export default function Photos() {
 
   return (
     <section className="pb-[60px]">
-      <h2 className="text-[28px] font-lora mb-[24px]">Дополнительные фото</h2>
-      <p className="text-[14px] max-w-[830px] mb-[12px]">
+      <h2 className="text-[20px] font-lora mb-[16px] sm:text-2xl sm:mb-5 xl:mb-8 xl:text-5xl">
+        Дополнительные фото
+      </h2>
+      <p className="text-[14px] max-w-[830px] mb-[12px] xl:text-[17px]">
         Если у вас есть ещё фото, связанные с вашим предком, добавляйте их.
         Подойдут любые: семейные, домашние, с работы, фото документов и т.д.
       </p>
