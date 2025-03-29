@@ -15,7 +15,7 @@ const GalleryPhoto: FC<GalleryPhotoProps> = ({ item }) => {
       render={() => `${item.alt} (${item.date})`}
       overlay={`${item.alt} (${item.date})`}
     >
-      <button
+      <div
         tabIndex={1}
         className={cx(
           'group aspect-[1.36/1] overflow-hidden relative cursor-pointer outline-[6px] outline-offset-[-6px] outline-transparent transition-colors focus-visible:outline-white after:absolute after:left-0 after:right-0 after:bg-gradient-to-t after:from-black after:via-transparent after:to-transparent after:bottom-0 after:h-[400px] a after:duration-150 after:transform-[translateY(200px)] hover:after:transform-[translateY(0px)]',
@@ -36,7 +36,7 @@ const GalleryPhoto: FC<GalleryPhotoProps> = ({ item }) => {
             <p className="text-[12px] text-white">{item.alt}</p>
           </span>
         </div>
-      </button>
+      </div>
     </PhotoView>
   );
 };
