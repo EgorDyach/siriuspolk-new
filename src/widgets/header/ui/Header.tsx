@@ -11,10 +11,13 @@ export function Header() {
   const pathname = usePathname();
   const [isMenuOpened, setIsMenuOpened] = useState(false);
   return (
-    <header className="py-2.5 bg-[#52575D] fixed top-0 left-0 right-0 z-50 m-0 sm:py-6 xl:py-0 ">
-      <div className="flex container !px-7.5 items-center justify-between md:!px-[100px]">
+    <header className="py-2.5 bg-[#52575D] fixed top-0 left-0 right-0 z-50 m-0 sm:py-6 xl:py-0">
+      <div className="flex container px-7.5 items-center justify-between md:px-[100px]">
         <Link onClick={() => setIsMenuOpened(!isMenuOpened)} href="/">
-          <Logo className="w-[90px] sm:w-[140px] xl:w-[120px]" color="#fff" />
+          <Logo
+            className="w-[90px] sm:w-[140px] xl:w-[120px] 2xl:w-[150px]"
+            color="#fff"
+          />
         </Link>
         <button
           className="xl:hidden"
@@ -36,7 +39,7 @@ export function Header() {
           <Link
             onClick={() => setIsMenuOpened(!isMenuOpened)}
             data-active={pathname?.includes(routes.home)}
-            className={`text-white outline-offset-[-3px] font-lora text-[16px]/[1] py-[16px] px-[28px] relative transition-all focus:outline-white focus:outline-3 hover:text-[#989898] xl:h-[86.3px] xl:content-center xl:px-12 data-[active=true]:bg-[#494E53]`}
+            className={`text-white outline-offset-[-3px] font-lora text-[16px]/[1] py-[16px] px-[28px] relative transition-all focus:outline-white focus:outline-3 2xl:text-2xl hover:text-[#989898] xl:h-[86.3px] xl:content-center xl:px-12 data-[active=true]:bg-[#494E53]`}
             href={routes.home}
           >
             Главная
@@ -44,7 +47,7 @@ export function Header() {
           <Link
             onClick={() => setIsMenuOpened(!isMenuOpened)}
             data-active={pathname?.includes(routes.gallery)}
-            className={`text-white outline-offset-[-3px] font-lora text-[16px]/[1] py-[16px] px-[28px] relative transition-all focus:outline-white focus:outline-3 hover:text-[#989898] xl:h-[86.3px] xl:content-center xl:px-12 data-[active=true]:bg-[#494E53]`}
+            className={`text-white outline-offset-[-3px] font-lora text-[16px]/[1] py-[16px] px-[28px] relative transition-all focus:outline-white focus:outline-3 2xl:text-2xl hover:text-[#989898] xl:h-[86.3px] xl:content-center xl:px-12 data-[active=true]:bg-[#494E53]`}
             href={routes.gallery}
           >
             Галерея
@@ -52,7 +55,7 @@ export function Header() {
           <Link
             onClick={() => setIsMenuOpened(!isMenuOpened)}
             data-active={pathname?.includes(routes.histories)}
-            className={`text-white outline-offset-[-3px] font-lora text-[16px]/[1] py-[16px] px-[28px] relative transition-all focus:outline-white focus:outline-3 hover:text-[#989898] xl:h-[86.3px] xl:content-center xl:px-12 data-[active=true]:bg-[#494E53]`}
+            className={`text-white outline-offset-[-3px] font-lora text-[16px]/[1] py-[16px] px-[28px] relative transition-all focus:outline-white focus:outline-3 2xl:text-2xl hover:text-[#989898] xl:h-[86.3px] xl:content-center xl:px-12 data-[active=true]:bg-[#494E53]`}
             href={routes.histories}
           >
             Истории
@@ -60,7 +63,7 @@ export function Header() {
           <Link
             onClick={() => setIsMenuOpened(!isMenuOpened)}
             href={routes.form}
-            className="text-white outline-offset-[-3px] font-lora text-[16px]/[1] relative transition-all focus:outline-white focus:outline-3 hover:text-[#989898] border-2 bg-transparent py-[12px] px-[65px] mt-9 xl:m-0 xl:h-full xl:content-center xl:bg-[#343434] xl:border-0 xl:w-max"
+            className="text-white outline-offset-[-3px] font-lora text-[16px]/[1] relative transition-all focus:outline-white focus:outline-3 hover:text-[#989898] 2xl:text-2xl border-2 bg-transparent py-[12px] px-[65px] mt-9 xl:m-0 xl:h-full xl:content-center xl:bg-[#343434] xl:border-0 xl:w-max"
           >
             Принять участие
           </Link>

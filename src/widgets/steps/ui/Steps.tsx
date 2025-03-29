@@ -5,9 +5,9 @@ import { steps } from '../api/steps';
 
 export async function Steps() {
   return (
-    <section className="relative py-[50px] bg-[#efeade]">
+    <section className="relative py-[50px] bg-[#efeade] xl:py-16 2xl:py-20">
       <div className="container relative">
-        <h2 className="text-[32px]/[50px] font-lora  m-0 text-black mb-[24px] font-medium sm:text-center sm:text-[40px]">
+        <h2 className="text-[32px]/[50px] font-lora  m-0 text-black mb-[24px] font-medium sm:text-center sm:text-[40px] xl:text-6xl xl:text-left">
           Как принять участие
         </h2>
 
@@ -19,7 +19,7 @@ export async function Steps() {
           {steps.map(({ icon, text }, index) => (
             <li
               className={cx(
-                'flex justify-center gap-[10px] py-[26px] fade-in-anim opacity-65 relative max-h-[140px] h-full sm:max-h-[170px] md:w-full md:justify-center md:gap-[50px] md:max-h-[240px]',
+                'flex justify-center gap-[10px] py-[26px] fade-in-anim opacity-45 relative max-h-[140px] h-full sm:max-h-[170px] md:w-full md:justify-center md:gap-[50px] md:max-h-[240px] 2xl:gap-20',
                 index % 2 &&
                   'flex-row-reverse [&>div]:justify-end [&>div+div]:items-end text-end',
               )}
@@ -30,7 +30,7 @@ export async function Steps() {
             >
               <div
                 className={cx(
-                  'max-w-[65px] max-h-[140px] w-full flex justify-end items-start [&>div]:!h-fit sm:max-w-[95px]  md:max-w-[calc(50%)] md:w-full md:items-center md:[&>div]:!size-32  md:basis-1/2 md:flex-1/2 ',
+                  'max-w-[65px] max-h-[140px] w-full flex justify-end items-start [&>div]:!h-fit sm:max-w-[95px]  md:max-w-[calc(50%)] md:w-full md:items-center md:[&>div]:!size-32  md:basis-1/2 md:flex-1/2 2xl:[&>div]:!size-40',
                   index % 2 && 'md:!justify-start',
                 )}
               >
@@ -45,14 +45,14 @@ export async function Steps() {
               >
                 <h3
                   className={cx(
-                    'bg-[#52575d] m-0 text-[20px]/[28px] text-center aspect-square font-lora text-white absolute top-0 w-[28px] sm:relative sm:left-0 sm:w-[38px] sm:text-[28px]/[38px]',
+                    'bg-[#52575d] m-0 text-[20px]/[28px] text-center aspect-square font-lora text-white absolute top-0 w-[28px] sm:relative sm:left-0 sm:w-[38px] sm:text-[28px]/[38px] 2xl:w-[48px] 2xl:text-[32px]/[48px]',
                     index % 2 && ' right-0',
                     (index + 1) % 2 && ' left-0',
                   )}
                 >
                   {index + 1}
                 </h3>
-                <p className="max-w-[550px] text-[13px] font-normal sm:text-[22px]">
+                <p className="max-w-[550px] text-[13px] font-normal sm:text-[22px] 2xl:text-2xl">
                   {text}
                 </p>
               </div>

@@ -4,7 +4,7 @@ import React from 'react';
 
 const Gallery = () => {
   return (
-    <section className="py-[50px] xl:pt-[70px]">
+    <section className="py-[50px] xl:pt-[70px] bg-white">
       <div className="container">
         <h2
           className={cx(

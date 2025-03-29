@@ -21,6 +21,7 @@ export function HeroSlide({
         'sm:w-[300px] sm:h-[400px]',
         'md:w-[200px] md:h-[260px]',
         'xl:w-[150px] xl:h-[200px]',
+        '2xl:w-[200px] xl:h-[260px]',
       )}
     >
       <Image

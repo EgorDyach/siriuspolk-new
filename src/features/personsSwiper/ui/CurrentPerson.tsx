@@ -27,31 +27,31 @@ const CurrentPerson = forwardRef<HTMLDivElement, CurrentPersonProps>(
     } = current;
 
     return (
-      <PhotoProvider
-        maskOpacity={0.8}
-        toolbarRender={() =>
-          `Ветеран ${name} (${getPersonDates(date_birth, date_death)})`
-        }
+      <div
+        ref={ref}
+        className={cx(
+          'flex items-center justify-between gap-[calc(5%)] mb-[40px] flex-col text-center',
+          'sm:flex-col sm:gap-6 sm:items-stretch sm:h-full sm:max-h-[890px]',
+        )}
       >
-        <div
-          ref={ref}
-          className={cx(
-            'flex items-center justify-between gap-[calc(5%)] mb-[40px] flex-col text-center',
-            'sm:flex-col sm:gap-6 sm:items-stretch sm:h-full sm:max-h-[890px]',
-          )}
+        <PhotoProvider
+          maskOpacity={0.8}
+          toolbarRender={() =>
+            `Ветеран ${name} (${getPersonDates(date_birth, date_death)})`
+          }
         >
           <div className="hidden  sm:flex h-full justify-between w-full">
             <PhotoView src={main_photo}>
               <Image
                 width={400}
                 height={700}
-                className="cursor-pointer flex-1/2 max-h-[500px] object-contain -order-1 mb-2 sm:w-[35vw] md:w-full"
+                className="cursor-pointer flex-1/2 max-h-[500px] object-contain -order-1 mb-2 sm:w-[35vw] md:w-full xl:flex-1/6 xl:object-left"
                 src={main_photo || '/UnkownSlodier.jpg'}
                 alt={`Ветеран ${name} (${getPersonDates(date_birth, date_death)})`}
               />
             </PhotoView>
             <div className="text-center md:flex md:flex-col md:text-left ml-10 flex-1/2">
-              <h3 className="font-lora text-[40px] text-white -order-2 mb-4">
+              <h3 className="font-lora text-[40px] text-white -order-2 mb-4 xl:text-5xl/[1.5] 2xl:text-6xl/[1.5]">
                 {name}
               </h3>
               <p className="font-lora text-[36px] mb-5 text-white">
@@ -71,6 +71,8 @@ const CurrentPerson = forwardRef<HTMLDivElement, CurrentPersonProps>(
               </Link>
             </div>
           </div>
+        </PhotoProvider>
+        <PhotoProvider>
           <PhotoView src={main_photo}>
             <Image
               width={400}
@@ -80,26 +82,26 @@ const CurrentPerson = forwardRef<HTMLDivElement, CurrentPersonProps>(
               alt={`Ветеран ${name} (${getPersonDates(date_birth, date_death)})`}
             />
           </PhotoView>
-          <h3 className="font-lora text-[28px] text-white -order-2 mb-4 sm:hidden">
-            {name}
-          </h3>
-          <p className="font-lora text-[28px] mb-5 text-white sm:hidden">
-            {getPersonDates(date_birth, date_death)}
-          </p>
-          <div
-            className="text-[15px]/[27px] max-w-[90%] text-white line-clamp-4 mb-[30px] h-full sm:w-full sm:text-[24px]/[34px] sm:max-w-full sm:mb-[14px] md:hidden"
-            dangerouslySetInnerHTML={{
-              __html: history.replaceAll('||', '\n\n'),
-            }}
-          />
-          <Link
-            className="underline text-[14px] font-lora text-white sm:text-2xl md:hidden"
-            href={routes.historyById(id)}
-          >
-            Подробнее
-          </Link>
-        </div>
-      </PhotoProvider>
+        </PhotoProvider>
+        <h3 className="font-lora text-[28px] text-white -order-2 mb-4 sm:hidden">
+          {name}
+        </h3>
+        <p className="font-lora text-[28px] mb-5 text-white sm:hidden">
+          {getPersonDates(date_birth, date_death)}
+        </p>
+        <div
+          className="text-[15px]/[27px] max-w-[90%] text-white line-clamp-4 mb-[30px] h-full sm:w-full sm:text-[24px]/[34px] sm:max-w-full sm:mb-[14px] md:hidden"
+          dangerouslySetInnerHTML={{
+            __html: history.replaceAll('||', '\n\n'),
+          }}
+        />
+        <Link
+          className="underline text-[14px] font-lora text-white sm:text-2xl md:hidden"
+          href={routes.historyById(id)}
+        >
+          Подробнее
+        </Link>
+      </div>
     );
   },
 );

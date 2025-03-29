@@ -37,6 +37,7 @@ export default function HeroSlider({ persons }: HeroSliderProps) {
         'sm:!max-w-[480px]',
         'md:!max-w-[250px] md:!pb-[60px]',
         'xl:!max-w-[600px] xl:!pb-[90px] xl:h-90 xl:!absolute xl:right-2/7 xl:translate-x-1/2',
+        '2xl:!max-w-[700px] 2xl:!pb-[90px] xl:h-110 xl:!absolute xl:right-2/7 xl:translate-x-1/2',
       )}
       modules={[A11y]}
       ref={sliderRef}
@@ -62,13 +63,13 @@ export default function HeroSlider({ persons }: HeroSliderProps) {
       >
         <button
           onClick={handlePrev}
-          className="relative border-none p-0 cursor-pointer size[32px] outline-[3px] outline-offset-[-3px] outline-transparent transition-colors hover:fill-[#989898] bg-[#52575D]"
+          className="relative border-none p-0 cursor-pointer size[32px] outline-[3px] outline-offset-[-3px] outline-transparent transition-colors hover:fill-[#989898] bg-[#52575D] 2xl:size-12 2xl:[&>*]:!size-12"
         >
           <ArrowLeft color="#fff" size={36} />
         </button>
         <button
           onClick={handleNext}
-          className="relative border-none p-0 bg-[#52575D] cursor-pointer size[32px] outline-[3px] outline-offset-[-3px] outline-transparent transition-colors hover:fill-[#989898]"
+          className="relative border-none p-0 bg-[#52575D] cursor-pointer size[32px] outline-[3px] outline-offset-[-3px] outline-transparent transition-colors hover:fill-[#989898] 2xl:size-12 2xl:[&>*]:!size-12"
         >
           <ArrowRight color="#fff" size={36} />
         </button>

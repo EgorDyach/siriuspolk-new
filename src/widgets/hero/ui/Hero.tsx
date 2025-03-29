@@ -20,22 +20,23 @@ export async function Hero({ persons }: HeroProps) {
         height={1080}
         alt="Фото советских воинов-освободителей"
       />
-      <div className="py-12 z-10 relative flex max-w-[1410px] m-auto px-4 justify-center md:pt-32">
+      <div className="py-12 z-10 relative flex max-w-[1410px] m-auto px-4 justify-center md:pt-32 xl:px-0 2xl:max-w-[1670px]">
         <div className="text-center md:flex md:justify-between md:w-full container">
           <div className="hidden md:flex flex-col xl:min-h-90">
             <h2
               className={cx(
-                'text-[48px]/[1.2] font-lora max-w-[800px] m-0 text-black mb-10 font-medium',
+                'text-[48px]/[1.2] font-lora max-w-[800px] m-0 text-black mb-10 font-medium text-left 2xl:text-6xl/[1.4] 2xl:mb-6 3xl:text-7xl/[1.4]',
               )}
             >
               “Никто не забыт, <br /> ничто не забыто”
             </h2>
             <p
               className={cx(
-                'text-[25px]/[22px] flex-1/3 font-medium text-center max-w-[550px] text-black',
+                'text-[23px]/[38px] flex-1/3 font-normal max-w-[450px] text-black text-left mb-14 2xl:text-2xl/[1.5]',
               )}
             >
-              Расскажи историю своего предка
+              Присоединяйся к онлайн движению «Сириус» – бессмертный полк» и
+              поделись историей ветерана
             </p>
             <Link
               href={routes.form}
@@ -59,10 +60,11 @@ export async function Hero({ persons }: HeroProps) {
           <p
             className={cx(
               'text-[13px]/[22px] font-medium mt-7  text-center max-w-[550px] m-0 mb-[30px] text-black order-3',
-              'sm:text-[20px]/[28px] md:hidden',
+              'sm:text-[20px]/[32px] sm:font-normal md:hidden mx-auto',
             )}
           >
-            Расскажи историю своего предка
+            Присоединяйся к онлайн движению «Сириус» – бессмертный полк» и
+            поделись историей ветерана
           </p>
           <Link
             href={routes.form}
