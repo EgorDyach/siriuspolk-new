@@ -13,7 +13,7 @@ const HistoriesCard: FC<HistoriesCardProps> = ({
   item: { main_photo, id, SNL: name, date_birth, date_death, city },
 }) => {
   return (
-    <div>
+    <div className="md:max-w-2xs md:justify-self-center 2xl:max-w-full w-full">
       <Link
         href={routes.historyById(id)}
         className={'bg-white flex-col h-full flex'}

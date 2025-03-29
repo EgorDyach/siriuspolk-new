@@ -22,7 +22,7 @@ const HistoriesList: FC<HistoriesListProps> = ({ histories }) => {
         placeholder="Найти..."
         className="mb-[24px]"
       />
-      <div className="grid grid-cols-1 gap-[35px] auto-rows-fr">
+      <div className="grid grid-cols-1 gap-[35px] auto-rows-fr 2sm:grid-cols-2 xl:grid-cols-3">
         {histories
           .filter((item) =>
             item.SNL.toLowerCase().includes(filter.trim().toLowerCase()),

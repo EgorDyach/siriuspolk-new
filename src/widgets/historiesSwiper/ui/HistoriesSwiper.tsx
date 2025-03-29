@@ -1,9 +1,5 @@
 'use client';
-import {
-  SPACE_BETWEEN,
-  BREAKPOINTS,
-  SPEED,
-} from '@features/hero-slider/model/sliderConfig';
+import { SPACE_BETWEEN, BREAKPOINTS, SPEED } from '../model/sliderConfig';
 import HistoriesCard from '@features/histories-card/ui/HistoriesCard';
 import { ShortPerson } from '@shared/model/types';
 import ArrowLeft from '@shared/ui/icons/ArrowLeft';
@@ -34,7 +30,7 @@ const HistoriesSwiper: FC<HistoriesSwiperProps> = ({ histories }) => {
     const updateState = () =>
       setGalleryState({
         activeIndex: swiper.activeIndex,
-        slideCount: swiper.slides.length,
+        slideCount: swiper.slides.length - swiper.slidesPerViewDynamic() + 1,
       });
 
     updateState();
@@ -58,12 +54,15 @@ const HistoriesSwiper: FC<HistoriesSwiperProps> = ({ histories }) => {
         speed={SPEED}
       >
         {histories.map((item, index) => (
-          <SwiperSlide key={index}>
+          <SwiperSlide
+            className="!h-auto [&>*]:!h-full [&>*]:!w-full"
+            key={index}
+          >
             <HistoriesCard item={item} />
           </SwiperSlide>
         ))}
       </Swiper>
-      <div className=" gap-[40px] flex">
+      <div className=" gap-[40px] flex mt-4">
         <button
           onClick={handlePrev}
           disabled={galleryState.activeIndex === 0}
