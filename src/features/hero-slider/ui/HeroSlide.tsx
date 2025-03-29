@@ -30,6 +30,7 @@ export function HeroSlide({
         width={462}
         height={600}
         src={main_photo || '/UnknownSoldier.jpg'}
+        priority={true}
       />
       <p
         className={cx(

@@ -18,6 +18,7 @@ export async function Hero({ persons }: HeroProps) {
         src={'/hero-bg.jpg'}
         width={1920}
         height={1080}
+        priority={true}
         alt="Фото советских воинов-освободителей"
       />
       <div className="py-12 z-10 relative flex max-w-[1410px] m-auto px-4 justify-center md:pt-32 xl:px-0 2xl:max-w-[1670px]">

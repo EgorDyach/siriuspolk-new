@@ -48,6 +48,7 @@ const GallerySlider = () => {
                     alt="Фото из галерии 9 мая"
                     draggable={false}
                     style={slideGridStyles(index)}
+                    priority={true}
                   />
                 </PhotoView>
               </SwiperSlide>

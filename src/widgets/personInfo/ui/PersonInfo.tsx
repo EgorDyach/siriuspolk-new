@@ -23,6 +23,7 @@ const PersonInfo: FC<PersonInfoProps> = ({ person }) => {
               className="px-8 object-cover max-w-xs mx-auto md:flex-1/3 md:object-cover  md:p-0 md:max-w-[300px] md:aspect-[300/400] 2xl:aspect-[400/500] 2xl:max-w-[500px]"
               src={person.main_photo}
               width={500}
+              priority
               height={700}
               alt={`Ветеран ${person.SNL} - портрет`}
             />

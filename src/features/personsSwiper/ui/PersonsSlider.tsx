@@ -102,9 +102,10 @@ export default function PersonsSlider({ persons }: PersonsSliderProps) {
                           index === activeIndex,
                       },
                     )}
+                    priority={true}
                     alt={`${name} (${date_birth} - ${date_death}) – портрет`}
-                    width={462}
-                    height={600}
+                    width={300}
+                    height={400}
                     src={main_photo || '/UnknownSoldier.jpg'}
                     onClick={() => handleClick(index)}
                   />

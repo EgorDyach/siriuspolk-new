@@ -79,6 +79,7 @@ const CurrentPerson = forwardRef<HTMLDivElement, CurrentPersonProps>(
               height={700}
               className="cursor-pointer flex-1/2 max-h-[500px] max-w-[200px] object-contain -order-1 mb-2 sm:max-w-[300px] sm:hidden"
               src={main_photo || '/UnkownSlodier.jpg'}
+              priority
               alt={`Ветеран ${name} (${getPersonDates(date_birth, date_death)})`}
             />
           </PhotoView>

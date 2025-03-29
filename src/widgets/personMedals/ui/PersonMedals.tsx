@@ -36,6 +36,7 @@ const PersonMedals: FC<PersonMedalsProps> = ({ medals }) => {
         src={'/hero-bg.jpg'}
         width={1920}
         height={1080}
+        priority
         alt="Фото советских воинов-освободителей"
       />
       <div className="container relative z-10">
@@ -95,6 +96,7 @@ const PersonMedals: FC<PersonMedalsProps> = ({ medals }) => {
                       width={500}
                       height={700}
                       alt={medal}
+                      priority
                     />
                   </PhotoView>
                 </SwiperSlide>
