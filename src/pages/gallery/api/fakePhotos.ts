@@ -254,4 +254,4 @@ export const galleryPagePhotos: Photo[] = [
     date: '7 мая 2024 г.',
     alt: 'Фестиваль военно-патриотической песни',
   },
-];
+].reverse();
