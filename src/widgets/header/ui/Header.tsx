@@ -38,7 +38,7 @@ export function Header() {
           </Link>
           <Link
             onClick={() => setIsMenuOpened(!isMenuOpened)}
-            data-active={pathname?.includes(routes.home)}
+            data-active={pathname === routes.home}
             className={`text-white outline-offset-[-3px] font-lora text-[16px]/[1] py-[16px] px-[28px] relative transition-all focus:outline-white focus:outline-3 2xl:text-2xl hover:text-[#989898] xl:h-[86.3px] xl:content-center xl:px-12 data-[active=true]:bg-[#494E53]`}
             href={routes.home}
           >
