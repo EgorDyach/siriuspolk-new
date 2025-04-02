@@ -8,8 +8,8 @@ import { useFormContext } from 'react-hook-form';
 const Checkbox = forwardRef<
   HTMLInputElement,
   InputHTMLAttributes<HTMLInputElement>
->(({ className, disabled, ...props }, ref) => {
-  const { watch } = useFormContext();
+>(({ className, disabled, onChange, ...props }, ref) => {
+  const { watch, setValue } = useFormContext();
   const checked = watch(props.name as string);
 
   return (
@@ -25,13 +25,22 @@ const Checkbox = forwardRef<
         type="checkbox"
         ref={ref}
         disabled={disabled}
-        className={'opacity-0'}
+        className="opacity-0"
+        checked={watch(props.name as string)}
+        onChange={(e) => {
+          if (disabled) return;
+          const newValue = !watch(props.name as string);
+          setValue(props.name as string, newValue);
+          onChange?.(e);
+        }}
         {...props}
-        checked={checked}
       />
-      {checked && (
-        <CheckIcon className="size-3 w-full h-full absolute top-0 left-0 right-0 bottom-0" />
-      )}
+      <CheckIcon
+        className={cx(
+          'size-3 w-full h-full absolute top-0 left-0 right-0 bottom-0',
+          !checked && 'hidden',
+        )}
+      />
     </span>
   );
 });
