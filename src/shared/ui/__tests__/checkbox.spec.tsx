@@ -34,7 +34,7 @@ describe('<Checkbox />', () => {
 
   it('should be disabled', async () => {
     const onChange = jest.fn();
-    renderWithForm(
+    const result = renderWithForm(
       <Checkbox
         disabled
         onChange={onChange}
@@ -46,6 +46,6 @@ describe('<Checkbox />', () => {
 
     fireEvent.click(await screen.findByTestId('checkbox'));
     expect(onChange).toHaveBeenCalledTimes(0);
-    expect(await screen.findByTestId('checkbox')).toBeFalsy();
+    expect(result.getValues().test).toBeFalsy();
   });
 });
