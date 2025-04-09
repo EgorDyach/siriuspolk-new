@@ -1,0 +1,94 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<Checkbox /> matches snapshot with checked 1`] = `
+<DocumentFragment>
+  <span
+    class="relative border-[1px] border-black aspect-square block size-4 data-[disabled=true]:border-gray-500"
+  >
+    <input
+      class="opacity-0"
+      data-testid="checkbox"
+      name="test"
+      type="checkbox"
+    />
+    <svg
+      class="lucide lucide-check size-3 w-full h-full absolute top-0 left-0 right-0 bottom-0 hidden"
+      fill="none"
+      height="24"
+      stroke="currentColor"
+      stroke-linecap="round"
+      stroke-linejoin="round"
+      stroke-width="2"
+      viewBox="0 0 24 24"
+      width="24"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <path
+        d="M20 6 9 17l-5-5"
+      />
+    </svg>
+  </span>
+</DocumentFragment>
+`;
+
+exports[`<Checkbox /> matches snapshot with default checkbox 1`] = `
+<DocumentFragment>
+  <span
+    class="relative border-[1px] border-black aspect-square block size-4 data-[disabled=true]:border-gray-500"
+  >
+    <input
+      checked=""
+      class="opacity-0"
+      type="checkbox"
+    />
+    <svg
+      class="lucide lucide-check size-3 w-full h-full absolute top-0 left-0 right-0 bottom-0"
+      fill="none"
+      height="24"
+      stroke="currentColor"
+      stroke-linecap="round"
+      stroke-linejoin="round"
+      stroke-width="2"
+      viewBox="0 0 24 24"
+      width="24"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <path
+        d="M20 6 9 17l-5-5"
+      />
+    </svg>
+  </span>
+</DocumentFragment>
+`;
+
+exports[`<Checkbox /> matches snapshot with disabled 1`] = `
+<DocumentFragment>
+  <span
+    class="relative border-[1px] border-black aspect-square block size-4 data-[disabled=true]:border-gray-500"
+    data-disabled="true"
+  >
+    <input
+      checked=""
+      class="opacity-0"
+      disabled=""
+      type="checkbox"
+    />
+    <svg
+      class="lucide lucide-check size-3 w-full h-full absolute top-0 left-0 right-0 bottom-0"
+      fill="none"
+      height="24"
+      stroke="currentColor"
+      stroke-linecap="round"
+      stroke-linejoin="round"
+      stroke-width="2"
+      viewBox="0 0 24 24"
+      width="24"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <path
+        d="M20 6 9 17l-5-5"
+      />
+    </svg>
+  </span>
+</DocumentFragment>
+`;
