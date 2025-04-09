@@ -1,0 +1,28 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<Button /> matches snapshot with children 1`] = `
+<DocumentFragment>
+  <button
+    class="py-[12px] px-[32px] text-white text-2xl font-lora bg-[#343434] cursor-pointer aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive"
+  >
+    Test
+  </button>
+</DocumentFragment>
+`;
+
+exports[`<Button /> matches snapshot with default Button 1`] = `
+<DocumentFragment>
+  <button
+    class="py-[12px] px-[32px] text-white text-2xl font-lora bg-[#343434] cursor-pointer aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive"
+  />
+</DocumentFragment>
+`;
+
+exports[`<Button /> matches snapshot with disabled 1`] = `
+<DocumentFragment>
+  <button
+    class="py-[12px] px-[32px] text-white text-2xl font-lora bg-[#343434] cursor-pointer aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive"
+    disabled=""
+  />
+</DocumentFragment>
+`;

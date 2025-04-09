@@ -35,4 +35,18 @@ describe('<Button />', () => {
     const button = await screen.findByRole('button');
     expect(button).toBeDisabled();
   });
+  it('matches snapshot with default Button', () => {
+    const { asFragment } = render(<Button />);
+    expect(asFragment()).toMatchSnapshot();
+  });
+
+  it('matches snapshot with children', () => {
+    const { asFragment } = render(<Button>Test</Button>);
+    expect(asFragment()).toMatchSnapshot();
+  });
+
+  it('matches snapshot with disabled', () => {
+    const { asFragment } = render(<Button disabled />);
+    expect(asFragment()).toMatchSnapshot();
+  });
 });
