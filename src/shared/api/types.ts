@@ -1,26 +1,26 @@
-import { AxiosRequestConfig } from "axios";
+import { AxiosRequestConfig } from 'axios';
 
-type RequestMethods = "get" | "delete" | "options" | "head" | "request";
+type RequestMethods = 'get' | 'delete' | 'options' | 'head' | 'request';
 
 type RequestMethodsWithData =
-  | "post"
-  | "put"
-  | "patch"
-  | "postForm"
-  | "putForm"
-  | "patchForm";
+  | 'post'
+  | 'put'
+  | 'patch'
+  | 'postForm'
+  | 'putForm'
+  | 'patchForm';
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 type RequestMethodsFn = <T = any, D = any>(
   url: string,
-  config?: AxiosRequestConfig<D>
+  config?: AxiosRequestConfig<D>,
 ) => Promise<T>;
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 type DataRequestMethodsFn = <T = any, D = any>(
   url: string,
   data?: D,
-  config?: AxiosRequestConfig<D>
+  config?: AxiosRequestConfig<D>,
 ) => Promise<T>;
 
 export type AppApi = Record<RequestMethods, RequestMethodsFn> &
