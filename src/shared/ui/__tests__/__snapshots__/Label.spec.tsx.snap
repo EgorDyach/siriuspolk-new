@@ -1,0 +1,30 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<Label /> matches snapshot with default label 1`] = `
+<DocumentFragment>
+  <label
+    class="flex items-center gap-1 text-sm leading-none font-medium select-none group-data-[disabled=true]:pointer-events-none group-data-[disabled=true]:opacity-50 peer-disabled:cursor-not-allowed peer-disabled:opacity-50"
+    data-slot="label"
+    data-testid="label"
+  >
+    test label
+  </label>
+</DocumentFragment>
+`;
+
+exports[`<Label /> matches snapshot with react node 1`] = `
+<DocumentFragment>
+  <label
+    class="flex items-center gap-1 text-sm leading-none font-medium select-none group-data-[disabled=true]:pointer-events-none group-data-[disabled=true]:opacity-50 peer-disabled:cursor-not-allowed peer-disabled:opacity-50"
+    data-slot="label"
+    data-testid="label"
+  >
+    <h1>
+      heading
+    </h1>
+    <button>
+      click
+    </button>
+  </label>
+</DocumentFragment>
+`;
