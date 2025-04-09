@@ -5,7 +5,7 @@ import {
   mockedShowWarningNotification,
 } from '../__mocks__/notification';
 import { render, screen } from '@testing-library/react';
-import { Toaster } from '@shared/ui/Sonner-tmp';
+import { Toaster } from '@shared/ui/Sonner';
 
 Object.defineProperty(window, 'matchMedia', {
   writable: true,

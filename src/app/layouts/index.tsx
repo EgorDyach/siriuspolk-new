@@ -1,7 +1,7 @@
 import type { Metadata } from 'next';
 import { Lora, Lato } from 'next/font/google';
 import { Header } from '@widgets/header/ui/Header';
-import { Toaster } from '@shared/ui/Sonner-tmp.jsx';
+import { Toaster } from '@shared/ui/Sonner.jsx';
 import '@app/globals.css';
 import 'react-photo-view/dist/react-photo-view.css';
 import { Footer } from '@widgets/footer/ui/Footer';
