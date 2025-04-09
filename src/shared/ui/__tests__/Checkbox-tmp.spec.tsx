@@ -1,5 +1,5 @@
 import { fireEvent, screen } from '@testing-library/react';
-import { Checkbox } from '../checkbox';
+import { Checkbox } from '../Checkbox-tmp';
 import renderWithForm from '@shared/lib/tests/renderWithForm';
 
 describe('<Checkbox />', () => {

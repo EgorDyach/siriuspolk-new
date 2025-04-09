@@ -1,6 +1,6 @@
 import { cx } from 'class-variance-authority';
 import * as React from 'react';
-import { Label } from './label';
+import { Label } from './Label-tmp';
 
 interface InputProps extends React.ComponentProps<'input'> {
   label?: React.ReactNode;

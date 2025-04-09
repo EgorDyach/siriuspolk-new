@@ -1,1 +1,1 @@
-export { default } from '@entities/person/ui/page';
+export { default } from '@entities/person/ui/FormPage';
