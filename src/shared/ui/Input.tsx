@@ -19,6 +19,7 @@ function Input({
   return (
     <>
       <Label
+        data-testid="label"
         htmlFor={name}
         className={cx(
           'mb-2 text-[12px] font-normal flex flex-col items-start xl:text-base',
@@ -27,7 +28,11 @@ function Input({
       >
         <div className="text-left w-full flex justify-between items-end">
           <span>
-            {required && <span className="text-red-400">*</span>}
+            {required && (
+              <span data-testid="required-mark" className="text-red-400">
+                *
+              </span>
+            )}
             {label}
           </span>
           {error && (
@@ -40,6 +45,8 @@ function Input({
           name={name}
           type={type}
           data-slot="input"
+          data-testid="input"
+          required={required}
           className={cx(
             'file:text-foreground placeholder:text-[#B3B3B3] selection:bg-primary selection:text-primary-foreground dark:bg-input/30 border-black border-[1px] flex text-[10px] w-full min-w-32  bg-transparent text-base shadow-xs transition-[color,box-shadow] outline-none file:inline-flex file:h-7 file:border-0 file:bg-transparent file:text-sm file:font-medium disabled:pointer-events-none disabled:border-[#999] disabled:cursor-not-allowed disabled:opacity-50 p-[5px]',
             'focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[2px]',
