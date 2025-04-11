@@ -12,6 +12,7 @@ const createRequestInstance = (): AppApi => {
   const instance = axios.create({
     baseURL: ENV.apiBaseUrl,
     headers: defaultHeaders,
+    withCredentials: true,
   });
 
   instance.interceptors.response.use(
