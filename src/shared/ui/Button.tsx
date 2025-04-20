@@ -20,9 +20,9 @@ function Button({
         className={cx(
           className,
           theme === 'gray' && 'bg-[#D9D9D9] !text-black [&>*]:text-black',
-          size === 'small' && 'text-sm md:text-base',
-          'py-[12px] px-[32px] text-white text-base md:text-2xl font-lora bg-[#343434] cursor-pointer',
-          'aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive',
+          size === 'small' && 'text-sm md:text-base py-[12px] px-[32px]',
+          'py-[16px] px-[40px] text-base md:text-2xl font-lora bg-[#343434] cursor-pointer',
+          'aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive text-white',
         )}
         {...props}
       >
