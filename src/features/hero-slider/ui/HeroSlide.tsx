@@ -1,16 +1,16 @@
 'use client';
 import { useRouter } from 'next/navigation';
-import { ShortPerson } from '@shared/model/types';
+import { Person } from '@shared/model/types';
 import Image from 'next/image';
 import { cx } from 'class-variance-authority';
+import { getFullName } from '@shared/model/getFullName';
 
 interface HeroSlideProps {
-  person: ShortPerson;
+  person: Person;
 }
 
-export function HeroSlide({
-  person: { main_photo, date_birth, date_death, id, SNL: name },
-}: HeroSlideProps) {
+export function HeroSlide({ person }: HeroSlideProps) {
+  const { url, date_birth, date_death, id } = person;
   const router = useRouter();
   const handleClick = () => router.push(`/histories/${id}`);
   return (
@@ -26,10 +26,10 @@ export function HeroSlide({
     >
       <Image
         className="object-cover w-full h-full absolute top-0 left-0 right-0 bottom-0 bg-[#333]"
-        alt={`${name} (${date_birth} - ${date_death}) – портрет`}
+        alt={`${getFullName(person)} (${date_birth} - ${date_death}) – портрет`}
         width={462}
         height={600}
-        src={main_photo || '/UnknownSoldier.jpg'}
+        src={url || '/UnknownSoldier.jpg'}
         priority={true}
       />
       <p
@@ -39,7 +39,7 @@ export function HeroSlide({
           'xl:text-[14px]',
         )}
       >
-        {name}
+        {getFullName(person)}
         <br />({date_birth} - {date_death})
       </p>
     </div>

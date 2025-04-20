@@ -1,7 +1,8 @@
 import { create } from 'zustand';
 import { MainFormValues } from './mainInfoSchema';
-import { FormDataType, Medal } from './types';
+import { FormDataType } from './types';
 import { ContactsSchemaValues } from './contactsSchema';
+import { Medal } from '@shared/model/types';
 
 export interface FormStoreType extends FormDataType {
   server_medals: Medal[];

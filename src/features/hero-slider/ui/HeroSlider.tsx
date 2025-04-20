@@ -6,7 +6,7 @@ import { Swiper, SwiperRef } from 'swiper/react';
 import { A11y } from 'swiper/modules';
 import { SwiperSlide } from 'swiper/react';
 import { HeroSlide } from './HeroSlide';
-import { ShortPerson } from '@shared/model/types';
+import { Person } from '@shared/model/types';
 import { useRef, useCallback } from 'react';
 import { BREAKPOINTS, SPEED } from '../model/sliderConfig';
 import ArrowLeft from '@shared/ui/icons/ArrowLeft';
@@ -14,7 +14,7 @@ import ArrowRight from '@shared/ui/icons/ArrowRight';
 import { cx } from 'class-variance-authority';
 
 interface HeroSliderProps {
-  persons: ShortPerson[];
+  persons: Person[];
 }
 
 export default function HeroSlider({ persons }: HeroSliderProps) {

@@ -16,6 +16,7 @@ export type Person = {
   medals: Medal[];
   relative: string;
   url: string;
+  date_published: string;
 };
 
 export type Medal = {

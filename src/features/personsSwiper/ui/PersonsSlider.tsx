@@ -6,7 +6,7 @@ import 'swiper/css/scrollbar';
 import { Swiper, SwiperRef } from 'swiper/react';
 import { A11y } from 'swiper/modules';
 import { SwiperSlide } from 'swiper/react';
-import { ShortPerson } from '@shared/model/types';
+import { Person } from '@shared/model/types';
 import { useRef, useCallback, useState } from 'react';
 import { BREAKPOINTS, SPACE_BETWEEN, SPEED } from '../model/sliderConfig';
 import ArrowLeft from '@shared/ui/icons/ArrowLeft';
@@ -15,9 +15,10 @@ import Image from 'next/image';
 import { cx } from 'class-variance-authority';
 import CurrentPerson from './CurrentPerson';
 import { CSSTransition, SwitchTransition } from 'react-transition-group';
+import { getFullName } from '@shared/model/getFullName';
 
 interface PersonsSliderProps {
-  persons: ShortPerson[];
+  persons: Person[];
 }
 
 export default function PersonsSlider({ persons }: PersonsSliderProps) {
@@ -88,30 +89,29 @@ export default function PersonsSlider({ persons }: PersonsSliderProps) {
           loop
         >
           <div className="items-center justify-center gap-[88px] transform-[translateX(-5px)] z-10 hidden">
-            {persons.map(
-              ({ main_photo, date_birth, date_death, SNL: name }, index) => (
-                <SwiperSlide
-                  className="transform-[scale(0.85) translateZ(0)] flex transition duration-1000 content-center"
-                  key={index}
-                >
-                  <Image
-                    className={cx(
-                      'cursor-pointer my-auto mx-0 w-[201px] h-[240px] text-center items-end justify-end transition flex duration-1000 align-middle relative object-cover xl:w-[260px] xl:h-[280px]',
-                      {
-                        'outline-[5px] outline-offset-[-5px] outline-white':
-                          index === activeIndex,
-                      },
-                    )}
-                    priority={true}
-                    alt={`${name} (${date_birth} - ${date_death}) – портрет`}
-                    width={300}
-                    height={400}
-                    src={main_photo || '/UnknownSoldier.jpg'}
-                    onClick={() => handleClick(index)}
-                  />
-                </SwiperSlide>
-              ),
-            )}
+            {persons.map((person, index) => (
+              <SwiperSlide
+                className="transform-[scale(0.85) translateZ(0)] flex transition duration-1000 content-center"
+                key={index}
+              >
+                <Image
+                  className={cx(
+                    'cursor-pointer my-auto mx-0 w-[201px] h-[240px] text-center items-end justify-end transition flex duration-1000 align-middle relative object-cover xl:w-[260px] xl:h-[280px]',
+                    {
+                      'outline-[5px] outline-offset-[-5px] outline-white':
+                        index === activeIndex,
+                    },
+                  )}
+                  priority={true}
+                  alt={`${getFullName(person)} (${person.date_birth} - ${person.date_death}) – портрет`}
+                  width={300}
+                  height={400}
+                  src={person.url || '/UnknownSoldier.jpg'}
+                  onError={(e) => (e.currentTarget.src = '/UnknownSoldier.jpg')}
+                  onClick={() => handleClick(index)}
+                />
+              </SwiperSlide>
+            ))}
           </div>
         </Swiper>
       </div>

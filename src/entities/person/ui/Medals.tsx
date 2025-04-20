@@ -5,14 +5,14 @@ import { Button } from '@shared/ui/Button';
 import { useFormStore } from '@entities/person/model/store';
 import { showErrorNotification } from '@shared/lib/utils/notification';
 import { useRouter } from 'next/navigation';
-import MedalsSelect, { MedalOption } from './MedalsSelect';
+import MedalsSelect from './MedalsSelect';
 import { PhotoProvider, PhotoView } from 'react-photo-view';
+import { MedalOption } from '../model/types';
 
 export default function Medals() {
   const router = useRouter();
   const { setMedals, server_medals, medals } = useFormStore();
   const handleAdd = (el: MedalOption) => {
-    console.log(el);
     const item = server_medals.find((v) => v.name === el.text);
     if (!item) return showErrorNotification('Не удалось добавить награду.');
     setMedals([...medals, item]);
@@ -45,9 +45,9 @@ export default function Medals() {
               key={index}
               className="gap-6 flex items-center flex-col justify-between relative"
             >
-              <PhotoView src={el.src}>
+              <PhotoView src={el.photo_link}>
                 <Image
-                  src={el.src}
+                  src={el.photo_link}
                   alt={el.name}
                   width={200}
                   height={300}

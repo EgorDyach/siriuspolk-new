@@ -3,11 +3,11 @@ import Image from 'next/image';
 import Link from 'next/link';
 import HeroSlider from '@features/hero-slider/ui/HeroSlider';
 import { routes } from '@shared/config/routes';
-import { ShortPerson } from '@shared/model/types';
+import { Person } from '@shared/model/types';
 import { cx } from 'class-variance-authority';
 
 interface HeroProps {
-  persons: ShortPerson[];
+  persons: Person[];
 }
 
 export async function Hero({ persons }: HeroProps) {
@@ -57,7 +57,7 @@ export async function Hero({ persons }: HeroProps) {
           >
             “Никто не забыт, <br /> ничто не забыто”
           </h2>
-          <HeroSlider persons={persons} />
+          {!!persons.length && <HeroSlider persons={persons} />}
           <p
             className={cx(
               'text-[13px]/[22px] font-medium mt-7  text-center max-w-[550px] m-0 mb-[30px] text-black order-3',

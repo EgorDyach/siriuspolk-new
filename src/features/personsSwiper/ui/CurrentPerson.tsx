@@ -3,7 +3,7 @@ import 'swiper/css';
 import 'swiper/css/pagination';
 import 'swiper/css/scrollbar';
 
-import { ShortPerson } from '@shared/model/types';
+import { Person } from '@shared/model/types';
 import Image from 'next/image';
 import { getPersonDates } from '@shared/model/getPersonDates';
 import { PhotoProvider, PhotoView } from 'react-photo-view';
@@ -11,20 +11,15 @@ import Link from 'next/link';
 import { routes } from '@shared/config/routes';
 import { forwardRef } from 'react';
 import { cx } from 'class-variance-authority';
+import { getFullName } from '@shared/model/getFullName';
 interface CurrentPersonProps {
-  current: ShortPerson;
+  current: Person;
 }
 
 const CurrentPerson = forwardRef<HTMLDivElement, CurrentPersonProps>(
   ({ current }, ref) => {
-    const {
-      id,
-      date_birth,
-      date_death,
-      main_photo,
-      SNL: name,
-      history,
-    } = current;
+    if (!current) return;
+    const { id, date_birth, date_death, url, history } = current;
 
     return (
       <div
@@ -37,22 +32,23 @@ const CurrentPerson = forwardRef<HTMLDivElement, CurrentPersonProps>(
         <PhotoProvider
           maskOpacity={0.8}
           toolbarRender={() =>
-            `Ветеран ${name} (${getPersonDates(date_birth, date_death)})`
+            `Ветеран ${getFullName(current)} (${getPersonDates(date_birth, date_death)})`
           }
         >
           <div className="hidden  sm:flex h-full justify-between w-full">
-            <PhotoView src={main_photo}>
+            <PhotoView src={url}>
               <Image
                 width={400}
                 height={700}
                 className="cursor-pointer flex-1/2 max-h-[500px] object-contain -order-1 mb-2 sm:w-[35vw] md:w-full xl:flex-1/6 xl:object-left"
-                src={main_photo || '/UnkownSlodier.jpg'}
+                src={url || '/UnknownSoldier.jpg'}
+                onError={(e) => (e.currentTarget.src = '/UnknownSoldier.jpg')}
                 alt={`Ветеран ${name} (${getPersonDates(date_birth, date_death)})`}
               />
             </PhotoView>
             <div className="text-center md:flex md:flex-col md:text-left ml-10 flex-1/2">
               <h3 className="font-lora text-[40px] text-white -order-2 mb-4 xl:text-5xl/[1.5] 2xl:text-6xl/[1.5]">
-                {name}
+                {getFullName(current)}
               </h3>
               <p className="font-lora text-[36px] mb-5 text-white">
                 {getPersonDates(date_birth, date_death)}
@@ -73,19 +69,20 @@ const CurrentPerson = forwardRef<HTMLDivElement, CurrentPersonProps>(
           </div>
         </PhotoProvider>
         <PhotoProvider>
-          <PhotoView src={main_photo}>
+          <PhotoView src={url}>
             <Image
               width={400}
               height={700}
               className="cursor-pointer flex-1/2 max-h-[500px] max-w-[200px] object-contain -order-1 mb-2 sm:max-w-[300px] sm:hidden"
-              src={main_photo || '/UnkownSlodier.jpg'}
+              src={url || '/UnknownSoldier.jpg'}
+              onError={(e) => (e.currentTarget.src = '/UnknownSoldier.jpg')}
               priority
               alt={`Ветеран ${name} (${getPersonDates(date_birth, date_death)})`}
             />
           </PhotoView>
         </PhotoProvider>
         <h3 className="font-lora text-[28px] text-white -order-2 mb-4 sm:hidden">
-          {name}
+          {getFullName(current)}
         </h3>
         <p className="font-lora text-[28px] mb-5 text-white sm:hidden">
           {getPersonDates(date_birth, date_death)}

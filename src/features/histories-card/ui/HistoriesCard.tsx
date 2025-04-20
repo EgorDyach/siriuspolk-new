@@ -1,17 +1,17 @@
 import React, { FC } from 'react';
-import { ShortPerson } from '@shared/model/types';
+import { Person } from '@shared/model/types';
 import Image from 'next/image';
 import Link from 'next/link';
 import { routes } from '@shared/config/routes';
 import { getPersonDates } from '@shared/model/getPersonDates';
+import { getFullName } from '@shared/model/getFullName';
 
 interface HistoriesCardProps {
-  item: ShortPerson;
+  item: Person;
 }
 
-const HistoriesCard: FC<HistoriesCardProps> = ({
-  item: { main_photo, id, SNL: name, date_birth, date_death, city },
-}) => {
+const HistoriesCard: FC<HistoriesCardProps> = ({ item }) => {
+  const { url, id, date_birth, date_death, city } = item;
   return (
     <div className="md:max-w-2xs md:justify-self-center 2xl:max-w-full w-full">
       <Link
@@ -20,14 +20,15 @@ const HistoriesCard: FC<HistoriesCardProps> = ({
       >
         <Image
           className="w-full aspect-[1/1.2] object-cover"
-          src={main_photo}
+          src={url || '/UnknownSoldier.jpg'}
+          onError={(e) => (e.currentTarget.src = '/UnknownSoldier.jpg')}
           width={450}
           height={360}
-          alt={`Ветеран ${name} – портрет`}
+          alt={`Ветеран ${getFullName(item)} – портрет`}
         />
         <div className="text-center flex-1/2 p-[15px] bg-white flex flex-col justify-between">
           <h3 className="mb-[20px] text-[16px] font-lora font-normal">
-            {name}
+            {getFullName(item)}
             <br />
             {getPersonDates(date_birth, date_death)}
           </h3>

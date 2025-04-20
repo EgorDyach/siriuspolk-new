@@ -1,7 +1,6 @@
 import { request } from '@shared/api';
-import { ApiResponse } from '@shared/api/types';
-import { ShortPerson } from '@shared/model/types';
+import { Person } from '@shared/model/types';
 
-export const requestHistories = async (): Promise<ApiResponse<ShortPerson>> => {
-  return await request.get(`/persons`);
+export const requestHistories = async (): Promise<Person[]> => {
+  return await request.get(`/person?check=true`);
 };

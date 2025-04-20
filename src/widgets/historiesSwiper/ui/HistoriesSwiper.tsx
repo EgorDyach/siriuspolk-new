@@ -1,7 +1,7 @@
 'use client';
 import { SPACE_BETWEEN, BREAKPOINTS, SPEED } from '../model/sliderConfig';
 import HistoriesCard from '@features/histories-card/ui/HistoriesCard';
-import { ShortPerson } from '@shared/model/types';
+import { Person } from '@shared/model/types';
 import ArrowLeft from '@shared/ui/icons/ArrowLeft';
 import ArrowRight from '@shared/ui/icons/ArrowRight';
 import React, { FC, useEffect, useRef, useState } from 'react';
@@ -9,7 +9,7 @@ import { A11y } from 'swiper/modules';
 import { Swiper, SwiperRef, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
 interface HistoriesSwiperProps {
-  histories: ShortPerson[];
+  histories: Person[];
 }
 
 const HistoriesSwiper: FC<HistoriesSwiperProps> = ({ histories }) => {

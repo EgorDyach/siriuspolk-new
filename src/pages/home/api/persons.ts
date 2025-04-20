@@ -1,7 +1,6 @@
 import { request } from '@shared/api';
-import { ApiResponse } from '@shared/api/types';
-import { ShortPerson } from '@shared/model/types';
+import { Person } from '@shared/model/types';
 
-export const requestPersons = async (): Promise<ApiResponse<ShortPerson>> => {
+export const requestPersons = async (): Promise<Person[]> => {
   return await request.get('/person?check=true');
 };

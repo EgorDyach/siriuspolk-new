@@ -5,12 +5,12 @@ import { Persons } from '@widgets/persons/ui/Persons';
 import { Steps } from '@widgets/steps/ui/Steps';
 
 export default async function MainPage() {
-  const { details } = await requestPersons();
+  const persons = await requestPersons();
   return (
     <>
-      <Hero persons={details} />
+      <Hero persons={persons} />
       <Gallery />
-      <Persons persons={details} />
+      {!!persons.length && <Persons persons={persons} />}
       <Steps />
     </>
   );

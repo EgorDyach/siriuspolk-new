@@ -4,7 +4,7 @@ import { filterNew } from '../model/filterNew';
 import HistoriesSwiper from '@widgets/historiesSwiper/ui/HistoriesSwiper';
 
 export default async function HistoriesPage() {
-  const { details } = await requestHistories();
+  const details = await requestHistories();
   const newItems = filterNew(details);
   return (
     <section className="py-[60px] md:py-20 2xl:py-24">

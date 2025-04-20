@@ -2,18 +2,18 @@
 import React, { FC, useCallback, useRef, useState } from 'react';
 import { PhotoProvider, PhotoView } from 'react-photo-view';
 import Image from 'next/image';
-import { EMedals } from '@shared/api/medals';
 import { Swiper, SwiperRef, SwiperSlide } from 'swiper/react';
 import { A11y } from 'swiper/modules';
 import 'swiper/css';
 import 'swiper/css/navigation';
 import ArrowRight from '@shared/ui/icons/ArrowRight';
 import ArrowLeft from '@shared/ui/icons/ArrowLeft';
+import { Medal } from '@shared/model/types';
 
 const SLIDE_COUNT_ITEMS = 1;
 
 interface PersonMedalsProps {
-  medals: string[];
+  medals: Medal[];
 }
 
 const PersonMedals: FC<PersonMedalsProps> = ({ medals }) => {
@@ -79,23 +79,22 @@ const PersonMedals: FC<PersonMedalsProps> = ({ medals }) => {
             }}
           >
             {medals.map((medal, i) => {
-              const imageSrc = `/medals/${EMedals[medal as keyof typeof EMedals]}.png`;
               return (
                 <SwiperSlide className="my-auto cursor-zoom-in" key={i}>
                   <PhotoView
-                    src={imageSrc}
+                    src={medal.photo_link}
                     overlay={
                       <div className="absolute bottom-0 text-white p-4 text-[14px] bg-[rgba(0,0,0,0.4)] left-0 right-0 text-center z-10">
-                        {medal}
+                        {medal.name}
                       </div>
                     }
                   >
                     <Image
                       className="max-w-[90px] mx-auto my-auto xl:max-w-32"
-                      src={imageSrc}
+                      src={medal.photo_link}
                       width={500}
                       height={700}
-                      alt={medal}
+                      alt={medal.name}
                       priority
                     />
                   </PhotoView>

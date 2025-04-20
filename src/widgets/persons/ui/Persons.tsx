@@ -1,10 +1,10 @@
 'use server';
-import { ShortPerson } from '@shared/model/types';
+import { Person } from '@shared/model/types';
 import PersonsSlider from '@features/personsSwiper/ui/PersonsSlider';
 import { cx } from 'class-variance-authority';
 
 interface PersonsProps {
-  persons: ShortPerson[];
+  persons: Person[];
 }
 
 export async function Persons({ persons }: PersonsProps) {

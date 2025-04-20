@@ -5,6 +5,7 @@ import { PhotoProvider, PhotoView } from 'react-photo-view';
 import './personInfo.css';
 import Image from 'next/image';
 import { getPersonDates } from '@shared/model/getPersonDates';
+import { getFullName } from '@features/adminCard/model/helpers';
 
 interface PersonInfoProps {
   person: Person;
@@ -16,22 +17,23 @@ const PersonInfo: FC<PersonInfoProps> = ({ person }) => {
       <div className="container flex flex-col md:flex-row">
         <PhotoProvider
           maskOpacity={0.6}
-          toolbarRender={() => `Ветеран ${person.SNL} - портрет`}
+          toolbarRender={() => `Ветеран ${getFullName(person)} - портрет`}
         >
-          <PhotoView src={person.main_photo}>
+          <PhotoView src={person.url || '/UnknownSoldier.jpg'}>
             <Image
               className="px-8 object-cover max-w-xs mx-auto md:flex-1/3 md:object-cover  md:p-0 md:max-w-[300px] md:aspect-[300/400] 2xl:aspect-[400/500] 2xl:max-w-[500px]"
-              src={person.main_photo}
+              src={person.url || '/UnknownSoldier.jpg'}
               width={500}
+              onError={(e) => (e.currentTarget.src = '/UnknownSoldier.jpg')}
               priority
               height={700}
-              alt={`Ветеран ${person.SNL} - портрет`}
+              alt={`Ветеран ${getFullName(person)} - портрет`}
             />
           </PhotoView>
         </PhotoProvider>
         <div className="flex flex-col pt-[50px] pb-[80px] md:pt-16 md:flex-1/2 md:ml-9 md:pb-12 2xl:pl-24 2xl:pb-16">
           <h1 className="text-white text-[26px] font-lora max-w-[600px] mb-[10px] md:text-[40px]/[1.5] 2xl:text-7xl/[1.5]">
-            {person.SNL}
+            {getFullName(person)}
           </h1>
           <p className="text-white font-lora text-[20px] md:text-[32px]/[1.5]  2xl:text-5xl/[1.5]">
             {getPersonDates(person.date_birth, person.date_death)}
