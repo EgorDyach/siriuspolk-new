@@ -13,7 +13,7 @@ const renderWithForm = <T extends FieldValues>(
   children: ReactNode = null,
   defaultValues: DefaultValues<T>,
   options: UseFormProps<T> = {},
-): [UseFormReturn<T, unknown, undefined>, RenderResult] => {
+): [UseFormReturn<T, unknown, T>, RenderResult] => {
   const { result } = renderHook(() =>
     useForm<T>({ defaultValues, mode: 'onChange', ...options }),
   );
