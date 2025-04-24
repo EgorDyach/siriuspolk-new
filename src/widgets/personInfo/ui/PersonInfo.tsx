@@ -6,6 +6,7 @@ import './personInfo.css';
 import Image from 'next/image';
 import { getPersonDates } from '@shared/model/getPersonDates';
 import { getFullName } from '@features/adminCard/model/helpers';
+import { getServerLink } from '@shared/model/getServerLink';
 
 interface PersonInfoProps {
   person: Person;
@@ -19,10 +20,17 @@ const PersonInfo: FC<PersonInfoProps> = ({ person }) => {
           maskOpacity={0.6}
           toolbarRender={() => `Ветеран ${getFullName(person)} - портрет`}
         >
-          <PhotoView src={person.url || '/UnknownSoldier.jpg'}>
+          <PhotoView
+            src={
+              getServerLink(person?.photo?.at(0)?.link) || '/UnknownSoldier.jpg'
+            }
+          >
             <Image
               className="px-8 object-cover max-w-xs mx-auto md:flex-1/3 md:object-cover  md:p-0 md:max-w-[300px] md:aspect-[300/400] 2xl:aspect-[400/500] 2xl:max-w-[500px]"
-              src={person.url || '/UnknownSoldier.jpg'}
+              src={
+                getServerLink(person?.photo?.at(0)?.link) ||
+                '/UnknownSoldier.jpg'
+              }
               width={500}
               onError={(e) => (e.currentTarget.src = '/UnknownSoldier.jpg')}
               priority

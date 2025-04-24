@@ -5,12 +5,12 @@ import { ContactsSchemaValues } from './contactsSchema';
 import { Medal } from '@shared/model/types';
 
 export interface FormStoreType extends FormDataType {
-  server_medals: Medal[];
+  server_medals: Medal[] | null;
   errors: Record<string, string | undefined>;
   setServerMedals: (data: Medal[]) => void;
   setMainInfo: (data: Partial<MainFormValues>) => void;
   setMedals: (v: Medal[]) => void;
-  setHistory: (v: string) => void;
+  setHistory: (v: { content: string; relative: string }) => void;
   setErrors: (errors: Record<string, string | undefined>) => void;
   setPhotos: (photos: File[]) => void;
   setContacts: (data: Partial<ContactsSchemaValues>) => void;
@@ -19,26 +19,25 @@ export interface FormStoreType extends FormDataType {
 export const useFormStore = create<FormStoreType>((set) => ({
   mainInfo: {},
   contacts: {},
-  server_medals: [],
+  server_medals: null,
   medals: [],
   photos: [],
   history: {
     content: '',
+    relative: '',
   },
   errors: {},
   setMainInfo: (mainInfo) => {
     set((store) => ({ ...store, mainInfo }));
   },
   setErrors: (errors) => {
-    console.log('Сохраняем ошибки в Zustand:', errors);
-
     set((store) => ({ ...store, errors }));
   },
   setContacts: (contacts) => {
     set((store) => ({ ...store, contacts }));
   },
-  setHistory: (content) => {
-    set((store) => ({ ...store, history: { content } }));
+  setHistory: (history) => {
+    set((store) => ({ ...store, history }));
   },
   setMedals: (medals) => set((store) => ({ ...store, medals })),
   setPhotos: (photos) => set((store) => ({ ...store, photos })),

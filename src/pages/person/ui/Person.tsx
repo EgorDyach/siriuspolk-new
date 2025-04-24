@@ -41,8 +41,8 @@ export default async function PersonPage({ params }: PersonPageProps) {
           </div>
         </section>
       )}
-      {data.url && (
-        <PersonImages images={data.url ? data.url.split(',') : []} />
+      {!!data.photo.slice(1).length && (
+        <PersonImages images={data.photo.slice(1)} />
       )}
       <div className="container">
         <p className="text-end italic mb-7 text-[12px] text-[#999] md:text-[14px]">

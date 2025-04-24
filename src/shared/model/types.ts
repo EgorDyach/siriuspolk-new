@@ -15,7 +15,7 @@ export type Person = {
   contact_telegram: string;
   medals: Medal[];
   relative: string;
-  url: string;
+  photo: PersonPhoto[];
   date_published: string;
 };
 
@@ -38,7 +38,14 @@ export type ShortPerson = {
 };
 
 export type Photo = {
-  src: string;
+  link: string;
+  id: string;
   date: string;
-  alt?: string;
+  description: string;
+};
+
+export type PersonPhoto = {
+  id: number;
+  link: string;
+  is_main: boolean;
 };

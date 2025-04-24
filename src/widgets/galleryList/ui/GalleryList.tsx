@@ -12,8 +12,8 @@ const GalleryList: FC<GalleryListProps> = ({ photos }) => {
   return (
     <div className="grid grid-cols-1 gap-[35px] sm:grid-cols-2 xl:grid-cols-3">
       <PhotoProvider>
-        {photos.map((item, index) => (
-          <GalleryPhoto key={index} item={item} />
+        {photos.map((item) => (
+          <GalleryPhoto key={item.id} item={item} />
         ))}
       </PhotoProvider>
     </div>

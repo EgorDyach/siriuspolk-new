@@ -19,25 +19,32 @@ export default function Photos() {
   const dragZoneRef = useRef<HTMLLabelElement | null>(null);
   const { photos, setPhotos } = useFormStore();
   const handleSetFiles = (files: File[]) => {
-    removeDuplicates(files).forEach((file) => {
-      if (!ACCEPTED_IMAGE_TYPES.includes(file.type))
-        showErrorNotification(
-          `Неподдерживаемый тип файла ${file.name}. Поддерживаемые: ${ACCEPTED_IMAGE_TYPES.map((el) => `.${el}`).join(', ')}`,
-        );
-      else if (file.size > MAX_FILE_SIZE * 1024 * 1024)
-        showErrorNotification(
-          `Файл ${file.name} превышает максимальный размер – ${MAX_FILE_SIZE} МБ.`,
-        );
-    });
+    if (files.length > 5)
+      showErrorNotification('Максимальное число загружаемых файлов – 5.');
+    files = files.slice(0, 5);
+    removeDuplicates(files)
+      .slice(0, 5)
+      .forEach((file) => {
+        if (!ACCEPTED_IMAGE_TYPES.includes(file.type))
+          showErrorNotification(
+            `Неподдерживаемый тип файла ${file.name}. Поддерживаемые: ${ACCEPTED_IMAGE_TYPES.map((el) => `.${el}`).join(', ')}`,
+          );
+        else if (file.size > MAX_FILE_SIZE * 1024 * 1024)
+          showErrorNotification(
+            `Файл ${file.name} превышает максимальный размер – ${MAX_FILE_SIZE} МБ.`,
+          );
+      });
 
-    setPhotos([
-      ...photos,
-      ...files.filter(
-        (file) =>
-          ACCEPTED_IMAGE_TYPES.includes(file.type) &&
-          file.size <= MAX_FILE_SIZE * 1024 * 1024,
-      ),
-    ]);
+    setPhotos(
+      [
+        ...photos,
+        ...files.filter(
+          (file) =>
+            ACCEPTED_IMAGE_TYPES.includes(file.type) &&
+            file.size <= MAX_FILE_SIZE * 1024 * 1024,
+        ),
+      ].slice(0, 5),
+    );
   };
 
   const handleSubmit = () => {
@@ -95,6 +102,7 @@ export default function Photos() {
           onChange={(e) => handleSetFiles(filelistToFileArray(e.target.files))}
           type="file"
           multiple
+          accept={ACCEPTED_IMAGE_TYPES.join(', ')}
           className="size-[1px]"
         />
         <ImagePlus size={50} color="#B3B3B3" />

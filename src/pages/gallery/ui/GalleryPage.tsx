@@ -2,7 +2,7 @@ import { requestPhotos } from '../api/photos';
 import GalleryList from '@widgets/galleryList/ui/GalleryList';
 
 export default async function GalleryPage() {
-  const { details } = await requestPhotos();
+  const details = (await requestPhotos()) || [];
   return (
     <section className="py-[60px] sm:py-20">
       <div className="container">

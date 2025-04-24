@@ -59,7 +59,7 @@ const validateDeathYear = (
   if (birth_year && birth_year > death_year) {
     return ctx.addIssue({
       path: ['death_year'],
-      message: `Год смерти должен быть меньше года рождения!`,
+      message: `Год смерти должен быть позже года рождения!`,
       code: 'custom',
     });
   }
@@ -106,13 +106,11 @@ export const MainFormSchema = z
         validateDeathYear(death_year, birth_year, ctx);
     },
   )
-  .superRefine(({ hasnt_photo, photo }, ctx) => {
-    if (hasnt_photo) return true;
-
-    if (!photo) {
+  .superRefine(({ photo }, ctx) => {
+    if (!photo || !photo.length) {
       return ctx.addIssue({
         path: ['photo'],
-        message: 'Необходимо загрузить файл или выбрать "Фото отсутствует".',
+        message: 'Необходимо загрузить файл.',
         code: 'custom',
       });
     }
@@ -120,7 +118,7 @@ export const MainFormSchema = z
     if (photo.length !== 1) {
       return ctx.addIssue({
         path: ['photo'],
-        message: 'Необходимо загрузить только один файл.',
+        message: 'Необходимо загрузить один файл.',
         code: 'custom',
       });
     }

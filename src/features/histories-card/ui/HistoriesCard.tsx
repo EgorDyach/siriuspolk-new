@@ -5,13 +5,14 @@ import Link from 'next/link';
 import { routes } from '@shared/config/routes';
 import { getPersonDates } from '@shared/model/getPersonDates';
 import { getFullName } from '@shared/model/getFullName';
+import { getServerLink } from '@shared/model/getServerLink';
 
 interface HistoriesCardProps {
   item: Person;
 }
 
 const HistoriesCard: FC<HistoriesCardProps> = ({ item }) => {
-  const { url, id, date_birth, date_death, city } = item;
+  const { photo = [], id, date_birth, date_death, city } = item;
   return (
     <div className="md:max-w-2xs md:justify-self-center 2xl:max-w-full w-full">
       <Link
@@ -20,7 +21,7 @@ const HistoriesCard: FC<HistoriesCardProps> = ({ item }) => {
       >
         <Image
           className="w-full aspect-[1/1.2] object-cover"
-          src={url || '/UnknownSoldier.jpg'}
+          src={getServerLink(photo?.at(0)?.link)}
           onError={(e) => (e.currentTarget.src = '/UnknownSoldier.jpg')}
           width={450}
           height={360}

@@ -3,16 +3,16 @@
 import { FormNav } from '@widgets/formNav/ui/FormNav';
 import { PropsWithChildren, useEffect } from 'react';
 import { useFormStore } from '../model/store';
-import { requestMedals } from '../api/medals';
+import { requestMedals } from '@entities/medal/api/medals';
 
 export default function FormLayout({ children }: PropsWithChildren) {
   const values = useFormStore();
 
   useEffect(() => {
     (async () => {
-      if (values.server_medals.length) return;
+      if (values.server_medals !== null) return;
       const medals = await requestMedals();
-      values.setServerMedals(medals.details);
+      values.setServerMedals(medals);
     })();
   }, [values]);
 

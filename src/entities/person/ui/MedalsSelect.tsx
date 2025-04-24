@@ -1,38 +1,44 @@
 import MySelect from '@shared/ui/MySelect';
 import { Plus } from 'lucide-react';
 import React, { FC } from 'react';
-import { Medal } from '../model/types';
 import Image from 'next/image';
-
-export type MedalOption = { type: 'medal'; value: number; text: string };
+import { Medal } from '@shared/model/types';
+import { StylesConfig, GroupBase } from 'react-select';
+import { MedalOption } from '../model/types';
 
 interface MedalsSelectProps {
   handleAdd: (el: MedalOption) => void;
   server_medals: Medal[];
+  styles?: StylesConfig<unknown, true, GroupBase<unknown>>;
 }
 
-const MedalsSelect: FC<MedalsSelectProps> = ({ handleAdd, server_medals }) => {
+const MedalsSelect: FC<MedalsSelectProps> = ({
+  handleAdd,
+  server_medals,
+  styles,
+}) => {
   return (
     <MySelect
+      styles={styles}
       onChange={(el) => {
         handleAdd(el as unknown as MedalOption);
       }}
       closeMenuOnSelect={false}
       defaultValue={server_medals}
-      options={server_medals.map((el) => ({
+      options={server_medals.map(({ id, name, photo_link }) => ({
         type: 'medal',
-        value: el.name,
-        text: el.name,
+        value: id,
+        text: name,
         label: (
           <div className="flex gap-2 items-center">
             <Image
               width={35}
               height={70}
-              alt={el.name}
-              src={el.src}
+              alt={name}
+              src={photo_link}
               className="object-contain md:w-12 md:h-24"
             />
-            <p className="text-[12px] md:text-base">{el.name}</p>
+            <p className="text-[12px] md:text-base">{name}</p>
           </div>
         ),
       }))}

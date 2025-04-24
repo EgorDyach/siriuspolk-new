@@ -4,13 +4,15 @@ import { Person } from '@shared/model/types';
 import Image from 'next/image';
 import { cx } from 'class-variance-authority';
 import { getFullName } from '@shared/model/getFullName';
+import { getServerLink } from '@shared/model/getServerLink';
+import React from 'react';
 
 interface HeroSlideProps {
   person: Person;
 }
 
 export function HeroSlide({ person }: HeroSlideProps) {
-  const { url, date_birth, date_death, id } = person;
+  const { photo = [], date_birth, date_death, id } = person;
   const router = useRouter();
   const handleClick = () => router.push(`/histories/${id}`);
   return (
@@ -29,7 +31,7 @@ export function HeroSlide({ person }: HeroSlideProps) {
         alt={`${getFullName(person)} (${date_birth} - ${date_death}) – портрет`}
         width={462}
         height={600}
-        src={url || '/UnknownSoldier.jpg'}
+        src={getServerLink(photo?.at(0)?.link)}
         priority={true}
       />
       <p

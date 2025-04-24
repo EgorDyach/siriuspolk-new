@@ -34,7 +34,6 @@ export default function Contacts() {
   const onSubmit = async (data: ContactsSchemaValues) => {
     setContacts(data);
     if (!checkData()) return;
-    // TODO: Добавить try/catch полсе фикса на бэке
     try {
       await requestCreatePerson({
         contacts: data,

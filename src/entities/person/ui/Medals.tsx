@@ -13,6 +13,7 @@ export default function Medals() {
   const router = useRouter();
   const { setMedals, server_medals, medals } = useFormStore();
   const handleAdd = (el: MedalOption) => {
+    if (!server_medals) return;
     const item = server_medals.find((v) => v.name === el.text);
     if (!item) return showErrorNotification('Не удалось добавить награду.');
     setMedals([...medals, item]);
@@ -68,7 +69,7 @@ export default function Medals() {
           ))}
         </ul>
       </PhotoProvider>
-      <MedalsSelect handleAdd={handleAdd} server_medals={server_medals} />
+      <MedalsSelect handleAdd={handleAdd} server_medals={server_medals || []} />
       <div className="w-full flex justify-center mt-7 gap-[30px]">
         <Button onClick={handleCancel} className="bg-[#D9D9D9]">
           <p className="text-black text-[14px]">Назад</p>

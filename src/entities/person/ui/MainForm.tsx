@@ -58,7 +58,7 @@ export default function MainForm() {
           <div>
             <div className="flex gap-[5%] mb-4">
               <div className="text-center relative flex-2">
-                <label className="flex items-center justify-center cursor-pointer">
+                <label className="flex items-center justify-center cursor-pointer flex-col gap-2">
                   <div className="size-[75px] rounded-full bg-[#333] flex items-center justify-center mb-2 sm:size-28 xl:size-48">
                     {watch('photo') && watch('photo')?.item(0) && (
                       <Image
@@ -69,15 +69,7 @@ export default function MainForm() {
                         alt=""
                       />
                     )}
-                    {!watch('photo')?.length && watch('hasnt_photo') && (
-                      <Image
-                        width={200}
-                        height={200}
-                        className="object-cover rounded-full size-full"
-                        src={'/UnknownSoldier.jpg'}
-                        alt=""
-                      />
-                    )}
+
                     {!watch('photo')?.length && !watch('hasnt_photo') && (
                       <div className="p-[20%] size-full">
                         <UserRound color="white" className="w-full h-full" />
@@ -91,6 +83,7 @@ export default function MainForm() {
                     accept={ACCEPTED_IMAGE_TYPES.join(', ')}
                     className="w-[1px] h-[1px] hidden"
                   />
+                  <p className="text-left text-[12px]">Выбрать фото </p>
                 </label>
                 {(watch('photo')?.length || watch('hasnt_photo')) && (
                   <span
@@ -103,14 +96,7 @@ export default function MainForm() {
                     <X />
                   </span>
                 )}
-                <label className="flex items-center justify-center">
-                  <Checkbox
-                    disabled={!!watch('photo')?.length}
-                    className="mr-2"
-                    {...register('hasnt_photo')}
-                  />
-                  <p className="text-left text-[12px]">Фото отсутствует</p>
-                </label>
+
                 {formErrors.photo && (
                   <p className="text-red-400">{formErrors.photo.message}</p>
                 )}

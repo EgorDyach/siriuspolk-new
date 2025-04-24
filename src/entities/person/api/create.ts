@@ -26,30 +26,41 @@ export const requestCreatePerson = async ({
   if (!death_year && !is_death_unknown && !is_alive)
     throw new Error('Не указан год смерти.');
 
-  const datePublished = Math.floor(new Date().getTime() / 1000);
-  const body = new FormData();
-
-  if (hasnt_photo) body.append('main_photo', new File([], ''));
-  if (photo && photo.item(0)) body.append('main_photo', photo.item(0)!);
-  photos.forEach((file) => body.append('photo', file));
-  body.append('medals', medals.map((e) => e.name).toString());
-
-  return await request.post('/unreadedPersons', body, {
-    params: {
-      snl: `${surname} ${name} ${lastname}`,
-      date_birth: is_birth_unknown ? 0 : birth_year,
-      date_death: getDateDeath(!!is_death_unknown, !!is_alive, death_year!),
-      city: city,
-      rank: rank,
-      history: history.content,
-      contact_SNL: `${contacts.surname} ${contacts.name} ${contacts.lastname}`,
-      contact_email: contacts.email,
-      contact_telegram: contacts.tg,
-      date_pulished: datePublished,
-      role: true,
-    },
-    headers: {
-      'Content-Type': 'multipart/form-data',
-    },
+  const res: { id: string } = await request.post('/person/create', {
+    surname,
+    name,
+    patronymic: lastname,
+    date_birth: is_birth_unknown ? 0 : birth_year,
+    date_death: getDateDeath(!!is_death_unknown, !!is_alive, death_year!),
+    city,
+    rank,
+    medals: medals.map((el) => el.id),
+    history: history.content,
+    relative: history.relative,
+    contact_patronymic: contacts.lastname,
+    contact_name: contacts.name,
+    contact_surname: contacts.surname,
+    contact_email: contacts.email,
+    contact_telegram: contacts.tg,
   });
+
+  if (!hasnt_photo && photo && photo.item(0)) {
+    const mainBody = new FormData();
+    mainBody.append('file', photo.item(0)!);
+    await request.post(`/person/file/upload/${res.id}?main=true`, mainBody, {
+      headers: {
+        'Content-Type': 'multipart/form-data',
+      },
+    });
+  }
+
+  for (const file of photos) {
+    const formdata = new FormData();
+    formdata.append('file', file);
+    await request.post(`/person/file/upload/${res.id}?main=false`, formdata, {
+      headers: {
+        'Content-Type': 'multipart/form-data',
+      },
+    });
+  }
 };

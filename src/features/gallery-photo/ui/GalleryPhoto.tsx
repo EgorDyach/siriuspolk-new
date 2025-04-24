@@ -3,6 +3,8 @@ import { Photo } from '@shared/model/types';
 import Image from 'next/image';
 import { PhotoView } from 'react-photo-view';
 import { cx } from 'class-variance-authority';
+import dayjs from 'dayjs';
+import { getServerLink } from '@shared/model/getServerLink';
 
 interface GalleryPhotoProps {
   item: Photo;
@@ -11,9 +13,9 @@ interface GalleryPhotoProps {
 const GalleryPhoto: FC<GalleryPhotoProps> = ({ item }) => {
   return (
     <PhotoView
-      src={item.src}
-      render={() => `${item.alt} (${item.date})`}
-      overlay={`${item.alt} (${item.date})`}
+      src={getServerLink(item.link)}
+      render={() => `${item.description} (${item.date})`}
+      overlay={`${item.description} (${dayjs(new Date(item.date)).format('D MMM YYYY г.')})`}
     >
       <div
         tabIndex={1}
@@ -24,16 +26,16 @@ const GalleryPhoto: FC<GalleryPhotoProps> = ({ item }) => {
         <div>
           <Image
             className="w-full h-auto object-cover aspect-[1.36/1] transition-transform group-hover:scale-105"
-            src={item.src}
+            src={getServerLink(item.link)}
             width={450}
             height={360}
-            alt={item.alt || 'Фотография из галереи'}
+            alt={item.description || 'Фотография из галереи'}
           />
           <span className="text-left font-lora text-white text-[16px] absolute bottom-[20px] left-[20px] translate-y-[200px] transition-transform group-hover:translate-y-0 z-10">
             <p className="font-lora text-[16px] line-clamp-3 text-white">
-              {item.date}
+              {dayjs(new Date(item.date)).format('D MMM YYYY г.')}
             </p>
-            <p className="text-[12px] text-white">{item.alt}</p>
+            <p className="text-[12px] text-white">{item.description}</p>
           </span>
         </div>
       </div>

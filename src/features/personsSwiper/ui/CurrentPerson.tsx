@@ -12,6 +12,9 @@ import { routes } from '@shared/config/routes';
 import { forwardRef } from 'react';
 import { cx } from 'class-variance-authority';
 import { getFullName } from '@shared/model/getFullName';
+import { getServerLink } from '@shared/model/getServerLink';
+import React from 'react';
+
 interface CurrentPersonProps {
   current: Person;
 }
@@ -19,7 +22,7 @@ interface CurrentPersonProps {
 const CurrentPerson = forwardRef<HTMLDivElement, CurrentPersonProps>(
   ({ current }, ref) => {
     if (!current) return;
-    const { id, date_birth, date_death, url, history } = current;
+    const { id, date_birth, date_death, history } = current;
 
     return (
       <div
@@ -36,12 +39,15 @@ const CurrentPerson = forwardRef<HTMLDivElement, CurrentPersonProps>(
           }
         >
           <div className="hidden  sm:flex h-full justify-between w-full">
-            <PhotoView src={url}>
+            <PhotoView src={getServerLink(current?.photo?.at(0)?.link)}>
               <Image
                 width={400}
                 height={700}
                 className="cursor-pointer flex-1/2 max-h-[500px] object-contain -order-1 mb-2 sm:w-[35vw] md:w-full xl:flex-1/6 xl:object-left"
-                src={url || '/UnknownSoldier.jpg'}
+                src={
+                  getServerLink(current?.photo?.at(0)?.link) ||
+                  '/UnknownSoldier.jpg'
+                }
                 onError={(e) => (e.currentTarget.src = '/UnknownSoldier.jpg')}
                 alt={`Ветеран ${name} (${getPersonDates(date_birth, date_death)})`}
               />
@@ -69,12 +75,15 @@ const CurrentPerson = forwardRef<HTMLDivElement, CurrentPersonProps>(
           </div>
         </PhotoProvider>
         <PhotoProvider>
-          <PhotoView src={url}>
+          <PhotoView src={getServerLink(current?.photo?.at(0)?.link)}>
             <Image
               width={400}
               height={700}
               className="cursor-pointer flex-1/2 max-h-[500px] max-w-[200px] object-contain -order-1 mb-2 sm:max-w-[300px] sm:hidden"
-              src={url || '/UnknownSoldier.jpg'}
+              src={
+                getServerLink(current?.photo?.at(0)?.link) ||
+                '/UnknownSoldier.jpg'
+              }
               onError={(e) => (e.currentTarget.src = '/UnknownSoldier.jpg')}
               priority
               alt={`Ветеран ${name} (${getPersonDates(date_birth, date_death)})`}

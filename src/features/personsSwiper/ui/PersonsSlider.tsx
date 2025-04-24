@@ -16,6 +16,7 @@ import { cx } from 'class-variance-authority';
 import CurrentPerson from './CurrentPerson';
 import { CSSTransition, SwitchTransition } from 'react-transition-group';
 import { getFullName } from '@shared/model/getFullName';
+import { getServerLink } from '@shared/model/getServerLink';
 
 interface PersonsSliderProps {
   persons: Person[];
@@ -106,7 +107,10 @@ export default function PersonsSlider({ persons }: PersonsSliderProps) {
                   alt={`${getFullName(person)} (${person.date_birth} - ${person.date_death}) – портрет`}
                   width={300}
                   height={400}
-                  src={person.url || '/UnknownSoldier.jpg'}
+                  src={
+                    getServerLink(person?.photo?.at(0)?.link) ||
+                    '/UnknownSoldier.jpg'
+                  }
                   onError={(e) => (e.currentTarget.src = '/UnknownSoldier.jpg')}
                   onClick={() => handleClick(index)}
                 />

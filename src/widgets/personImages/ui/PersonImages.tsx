@@ -8,11 +8,13 @@ import 'swiper/css';
 import 'swiper/css/navigation';
 import ArrowRight from '@shared/ui/icons/ArrowRight';
 import ArrowLeft from '@shared/ui/icons/ArrowLeft';
+import { PersonPhoto } from '@shared/model/types';
+import { getServerLink } from '@shared/model/getServerLink';
 
 const SLIDE_COUNT_ITEMS = 1;
 
 interface PersonImagesProps {
-  images: string[];
+  images: PersonPhoto[];
 }
 
 const PersonImages: FC<PersonImagesProps> = ({ images }) => {
@@ -62,13 +64,13 @@ const PersonImages: FC<PersonImagesProps> = ({ images }) => {
               setMaxIndex(swiper.slides.length - SLIDE_COUNT_ITEMS);
             }}
           >
-            {images.map((imageSrc, i) => {
+            {images.map((image, i) => {
               return (
                 <SwiperSlide className="my-auto cursor-zoom-in" key={i}>
-                  <PhotoView src={imageSrc}>
+                  <PhotoView src={getServerLink(image.link)}>
                     <Image
                       className="w-full aspect-square object-cover mx-auto my-auto"
-                      src={imageSrc}
+                      src={getServerLink(image.link)}
                       width={1000}
                       height={1000}
                       alt={''}
