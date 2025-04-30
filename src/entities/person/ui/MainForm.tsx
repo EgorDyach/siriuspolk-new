@@ -55,6 +55,7 @@ export default function MainForm() {
           <span className="text-[#C4B695] italic font-lora text-[14px] mb-[40px]">
             * - обязательные поля
           </span>
+
           <div>
             <div className="flex gap-[5%] mb-4">
               <div className="text-center relative flex-2">
@@ -70,7 +71,7 @@ export default function MainForm() {
                       />
                     )}
 
-                    {!watch('photo')?.length && !watch('hasnt_photo') && (
+                    {!watch('photo')?.length && (
                       <div className="p-[20%] size-full">
                         <UserRound color="white" className="w-full h-full" />
                       </div>
@@ -79,17 +80,15 @@ export default function MainForm() {
                   <input
                     {...register('photo')}
                     type="file"
-                    disabled={watch('hasnt_photo')}
                     accept={ACCEPTED_IMAGE_TYPES.join(', ')}
                     className="w-[1px] h-[1px] hidden"
                   />
                   <p className="text-left text-[12px]">Выбрать фото </p>
                 </label>
-                {(watch('photo')?.length || watch('hasnt_photo')) && (
+                {!!watch('photo')?.length && (
                   <span
                     onClick={() => {
                       setValue('photo', null);
-                      setValue('hasnt_photo', false);
                     }}
                     className="size-6 items-center flex justify-center bg-white border-[1px] border-black rounded-full absolute top-0 right-1/2 translate-x-[38px] cursor-pointer sm:size-9 sm:translate-x-[62px] xl:size-11 xl:translate-x-[100px]"
                   >

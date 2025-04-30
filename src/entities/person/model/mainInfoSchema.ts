@@ -75,7 +75,6 @@ export const MainFormSchema = z
     }),
     lastname: z.string({ message: 'Обязательное поле' }).nullable(),
     photo: z.custom<FileList>().nullable(),
-    hasnt_photo: z.boolean(),
     birth_year: z.coerce.number({ message: 'Обязательное поле' }).nullable(),
     is_birth_unknown: z.boolean(),
     death_year: z.coerce.number({ message: 'Обязательное поле' }).nullable(),

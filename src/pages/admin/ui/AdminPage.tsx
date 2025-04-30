@@ -12,8 +12,10 @@ import { requestMedals } from '@entities/medal/api/medals';
 import { requestUncheckedPersons } from '@widgets/uncheckedPersons/api/uncheckedPersons';
 import { requestCheckedPersons } from '@widgets/checkedPersons/api/checkedPersons';
 import { requestPhotos } from '@entities/photo/api/photos';
+import { useRouter } from 'next/navigation';
 
 const AdminPage = () => {
+  const router = useRouter();
   const {
     uncheckedPersons,
     isLoading,
@@ -37,6 +39,7 @@ const AdminPage = () => {
         setPhotos(galleryPhotos);
       } catch {
         showErrorNotification('Не удалось получить данные. Попробуйте позже.');
+        router.replace('/login');
         setMedals([]);
         setUncheckedPersons([]);
         setCheckedPersons([]);
@@ -51,6 +54,7 @@ const AdminPage = () => {
     setMedals,
     setPhotos,
     setUncheckedPersons,
+    router,
   ]);
   return (
     <div className="py-10 sm:py-16">

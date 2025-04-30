@@ -11,8 +11,12 @@ export default function FormLayout({ children }: PropsWithChildren) {
   useEffect(() => {
     (async () => {
       if (values.server_medals !== null) return;
-      const medals = await requestMedals();
-      values.setServerMedals(medals);
+      try {
+        const medals = await requestMedals();
+        values.setServerMedals(medals);
+      } catch {
+        values.setServerMedals([]);
+      }
     })();
   }, [values]);
 
