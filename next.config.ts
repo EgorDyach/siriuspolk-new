@@ -1,10 +1,14 @@
 import type { NextConfig } from 'next';
 
 const nextConfig: NextConfig = {
-  fontLoaders: [
-    { loader: '@next/font/google', options: { subsets: ['latin'] } },
-  ],
-
+  output: 'standalone',
+  logging: {
+    fetches: {
+      fullUrl: true,
+      hmrRefreshes: true,
+    },
+    incomingRequests: {},
+  },
   images: {
     remotePatterns: [
       {

@@ -5,7 +5,6 @@ import { getDateDeath } from '../model/helpers';
 // TODO: обновить запрос после изменения на бэке
 export const requestCreatePerson = async ({
   mainInfo: {
-    hasnt_photo,
     photo,
     rank,
     surname,
@@ -44,7 +43,7 @@ export const requestCreatePerson = async ({
     contact_telegram: contacts.tg,
   });
 
-  if (!hasnt_photo && photo && photo.item(0)) {
+  if (photo && photo.item(0)) {
     const mainBody = new FormData();
     mainBody.append('file', photo.item(0)!);
     await request.post(`/person/file/upload/${res.id}?main=true`, mainBody, {

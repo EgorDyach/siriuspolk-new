@@ -8,10 +8,11 @@ const defaultHeaders = {
 };
 
 const createRequestInstance = (
+  isServer: boolean,
   errorBefore: null | AxiosError = null,
 ): AppApi => {
   const instance = axios.create({
-    baseURL: ENV.apiBaseUrl,
+    baseURL: ENV[isServer ? 'apiBaseUrl' : 'publicApiBaseUrl'],
     headers: defaultHeaders,
     withCredentials: true,
   });
@@ -29,7 +30,7 @@ const createRequestInstance = (
         }
         return (async () => {
           try {
-            const request: AppApi = createRequestInstance(error);
+            const request: AppApi = createRequestInstance(isServer, error);
             await request.post('/profile/refresh', null, {
               headers: {
                 Cookie: originalRequest.headers.Cookie,
@@ -56,4 +57,5 @@ const createRequestInstance = (
   return instance as AppApi;
 };
 
-export const request = createRequestInstance();
+export const request = createRequestInstance(false);
+export const serverRequest = createRequestInstance(true);

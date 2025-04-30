@@ -1,10 +1,10 @@
 import ErrorBoundary from '@shared/ui/ErrorBoundary';
-import { requestPhotos } from '../api/photos';
+import { serverRequestPhotos } from '../api/photos';
 import GalleryList from '@widgets/galleryList/ui/GalleryList';
 
 export default async function GalleryPage() {
   try {
-    const details = (await requestPhotos()) || [];
+    const details = (await serverRequestPhotos()) || [];
 
     return (
       <section className="py-[60px] sm:py-20">
