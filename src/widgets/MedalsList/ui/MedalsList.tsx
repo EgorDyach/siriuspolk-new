@@ -8,8 +8,8 @@ import { Dialog } from '@shared/ui/dialog';
 import UpdateMedalModal from '@entities/medal/ui/UpdateMedalModal';
 import { CurrentMedalType } from '@entities/medal/model/types';
 import { DeleteMedalModal } from '@features/DeleteMedalModal/ui/DeleteMedalModal';
-import { EditMedalButton } from './DeleteMedalButton';
-import { DeleteMedalButton } from './EditMedalButton';
+import { EditMedalButton } from './EditMedalButton';
+import { DeleteMedalButton } from './DeleteMedalButton';
 
 export interface MedalsListProps {
   medals: Medal[];

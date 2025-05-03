@@ -45,5 +45,5 @@ export const requestUpdatePerson = async ({
     contact_surname,
     contact_email,
     contact_telegram,
-    role: addToMainPage,
+    main_page: addToMainPage,
   });

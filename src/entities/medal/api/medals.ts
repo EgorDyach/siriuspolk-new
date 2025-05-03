@@ -8,13 +8,9 @@ export const requestCreateMedal = async (medal: Omit<Medal, 'id'>) =>
   await request.post('/medal/create', medal);
 
 export const requestDeleteMedal = async (id: string | number) => {
-  // TODO: удалить после реализации
-  (() => id)();
-  throw new Error('Удаление медалей не реализовано.');
+  await request.delete(`/medal/${id}`);
 };
 
 export const requestUpdateMedal = async (medal: Medal) => {
-  // TODO: удалить после реализации
-  (() => medal)();
-  throw new Error('Обновление медалей не реализовано.');
+  await request.put(`/medal`, medal);
 };
